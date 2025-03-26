@@ -74,7 +74,7 @@
 		/obj/item/grown/log/tree/small= 1,
 	)
 	tool_usage = list(
-		/obj/item/weapon/knife = list("starts to whittle", "start whittling", 'sound/items/wood_sharpen.ogg'),
+		/obj/item/weapon/knife = list(span_notice("starts to whittle"), span_notice("start to whittle"), 'sound/items/wood_sharpen.ogg'),
 	)
 	attacked_atom = /obj/item/grown/log/tree/small
 	starting_atom  = /obj/item/weapon/knife
@@ -108,12 +108,12 @@
 /datum/repeatable_crafting_recipe/crafting/woodstaff
 	name = "wood staff"
 	requirements = list(
-		/obj/item/grown/log/tree= 1,
+		/obj/item/grown/log/tree/small= 1,
 	)
 	tool_usage = list(
-		/obj/item/weapon/knife = list("starts to whittle", "start whittling", 'sound/items/wood_sharpen.ogg'),
+		/obj/item/weapon/knife = list(span_notice("starts to whittle"), span_notice("start to whittle"), 'sound/items/wood_sharpen.ogg'),
 	)
-	attacked_atom = /obj/item/grown/log/tree
+	attacked_atom = /obj/item/grown/log/tree/small
 	starting_atom = /obj/item/weapon/knife
 	output = /obj/item/weapon/polearm/woodstaff
 	output_amount = 2
@@ -121,29 +121,42 @@
 	uses_attacked_atom = FALSE
 
 /datum/repeatable_crafting_recipe/crafting/spoon
-	name = "wooden spoon (x2)"
+	name = "wooden spoon"
 	requirements = list(
-		/obj/item/grown/log/tree= 1,
+		/obj/item/grown/log/tree/stick= 1,
+	)
+	tool_usage = list(
+		/obj/item/weapon/knife = list(span_notice("starts to whittle"), span_notice("start to whittle"), 'sound/items/wood_sharpen.ogg'),
+	)
+	attacked_atom = /obj/item/grown/log/tree/stick
+	starting_atom = /obj/item/weapon/knife
+	output = /obj/item/kitchen/spoon
+	craft_time = 3 SECONDS
+	uses_attacked_atom = FALSE
+
+/datum/repeatable_crafting_recipe/crafting/fork
+	name = "wooden fork"
+	requirements = list(
+		/obj/item/grown/log/tree/stick= 1,
 	)
 	tool_usage = list(
 		/obj/item/weapon/knife = list("starts to whittle", "start whittling", 'sound/items/wood_sharpen.ogg'),
 	)
-	attacked_atom = /obj/item/grown/log/tree
+	attacked_atom = /obj/item/grown/log/tree/stick
 	starting_atom = /obj/item/weapon/knife
-	output = /obj/item/kitchen/spoon
-	output_amount = 2
-	craft_time = 5 SECONDS
+	output = /obj/item/kitchen/fork
+	craft_time = 3 SECONDS
 	uses_attacked_atom = FALSE
 
 /datum/repeatable_crafting_recipe/crafting/rollingpin
 	name = "wooden rollingpin"
 	requirements = list(
-		/obj/item/grown/log/tree= 1,
+		/obj/item/grown/log/tree/small= 1,
 	)
 	tool_usage = list(
-		/obj/item/weapon/knife = list("starts to whittle", "start whittling", 'sound/items/wood_sharpen.ogg'),
+		/obj/item/weapon/knife = list(span_notice("starts to whittle"), span_notice("start to whittle"), 'sound/items/wood_sharpen.ogg'),
 	)
-	attacked_atom = /obj/item/grown/log/tree
+	attacked_atom = /obj/item/grown/log/tree/small
 	starting_atom = /obj/item/weapon/knife
 	output = /obj/item/kitchen/rollingpin
 	craft_time = 5 SECONDS
@@ -155,7 +168,7 @@
 		/obj/item/grown/log/tree/small = 1,
 	)
 	tool_usage = list(
-		/obj/item/weapon/knife = list("starts to whittle", "start whittling", 'sound/items/wood_sharpen.ogg'),
+		/obj/item/weapon/knife = list(span_notice("starts to whittle"), span_notice("start to whittle"), 'sound/items/wood_sharpen.ogg'),
 	)
 	attacked_atom = /obj/item/grown/log/tree/small
 	starting_atom = /obj/item/weapon/knife
@@ -170,7 +183,7 @@
 		/obj/item/grown/log/tree/small= 1,
 	)
 	tool_usage = list(
-		/obj/item/weapon/knife = list("starts to whittle", "start whittling", 'sound/items/wood_sharpen.ogg'),
+		/obj/item/weapon/knife = list(span_notice("starts to whittle"), span_notice("start to whittle"), 'sound/items/wood_sharpen.ogg'),
 	)
 	attacked_atom = /obj/item/grown/log/tree/small
 	starting_atom= /obj/item/weapon/knife
@@ -185,7 +198,7 @@
 		/obj/item/grown/log/tree/small= 1,
 	)
 	tool_usage = list(
-		/obj/item/weapon/knife = list("starts to whittle", "start whittling", 'sound/items/wood_sharpen.ogg'),
+		/obj/item/weapon/knife = list(span_notice("starts to whittle"), span_notice("start to whittle"), 'sound/items/wood_sharpen.ogg'),
 	)
 	attacked_atom = /obj/item/grown/log/tree/small
 	starting_atom= /obj/item/weapon/knife
@@ -200,7 +213,7 @@
 		/obj/item/grown/log/tree/small= 1,
 	)
 	tool_usage = list(
-		/obj/item/weapon/knife = list("starts to whittle", "start whittling", 'sound/items/wood_sharpen.ogg'),
+		/obj/item/weapon/knife = list(span_notice("starts to whittle"), span_notice("start to whittle"), 'sound/items/wood_sharpen.ogg'),
 	)
 	attacked_atom = /obj/item/grown/log/tree/small
 	starting_atom= /obj/item/weapon/knife
@@ -215,11 +228,11 @@
 		/obj/item/grown/log/tree/small= 1,
 	)
 	tool_usage = list(
-		/obj/item/weapon/knife = list("starts to whittle", "start whittling", 'sound/items/wood_sharpen.ogg'),
+		/obj/item/weapon/knife = list(span_notice("starts to whittle"), span_notice("start to whittle"), 'sound/items/wood_sharpen.ogg'),
 	)
 	attacked_atom = /obj/item/grown/log/tree/small
 	starting_atom= /obj/item/weapon/knife
-	output = /obj/item/kitchen/platter
+	output = /obj/item/plate
 	output_amount = 2
 	craft_time = 5 SECONDS
 	uses_attacked_atom = FALSE
@@ -230,8 +243,8 @@
 		/obj/item/grown/log/tree/small= 1,
 		/obj/item/grown/log/tree/stick = 1,
 	)
-	starting_atom = /obj/item/grown/log/tree/small
-	attacked_atom = /obj/item/grown/log/tree/stick
+	attacked_atom = /obj/item/grown/log/tree/small
+	starting_atom = /obj/item/grown/log/tree/stick
 	output = /obj/item/weapon/shovel/small
 	craft_time = 2 SECONDS
 
@@ -254,7 +267,7 @@
 		/obj/item/grown/log/tree/stick= 1,
 	)
 	tool_usage = list(
-		/obj/item/weapon/knife = list("starts to whittle", "start whittling", 'sound/items/wood_sharpen.ogg'),
+		/obj/item/weapon/knife = list(span_notice("starts to whittle"), span_notice("start to whittle"), 'sound/items/wood_sharpen.ogg'),
 	)
 	attacked_atom = /obj/item/grown/log/tree/stick
 	starting_atom  = /obj/item/weapon/knife
@@ -267,7 +280,7 @@
 		/obj/item/grown/log/tree/stick= 1,
 	)
 	tool_usage = list(
-		/obj/item/weapon/knife = list("starts to whittle", "start whittling", 'sound/items/wood_sharpen.ogg'),
+		/obj/item/weapon/knife = list(span_notice("starts to whittle"), span_notice("start to whittle"), 'sound/items/wood_sharpen.ogg'),
 	)
 	attacked_atom = /obj/item/grown/log/tree/stick
 	starting_atom  = /obj/item/weapon/knife
@@ -301,7 +314,7 @@
 		/obj/item/grown/log/tree/small= 1,
 	)
 	tool_usage = list(
-		/obj/item/weapon/knife = list("starts to whittle", "start whittling", 'sound/items/wood_sharpen.ogg'),
+		/obj/item/weapon/knife = list(span_notice("starts to whittle"), span_notice("start to whittle"), 'sound/items/wood_sharpen.ogg'),
 	)
 	attacked_atom = /obj/item/grown/log/tree/small
 	starting_atom= /obj/item/weapon/knife
@@ -315,7 +328,7 @@
 		/obj/item/grown/log/tree/small= 1,
 	)
 	tool_usage = list(
-		/obj/item/weapon/knife = list("starts to whittle", "start whittling", 'sound/items/wood_sharpen.ogg'),
+		/obj/item/weapon/knife = list(span_notice("starts to whittle"), span_notice("start to whittle"), 'sound/items/wood_sharpen.ogg'),
 	)
 	attacked_atom = /obj/item/grown/log/tree/small
 	starting_atom= /obj/item/weapon/knife
@@ -405,10 +418,12 @@
 	name = "parchment scroll"
 	requirements = list(
 		/obj/item/paper = 3,
+		/obj/item/natural/fibers = 1,
 	)
-	starting_atom = /obj/item/paper
+	starting_atom = /obj/item/natural/fibers
 	attacked_atom = /obj/item/paper
 	output = /obj/item/paper/scroll
+	subtypes_allowed = FALSE
 	uses_attacked_atom = TRUE
 	craftdiff = 0
 
@@ -418,7 +433,7 @@
 		/obj/item/natural/wood/plank= 2,
 	)
 	tool_usage = list(
-		/obj/item/weapon/knife = list("starts to whittle", "start whittling", 'sound/items/wood_sharpen.ogg'),
+		/obj/item/weapon/knife = list(span_notice("starts to whittle"), span_notice("start to whittle"), 'sound/items/wood_sharpen.ogg'),
 	)
 	attacked_atom = /obj/item/natural/wood/plank
 	starting_atom  = /obj/item/weapon/knife

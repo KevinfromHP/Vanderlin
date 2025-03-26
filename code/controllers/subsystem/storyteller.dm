@@ -325,9 +325,9 @@ SUBSYSTEM_DEF(gamemode)
 						break
 				if(real)
 					continue
-			if(restricted_roles && (candidate.mind.assigned_role in restricted_roles))
+			if(restricted_roles && (candidate.mind.assigned_role.title in restricted_roles))
 				continue
-			if(length(required_roles) && !(candidate.mind.assigned_role in required_roles))
+			if(length(required_roles) && !(candidate.mind.assigned_role.title in required_roles))
 				continue
 
 		if(be_special)
@@ -560,11 +560,11 @@ SUBSYSTEM_DEF(gamemode)
 	if(ttime >= GLOB.round_timer)
 		if(roundvoteend)
 			if(ttime >= round_ends_at)
-				for(var/mob/living/carbon/human/H in GLOB.human_list)
-					if(H.stat != DEAD)
-						if(H.allmig_reward)
-							H.adjust_triumphs(H.allmig_reward)
-							H.allmig_reward = 0
+				// for(var/mob/living/carbon/human/H in GLOB.human_list)
+				// 	if(H.stat != DEAD)
+				// 		if(H.allmig_reward)
+				// 			H.adjust_triumphs(H.allmig_reward)
+				// 			H.allmig_reward = 0
 				return TRUE
 		else
 			if(!SSvote.mode)
@@ -1048,6 +1048,8 @@ SUBSYSTEM_DEF(gamemode)
 	var/list/storytellers_with_votes = list()
 	for(var/client/client in GLOB.clients)
 		var/mob/living/living = client.mob
+		if(!istype(living))
+			continue
 		if(!roundstart)
 			if(!living.mind)
 				continue

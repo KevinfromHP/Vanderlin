@@ -1,6 +1,7 @@
 /datum/slapcraft_step/item/cloth
 	desc = "Add some cloth."
 	item_types = list(/obj/item/natural/cloth)
+	blacklist_item_types = list(/obj/item/natural/cloth/bandit)
 
 /datum/slapcraft_step/item/cloth/second
 /datum/slapcraft_step/item/cloth/third
@@ -47,6 +48,7 @@
 /datum/slapcraft_step/item/rope
 	desc = "Add some rope."
 	item_types = list(/obj/item/rope)
+	blacklist_item_types = list(/obj/item/rope/chain)
 	perform_time = 1 SECONDS
 
 /datum/slapcraft_step/item/stake
@@ -120,6 +122,10 @@
 	desc = "Add a finished lock."
 	item_types = list(/obj/item/customlock/finished)
 	insert_item_into_result = TRUE //check contents of finished item to handle lock behavior
+
+/datum/slapcraft_step/item/amethyst
+	desc = "Add an amethyst."
+	item_types = list(/obj/item/gem/amethyst)
 
 /datum/slapcraft_step/item/fur
 	desc = "Add some fur."

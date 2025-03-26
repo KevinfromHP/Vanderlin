@@ -14,7 +14,7 @@
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
-	charge_max = 8 SECONDS	// the cooldown
+	recharge_time = 8 SECONDS	// the cooldown
 	miracle = TRUE
 	devotion_cost = 45
 
@@ -58,12 +58,10 @@
 	sound = 'sound/magic/revive.ogg'
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
-	charge_max = 2 MINUTES
+	recharge_time = 2 MINUTES
 	miracle = TRUE
 	devotion_cost = 100
 //	req_inhand = list(/obj/item/coin/gold)
-	/// Amount of PQ gained for reviving people
-	var/revive_pq = PQ_GAIN_REVIVE
 
 /obj/effect/proc_holder/spell/invoked/revive/cast(list/targets, mob/living/user)
 	if(isliving(targets[1]))
@@ -102,8 +100,7 @@
 		target.update_body()
 		target.visible_message("<span class='notice'>[target] is revived by holy light!</span>", "<span class='green'>I awake from the void.</span>")
 		target.apply_status_effect(/datum/status_effect/debuff/revive)
-		if(target.mind && revive_pq && !HAS_TRAIT(target, TRAIT_IWASREVIVED) && user?.ckey)
-			adjust_playerquality(revive_pq, user.ckey)
+		if(target.mind && !HAS_TRAIT(target, TRAIT_IWASREVIVED))
 			ADD_TRAIT(target, TRAIT_IWASREVIVED, "[type]")
 		return ..()
 	return FALSE

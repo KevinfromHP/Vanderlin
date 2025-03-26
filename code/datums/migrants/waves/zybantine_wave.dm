@@ -6,11 +6,15 @@
 		"Humen",
 		"Rakshari",
 		"Elf",
-		"Half-Elf"
+		"Half-Elf",
+		"Dwarf",
+		"Tiefling",
+		"Dark Elf",
+		"Aasimar",
+		"Half-Orc",
 	)
 	outfit = /datum/outfit/job/zybantine_migration/emir
 	grant_lit_torch = TRUE
-	show_wanderer_examine = FALSE
 
 /datum/outfit/job/zybantine_migration/emir/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -44,6 +48,7 @@
 		H.mind?.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
 		H.mind?.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
 		H.mind?.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
+		H.mind?.adjust_skillrank(/datum/skill/labor/mathematics, 3, TRUE)
 		var/prev_real_name = H.real_name
 		var/prev_name = H.name
 		var/honorary = "Emir"
@@ -69,11 +74,16 @@
 		"Humen",
 		"Rakshari",
 		"Elf",
-		"Half-Elf"
+		"Half-Elf",
+		"Dwarf",
+		"Tiefling",
+		"Dark Elf",
+		"Aasimar",
+		"Half-Orc",
+		"Kobold",
 	)
 	outfit = /datum/outfit/job/zybantine_migration/amirah
 	grant_lit_torch = TRUE
-	show_wanderer_examine = FALSE
 
 /datum/outfit/job/zybantine_migration/amirah/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -105,6 +115,7 @@
 		H.mind?.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
 		H.mind?.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
 		H.mind?.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
+		H.mind?.adjust_skillrank(/datum/skill/labor/mathematics, 3, TRUE)
 		var/prev_real_name = H.real_name
 		var/prev_name = H.name
 		var/honorary = "Amirah"
@@ -126,7 +137,6 @@
 	allowed_races = list("Humen")
 	outfit = /datum/outfit/job/zybantine_migration/furusiyya
 	grant_lit_torch = TRUE
-	show_wanderer_examine = FALSE
 
 /datum/outfit/job/zybantine_migration/furusiyya/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -143,6 +153,7 @@
 		H.mind?.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
 		H.mind?.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
 		H.mind?.adjust_skillrank(/datum/skill/misc/riding, 4, TRUE)
+		H.mind?.adjust_skillrank(/datum/skill/labor/mathematics, 3, TRUE)
 		H.change_stat(STATKEY_STR, 3)
 		H.change_stat(STATKEY_PER, 1)
 		H.change_stat(STATKEY_INT, 2)
@@ -182,22 +193,21 @@
 	H.cmode_music = 'sound/music/cmode/adventurer/CombatOutlander.ogg'
 
 /datum/migrant_role/zybantine_guard
-	name = "Zybantine soldier"
+	name = "Zybantine Soldier"
 	greet_text = "You are a slave soldier from the Ziggurat sent as an escort to the emirs on a foreign land, do not fail them."
 	allowed_sexes = list(MALE,FEMALE)
 	allowed_races = list("Humen",
 		"Elf",
 		"Half-Elf",
+		"Rakshari",
 		"Dwarf",
 		"Tiefling",
 		"Dark Elf",
 		"Aasimar",
-		"Half-Orc",
-		"Rakshari",
+		"Half-Orc"
 	)
 	outfit = /datum/outfit/job/zybantine_migration/zybantine_guard
 	grant_lit_torch = TRUE
-	show_wanderer_examine = FALSE
 
 /datum/outfit/job/zybantine_migration/zybantine_guard/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -244,11 +254,13 @@
 	allowed_races = list(
 		"Humen",
 		"Elf",
+		"Rakshari",
 		"Half-Elf",
-		"Rakshari"
+		"Tiefling",
+		"Dark Elf",
+		"Half-Orc"
 	)
 	outfit = /datum/outfit/job/zybantine_migration/qatil
-	show_wanderer_examine = FALSE
 
 /datum/outfit/job/zybantine_migration/qatil/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -290,7 +302,7 @@
 	H.cmode_music = 'sound/music/cmode/adventurer/CombatOutlander3.ogg'
 
 /datum/migrant_wave/zybantine_wave
-	name = "The Ziggurat expedition"
+	name = "The Ziggurat Expedition"
 	max_spawns = 1
 	shared_wave_type = list(/datum/migrant_wave/grenzelhoft_visit,/datum/migrant_wave/zybantine_wave,/datum/migrant_wave/rockhill_wave,/datum/migrant_wave/heartfelt)
 	weight = 25
@@ -305,7 +317,7 @@
 	greet_text = "The Mercator Guild sent you, respected Zybantinian to seek favorable business proposal within the Kingdom of Vanderlin."
 
 /datum/migrant_wave/zybantine_wave_down
-	name = "The Ziggurat expedition"
+	name = "The Ziggurat Expedition"
 	max_spawns = 1
 	shared_wave_type = list(/datum/migrant_wave/grenzelhoft_visit,/datum/migrant_wave/zybantine_wave,/datum/migrant_wave/rockhill_wave,/datum/migrant_wave/heartfelt)
 	can_roll = FALSE

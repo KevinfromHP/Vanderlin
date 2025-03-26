@@ -12,7 +12,7 @@
 		"Dark Elf",
 		"Aasimar",
 		"Half-Orc",
-		"Rakshari"
+		"Kobold",
 	)
 	outfit = /datum/outfit/job/mercenary/zybantine
 	category_tags = list(CTAG_MERCENARY)
