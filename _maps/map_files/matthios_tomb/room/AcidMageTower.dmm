@@ -147,6 +147,22 @@
 /obj/item/natural/wood/plank,
 /turf/open/floor/ruinedwood/chevron,
 /area/rogue/indoors)
+"fZ" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/structure/mineral_door/secret{
+	locked = 0
+	},
+/obj/merge_conflict_marker{
+	name = "---Merge Conflict Marker---";
+	
+	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
+	},
+/obj/effect/mapping_helpers/secret_door_creator{
+	override_floor = 0;
+	redstone_id = 882
+	},
+/turf/closed/wall/mineral/stonebrick,
+/area/rogue/indoors)
 "gd" = (
 /obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/tile/bath,
@@ -354,12 +370,6 @@
 "mJ" = (
 /turf/open/floor/ruinedwood/darker,
 /area/rogue/indoors/cave)
-"mL" = (
-/obj/structure/window/stained/silver,
-/obj/structure/window/stained/silver,
-/obj/structure/curtain,
-/turf/open/floor/churchrough,
-/area/rogue/indoors)
 "mN" = (
 /obj/effect/decal/cleanable/dirt/cobweb/cobweb2,
 /turf/open/floor/churchmarble,
@@ -389,12 +399,6 @@
 	dir = 8
 	},
 /turf/open/floor/churchmarble,
-/area/rogue/indoors)
-"nJ" = (
-/obj/structure/mineral_door/secret{
-	locked = 0
-	},
-/turf/open/floor/tile/masonic/spiral,
 /area/rogue/indoors)
 "nY" = (
 /obj/item/soap,
@@ -606,13 +610,6 @@
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/rotten/bacon,
 /turf/open/floor/tile/kitchen,
-/area/rogue/indoors)
-"vW" = (
-/obj/effect/decal/cleanable/blood/tracks,
-/obj/structure/mineral_door/secret{
-	locked = 0
-	},
-/turf/open/floor/churchrough,
 /area/rogue/indoors)
 "wf" = (
 /obj/structure/toilet,
@@ -913,6 +910,24 @@
 "HA" = (
 /turf/closed/mineral/bedrock,
 /area/rogue/indoors)
+"HD" = (
+/obj/structure/mineral_door/secret{
+	locked = 0
+	},
+/obj/merge_conflict_marker{
+	name = "---Merge Conflict Marker---";
+	
+	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
+	},
+/obj/effect/mapping_helpers/secret_door_creator{
+	override_floor = 0;
+	redstone_id = 881
+	},
+/obj/structure/lever/hidden{
+	redstone_id = 881
+	},
+/turf/closed/wall/mineral/stonebrick,
+/area/rogue/indoors)
 "HF" = (
 /obj/item/recipe_book/survival,
 /turf/open/floor/ruinedwood/chevron,
@@ -922,6 +937,12 @@
 	dir = 4
 	},
 /turf/open/floor/grass/cold,
+/area/rogue/indoors)
+"HJ" = (
+/obj/structure/lever/hidden{
+	redstone_id = 882
+	},
+/turf/closed/wall/mineral/stonebrick,
 /area/rogue/indoors)
 "HM" = (
 /obj/effect/decal/cleanable/blood/old,
@@ -2112,7 +2133,7 @@ Ff
 RN
 Qs
 XD
-vW
+fZ
 fr
 Qs
 pa
@@ -2144,7 +2165,7 @@ jm
 qN
 sp
 je
-sp
+HJ
 dO
 sp
 cn
@@ -3016,7 +3037,7 @@ ve
 ve
 ve
 ve
-mL
+cn
 OG
 dr
 GZ
@@ -3038,7 +3059,7 @@ mI
 Zl
 aC
 om
-nJ
+HD
 yd
 Uv
 iG

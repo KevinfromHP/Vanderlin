@@ -1,6 +1,6 @@
+GLOBAL_LIST_EMPTY(keep_doors)
 GLOBAL_LIST_EMPTY(thieves_guild_doors)
 
-//HIDDENDOOR
 /obj/structure/mineral_door/secret
 	hover_color = "#607d65"
 
@@ -22,17 +22,15 @@ GLOBAL_LIST_EMPTY(thieves_guild_doors)
 	flags_1 = HEAR_1
 
 	can_add_lock = FALSE
+	can_knock = FALSE
 	redstone_structure = TRUE
 
 	var/open_phrase = "open sesame"
-	var/close_phrase = "close sesame"
-	var/over_state = "woodover"
 
 	var/speaking_distance = 2
 	var/lang = /datum/language/common
 	var/list/vip
 	var/vipmessage
-	var/defenses = FALSE
 
 /obj/structure/mineral_door/secret/redstone_triggered(mob/user)
 	if(!door_opened)
@@ -46,10 +44,6 @@ GLOBAL_LIST_EMPTY(thieves_guild_doors)
 /obj/structure/mineral_door/secret/vault
 	vip = list("Monarch", "Consort", "Steward", "Hand")
 	vipmessage = "Monarch, Consort, Steward and Hand"
-
-/obj/structure/mineral_door/secret/keep
-	vip = list("Monarch", "Consort", "Royal Heir", "Hand")
-	vipmessage = "Monarch, Consort, Royal Heir and Hand"
 
 /obj/structure/mineral_door/secret/merchant
 	vip = list("Merchant", "Shop Hand")
@@ -65,22 +59,29 @@ GLOBAL_LIST_EMPTY(thieves_guild_doors)
 
 /obj/structure/mineral_door/secret/Initialize()
 	open_phrase = open_word() + " " + magic_word()
-	close_phrase = close_word() + " " + magic_word()
 	. = ..()
+
 /obj/structure/mineral_door/secret/door_rattle()
 	return
+
+//can't kick it open, but you can kick it closed
+/obj/structure/mineral_door/secret/onkick(mob/user)
+	if(locked)
+		return
+	else
+		..()
 
 /obj/structure/mineral_door/secret/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode, original_message)
 	var/mob/living/carbon/human/H = speaker
 	if(speaker == src) //door speaking to itself
-		return
+		return FALSE
 	var/distance = get_dist(speaker, src)
 	if(distance > speaking_distance)
-		return
+		return FALSE
 	if(obj_broken) //door is broken
-		return
+		return FALSE
 	if(!ishuman(speaker))
-		return
+		return FALSE
 
 	var/message2recognize = sanitize_hear_message(original_message)
 	var/isvip = FALSE
@@ -89,30 +90,25 @@ GLOBAL_LIST_EMPTY(thieves_guild_doors)
 
 	if(isvip)
 		if(findtext(message2recognize, "help"))
-			say("My commands are: 'help', 'say phrases', 'set open', 'set close'.")
-
-		if(findtext(message2recognize, "say phrases"))
-			if(isvip)
-				say("Open: '[open_phrase]', Close: '[close_phrase]'.", language = lang)
-
-		if(findtext(message2recognize, "set close"))
-			if(isvip || !locked)
-				var/new_pass = stripped_input(H, "What should the new close phrase be?")
-				close_phrase = new_pass
-				say("Close phrase has been set, "+flavor_name()+".", language = lang)
-
-		if(findtext(message2recognize, "set open"))
-			if(isvip || !locked)
-				var/new_pass = stripped_input(H, "What should the new open phrase be?")
-				open_phrase = new_pass
-				say("Open phrase has been set, "+flavor_name()+".", language = lang)
+			send_speech(span_purple("'say phrase'... 'set phrase'..."), 2, src, message_language = lang)
+			return TRUE
+		if(findtext(message2recognize, "say phrase"))
+			send_speech(span_purple("[open_phrase]..."), 2, src, message_language = lang)
+			return TRUE
+		if(findtext(message2recognize, "set phrase"))
+			var/new_pass = stripped_input(H, "What should the new close phrase be?")
+			open_phrase = new_pass
+			send_speech(span_purple("It is done, [flavor_name()]..."), 2, src, message_language = lang)
+			return TRUE
 
 	if(findtext(message2recognize, open_phrase) && locked)
 		locked = FALSE
 		force_open()
-	else if(findtext(message2recognize, close_phrase) && !locked)
+		return TRUE
+	else if(findtext(message2recognize, open_phrase) && !locked)
 		force_closed()
 		locked = TRUE
+		return TRUE
 
 
 /obj/structure/mineral_door/secret/Open(silent = FALSE)
@@ -184,26 +180,6 @@ GLOBAL_LIST_EMPTY(thieves_guild_doors)
 	isSwitchingStates = FALSE
 	locked = TRUE
 
-
-///// PROCS /////
-/obj/structure/mineral_door/secret/proc/get_open_phrase()
-	return open_phrase
-
-/obj/structure/mineral_door/secret/proc/get_close_phrase()
-	return close_phrase
-
-/obj/structure/mineral_door/secret/proc/set_open_phrase(new_phrase)
-	open_phrase = new_phrase
-
-/obj/structure/mineral_door/secret/proc/set_close_phrase(new_phrase)
-	close_phrase = new_phrase
-
-/obj/structure/mineral_door/secret/proc/triggerdefenses(mob/living/carbon/human/H, D)
-	if (!D || !H)
-		return
-	H.electrocute_act(30, src) //just shock
-	playsound(src, 'sound/items/stunmace_toggle (3).ogg', 100)
-
 /proc/open_word()
 	var/list/open_word = list(
 		"open",
@@ -212,7 +188,7 @@ GLOBAL_LIST_EMPTY(thieves_guild_doors)
 		"break",
 		"reveal",
 		"unbar",
-		//"gape", There's already enough people on this server saying "gape necra"
+		"gape", //You wanted this.
 		"extend",
 		"widen",
 		"unfold",
@@ -236,6 +212,7 @@ GLOBAL_LIST_EMPTY(thieves_guild_doors)
 		"end"
 		)
 	return pick(close_word)
+
 
 /proc/magic_word()
 	var/list/magic_word = list(
@@ -271,8 +248,7 @@ GLOBAL_LIST_EMPTY(thieves_guild_doors)
 		"lust",
 		"necra",
 		"noc",
-		"psydon",
-		"zizo"
+		"psydon"
 		)
 	return pick(magic_word)
 
@@ -294,9 +270,49 @@ GLOBAL_LIST_EMPTY(thieves_guild_doors)
 		)
 	return pick(flavor_name)
 
+/obj/structure/mineral_door/secret/proc/set_phrase(new_phrase)
+	open_phrase = new_phrase
+
+///// KEEP DOORS /////
+/obj/structure/mineral_door/secret/keep
+	vip = list("Monarch", "Consort", "Prince", "Princess", "Hand", "Butler") // do i even need to add princess?
+	vipmessage = "Monarch, Consort, Royal Heir, Hand and Butler"
+	icon = 'icons/turf/walls/stonebrick.dmi'
+	icon_state = "stonebrick"
+
+/obj/structure/mineral_door/secret/keep/Initialize()
+	. = ..()
+	if(GLOB.keep_doors.len > 0)
+		var/obj/structure/mineral_door/secret/D = GLOB.keep_doors[1]
+		open_phrase = D.open_phrase
+	GLOB.keep_doors += src
+
+/obj/structure/mineral_door/secret/keep/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
+	if(!..())
+		return FALSE
+	var/mob/living/carbon/human/H = speaker
+
+	var/message2recognize = sanitize_hear_message(raw_message)
+	if((vip.Find(H.job) || vip.Find(H.get_role_title())) && findtext(message2recognize, "set phrase"))
+		for(var/obj/structure/mineral_door/secret/D in GLOB.keep_doors)
+			D.set_phrase(open_phrase)
+	return TRUE
+
+/obj/structure/mineral_door/secret/keep/examine(mob/user)
+	. = ..()
+	if(HAS_TRAIT(user, TRAIT_KNOWKEEPPLANS))
+		. += span_purple("There's a hidden wall here...")
+
+/obj/structure/lever/hidden/keep/feel_button(mob/living/user)
+	if(HAS_TRAIT(user, TRAIT_KNOWKEEPPLANS))
+		..()
+
+/proc/know_keep_door_password(mob/living/carbon/human/H)
+	var/obj/structure/mineral_door/secret/D = GLOB.keep_doors[1]
+	to_chat(H, span_notice("The keep's secret doors answer to: '[D.open_phrase]'"))
 
 ///// THIEVES GUILD DOORS /////
-/obj/structure/mineral_door/secret/thieves_guild //for seedy sewer bar / black market?
+/obj/structure/mineral_door/secret/thieves_guild
 	vip = list("Thief", "Matron")
 	vipmessage = "Thief and Matron"
 	lang = /datum/language/thievescant
@@ -307,72 +323,86 @@ GLOBAL_LIST_EMPTY(thieves_guild_doors)
 	. = ..()
 	if(GLOB.thieves_guild_doors.len > 0)
 		var/obj/structure/mineral_door/secret/D = GLOB.thieves_guild_doors[1]
-		open_phrase = D.get_open_phrase()
-		close_phrase = D.get_close_phrase()
-	else
-		close_phrase = open_phrase
+		open_phrase = D.open_phrase
 	GLOB.thieves_guild_doors += src
 
-
-//we love code that's basically identical to its parent
 /obj/structure/mineral_door/secret/thieves_guild/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
-	. = ..()
+	if(!..())
+		return FALSE
 	var/mob/living/carbon/human/H = speaker
-	if(speaker == src) //door speaking to itself
-		return
-	var/distance = get_dist(speaker, src)
-	if(distance > speaking_distance)
-		return
-	if(obj_broken) //door is broken
-		return
-	if(!ishuman(speaker))
-		return
 
 	var/message2recognize = sanitize_hear_message(raw_message)
-	var/isvip = FALSE
-	if (vip.Find(H.job) || vip.Find(H.get_role_title()))
-		isvip = TRUE
+	if((vip.Find(H.job) || vip.Find(H.get_role_title())) && findtext(message2recognize, "set phrase"))
+		for(var/obj/structure/mineral_door/secret/D in GLOB.keep_doors)
+			D.set_phrase(open_phrase)
+	return TRUE
 
-	if(isvip)
-		if(findtext(message2recognize, "set close"))
-			if(isvip || !locked)
-				for(var/obj/structure/mineral_door/secret/D in GLOB.thieves_guild_doors)
-					D.set_close_phrase(close_phrase)
-		if(findtext(message2recognize, "set open"))
-			if(isvip || !locked)
-				for(var/obj/structure/mineral_door/secret/D in GLOB.thieves_guild_doors)
-					D.set_open_phrase(open_phrase)
 
 ///// MAPPERS /////
 /obj/effect/mapping_helpers/secret_door_creator
-	name = "Secret door creator: Turns the given wall into a hidden door with a random password. THE VIPS LIST IS THE NAME OF THE JOB OR TITLE!"
-
-	var/turf/open/floor_turf = /turf/open/floor/wood
+	name = "Secret door creator: Turns the given wall into a hidden door with a random password."
+	icon = 'icons/effects/hidden_door.dmi'
+	icon_state = "hidden_door"
 
 	var/redstone_id
 
-	var/datum/language/given_lang = /datum/language/thievescant
-	var/list/vips = list("Thief", "Matron")
-	var/vip_message = "Thief and Matron"
+	var/obj/structure/mineral_door/secret/door_type = /obj/structure/mineral_door/secret
+	var/datum/language/given_lang = /datum/language/thievescant //DEPRECATED
+	var/list/vips = list("Thief", "Matron") //DEPRECATED
+	var/vip_message = "Thief and Matron" //DEPRECATED
+
+	var/override_floor = TRUE //Will only use the below as the floor tile if true. Source turf have at least 1 baseturf to use false
+	var/turf/open/floor_turf = /turf/open/floor/blocks
 
 /obj/effect/mapping_helpers/secret_door_creator/Initialize()
 	if(!isclosedturf(get_turf(src)))
 		return ..()
 	var/turf/closed/source_turf = get_turf(src)
-
-	var/obj/structure/mineral_door/secret/new_door = new /obj/structure/mineral_door/secret(source_turf)
-	new_door.vip = vips
-	new_door.lang = given_lang
-	new_door.vipmessage = vip_message
+	var/obj/structure/mineral_door/secret/new_door = new door_type(source_turf)
 
 	new_door.icon = source_turf.icon
 	new_door.icon_state = source_turf.icon_state
+	new_door.smooth = source_turf.smooth
+	new_door.canSmoothWith = source_turf.canSmoothWith
 	new_door.name = source_turf.name
 	new_door.desc = source_turf.desc
+
+	//assigns local smoothing to neighboring walls
+	//i can see this causing an issue under very specific door configuration.
+	for(var/dir in GLOB.cardinals)
+		var/turf/T = get_step(src, dir)
+		var/canDoorSmooth = FALSE
+		for(var/smoothType in new_door.canSmoothWith)
+			if(istype(T, smoothType))
+				canDoorSmooth = TRUE
+				break
+		if(!canDoorSmooth)
+			continue
+		var/smoothCompatible = FALSE
+		var/alreadyAdded = FALSE
+		for(var/smoothType in T.canSmoothWith)
+			if(istype(source_turf, smoothType))
+				smoothCompatible = TRUE
+			if(ispath(smoothType, /obj/structure/mineral_door/secret))
+				alreadyAdded = TRUE
+				break
+		if(smoothCompatible && !alreadyAdded)
+			T.canSmoothWith += /obj/structure/mineral_door/secret
+
 	if(redstone_id)
 		new_door.redstone_id = redstone_id
 		GLOB.redstone_objs += new_door
 		new_door.LateInitialize()
 
-	source_turf.ChangeTurf(floor_turf)
+	if(override_floor || length(source_turf.baseturfs) < 1)
+		source_turf.ChangeTurf(floor_turf)
+	else
+		source_turf.ChangeTurf(source_turf.baseturfs[1])
+
 	. = ..()
+
+
+/obj/effect/mapping_helpers/secret_door_creator/keep
+	name = "Keep Secret Door Creator"
+	door_type = /obj/structure/mineral_door/secret/keep
+	override_floor = FALSE
