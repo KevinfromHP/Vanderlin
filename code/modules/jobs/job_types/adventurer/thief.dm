@@ -16,8 +16,6 @@
 	allowed_races = ALL_PLAYER_RACES_BY_NAME
 	advclass_cat_rolls = list(CTAG_THIEF = 20)
 
-	wanderer_examine = TRUE
-
 
 	outfit = /datum/outfit/job/thief
 	cmode_music = 'sound/music/cmode/adventurer/CombatRogue.ogg'

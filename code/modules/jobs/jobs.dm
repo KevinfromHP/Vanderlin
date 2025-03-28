@@ -69,7 +69,7 @@ GLOBAL_LIST_INIT(peasant_positions, list(
 	/datum/job/vagrant::title,
 	/datum/job/adventurer::title,
 	/datum/job/pilgrim::title,
-	/datum/job/thief::title
+	/datum/job/thief::title,
 	/datum/job/bandit::title,
 ))
 GLOBAL_PROTECT(peasant_positions)
