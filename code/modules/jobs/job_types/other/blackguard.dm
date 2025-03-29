@@ -33,23 +33,39 @@
 	tutorial = base_tutorial //so the extra info won't show in chat when they join.
 
 /datum/outfit/job/thief
+	shirt = /obj/item/clothing/shirt/undershirt/black
 	pants = /obj/item/clothing/pants/trou/leather
 	shoes = /obj/item/clothing/shoes/boots
-	backr = /obj/item/storage/backpack/satchel
+	backl = /obj/item/storage/backpack/satchel
 	belt = /obj/item/storage/belt/leather
-	beltl = /obj/item/storage/belt/pouch/coins/poor
 
 /datum/job/thief/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	. = ..()
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		H.advsetup = 1
-		H.invisibility = INVISIBILITY_MAXIMUM
-		H.become_blind("advsetup")
-		ADD_TRAIT(H, TRAIT_THIEVESGUILD, TRAIT_GENERIC)
-		ADD_TRAIT(H, TRAIT_LIGHT_STEP, TRAIT_GENERIC)
-		H.grant_language(/datum/language/thievescant)
-		to_chat(H, "<span class='info'>I can gesture in thieves' cant with ,t before my speech.</span>")
+		if(advclass_cat_rolls)
+			H.advsetup = 1
+			H.invisibility = INVISIBILITY_MAXIMUM
+			H.become_blind("advsetup")
+
+/datum/outfit/job/thief/pre_equip(mob/living/carbon/human/H)
+	..()
+	ADD_TRAIT(H, TRAIT_THIEVESGUILD, TRAIT_GENERIC)
+	H.grant_language(/datum/language/thievescant)
+	to_chat(H, "<span class='info'>I can gesture in thieves' cant with ,t before my speech.</span>")
+
+/datum/outfit/job/thief/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	..()
+	if(H)
+		var/thiefColor = get_thief_color(H)
+		color_clothing(H, thiefColor)
+
+
+/datum/outfit/job/thief/proc/color_clothing(mob/living/carbon/human/H, thiefColor)
+	var/obj/item/clothing/face/shepherd/clothmask/thiefmask = new()
+	thiefmask.color = thiefColor
+	H.equip_to_slot(thiefmask, SLOT_WEAR_MASK, TRUE)
+	thiefmask.AdjustClothes(H)
 
 
 /datum/outfit/job/thief/proc/get_thief_color(mob/living/carbon/human/H)

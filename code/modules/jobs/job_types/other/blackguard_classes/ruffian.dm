@@ -42,7 +42,7 @@
 		var/obj/item/clothing/cloak/cape/thief/thiefcape = new()
 		thiefcape.color = get_thief_color(H)
 		H.equip_to_slot(thiefcape, SLOT_CLOAK, TRUE)
-
+		H.get_all_slots()
 		var/obj/item/clothing/head/helmet/leather/headscarf/thiefhood = new()
 		thiefhood.color = thiefcape.color
 		H.equip_to_slot(thiefhood, SLOT_HEAD, TRUE)
