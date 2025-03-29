@@ -406,3 +406,8 @@ GLOBAL_LIST_EMPTY(thieves_guild_doors)
 	name = "Keep Secret Door Creator"
 	door_type = /obj/structure/mineral_door/secret/keep
 	override_floor = FALSE
+
+/obj/effect/mapping_helpers/secret_door_creator/thieves_guild
+	name = "Thieves Guild Secret Door Creator"
+	door_type = /obj/structure/mineral_door/secret/thieves_guild
+	override_floor = FALSE
