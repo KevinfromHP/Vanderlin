@@ -180,6 +180,7 @@
 #define CHEESEMAKER (1<<13)
 #define MIGRANT		(1<<16)
 #define BANDIT		(1<<17)
+#define THIEF		(1<<18)
 
 #define APPRENTICES		(1<<5)
 
@@ -284,6 +285,8 @@
 
 #define JDO_MERCENARY 35
 
+
+#define JDO_THIEF_LEADER 35.4
 #define JDO_THIEF 35.5
 
 #define JDO_VAGRANT 36
