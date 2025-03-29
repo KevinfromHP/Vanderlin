@@ -17,7 +17,6 @@
 	advclass_cat_rolls = list(CTAG_THIEF = 20)
 
 
-	outfit = /datum/outfit/job/thief
 	cmode_music = 'sound/music/cmode/adventurer/CombatRogue.ogg'
 
 /datum/job/thief/New()

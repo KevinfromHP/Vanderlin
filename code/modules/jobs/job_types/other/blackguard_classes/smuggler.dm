@@ -1,6 +1,10 @@
-/datum/job/thief/leader
+/datum/job/thief_leader
 	title = "Blackguard Smuggler"
+	flag = THIEF
+	department_flag = PEASANTS
+	job_flags = (JOB_SHOW_IN_CREDITS | JOB_EQUIP_RANK | JOB_NEW_PLAYER_JOINABLE)
 	display_order = JDO_THIEF_LEADER
+	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
 	min_pq = 12
