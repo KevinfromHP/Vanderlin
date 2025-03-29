@@ -23,7 +23,7 @@
 		H.mind.adjust_skillrank(/datum/skill/misc/sewing, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/stealing, 2, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
 	neck = /obj/item/clothing/neck/gorget
 	armor = /obj/item/clothing/armor/cuirass/iron
 	shirt = /obj/item/clothing/shirt/undershirt/black
@@ -32,9 +32,7 @@
 	backl = /obj/item/weapon/shield/tower/buckleriron
 	backpack_contents = list(/obj/item/weapon/knife/dagger/steel, /obj/item/key/thieves_guild)
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 	H.change_stat(STATKEY_STR, 2)
-	H.change_stat(STATKEY_PER, 1)
 	H.change_stat(STATKEY_CON, 1)
 	H.change_stat(STATKEY_END, 1)
 
