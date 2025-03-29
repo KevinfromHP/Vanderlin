@@ -1740,6 +1740,7 @@
 #include "code\modules\jobs\job_types\other\blackguard_classes\cutthroat.dm"
 #include "code\modules\jobs\job_types\other\blackguard_classes\ruffian.dm"
 #include "code\modules\jobs\job_types\other\blackguard_classes\rogue.dm"
+#include "code\modules\jobs\job_types\other\blackguard_classes\smuggler.dm"
 #include "code\modules\jobs\job_types\other\deathknight.dm"
 #include "code\modules\jobs\job_types\other\goblin.dm"
 #include "code\modules\jobs\job_types\other\mercenary.dm"
