@@ -294,7 +294,11 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	icon_state = "arrow"
 
 /obj/effect/landmark/start/thief
-	name = "Thief"
+	name = "Blackguard"
+	icon_state = "arrow"
+
+/obj/effect/landmark/start/thief_leader
+	name = "Blackguard Smuggler"
 	icon_state = "arrow"
 
 /obj/effect/landmark/start/consort

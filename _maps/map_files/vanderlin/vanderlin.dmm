@@ -22005,6 +22005,7 @@
 	pixel_x = -16;
 	pixel_y = 32
 	},
+/obj/effect/landmark/start/thief_leader,
 /turf/open/floor/cobble,
 /area/rogue/under/town/basement/thieves_guild)
 "oTV" = (
@@ -27573,7 +27574,7 @@
 "sOd" = (
 /obj/structure/window/solid,
 /obj/structure/curtain/bounty,
-/turf/closed/wall/mineral/wooddark/horizontal,
+/turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/caverogue)
 "sOg" = (
 /obj/structure/closet/crate/chest/old_crate,

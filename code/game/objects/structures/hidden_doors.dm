@@ -313,7 +313,7 @@ GLOBAL_LIST_EMPTY(thieves_guild_doors)
 
 ///// THIEVES GUILD DOORS /////
 /obj/structure/mineral_door/secret/thieves_guild
-	vip = list("Thief", "Matron")
+	vip = list("Blackguard", "Blackguard Smuggler")
 	vipmessage = "Thief and Matron"
 	lang = /datum/language/thievescant
 	icon = 'icons/turf/walls/stonebrick.dmi'
