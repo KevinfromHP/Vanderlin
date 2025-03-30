@@ -67,6 +67,28 @@
 	sellprice = 50
 	nodismemsleeves = TRUE
 
+/obj/item/clothing/cloak/cape/drifter
+	name = "drifter's cloak"
+	desc = "A cloak made of thick cloth favored by travelers."
+	icon_state = "drifter_cloak"
+	sleevetype = "shirt"
+	icon = 'icons/roguetown/clothing/cloaks.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/cloaks.dmi'
+	sleeved = 'icons/roguetown/clothing/onmob/cloaks.dmi'
+	color = CLOTHING_BARK_BROWN
+
+/obj/item/clothing/cloak/drifter/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/storage/concrete/grid/cloak)
+
+/obj/item/clothing/cloak/drifter/dropped(mob/living/carbon/human/user)
+	..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	if(STR)
+		var/list/things = STR.contents()
+		for(var/obj/item/I in things)
+			STR.remove_from_storage(I, get_turf(src))
+
 /obj/item/clothing/cloak/half
 	name = "half cloak"
 	desc = "A cloak that covers only half of the body."

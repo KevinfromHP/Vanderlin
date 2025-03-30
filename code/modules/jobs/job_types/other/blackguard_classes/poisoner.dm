@@ -1,11 +1,11 @@
-/datum/advclass/thief/cutthroat
-	name = "Poisonmaker"
+/datum/advclass/thief/poisoner
+	name = "Blackguard Poisoner"
 	tutorial = ""
-	outfit = /datum/outfit/job/thief/cutthroat
+	outfit = /datum/outfit/job/thief/poisoner
 	category_tags = list(CTAG_THIEF)
 	maximum_possible_slots = 1
 
-/datum/outfit/job/thief/cutthroat
+/datum/outfit/job/thief/poisoner
 	neck = /obj/item/clothing/neck/phys
 	armor = /obj/item/clothing/armor/leather/vest/winterjacket
 	shirt = /obj/item/clothing/shirt/tunic
@@ -15,7 +15,7 @@
 	beltl = /obj/item/weapon/knife/dagger/steel
 	beltr = /obj/item/weapon/sword/sabre/cutlass
 
-/datum/outfit/job/thief/cutthroat/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/thief/poisoner/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/axesmaces, pick(0, 0, 1), TRUE)
@@ -55,8 +55,7 @@
 		H.change_stat(STATKEY_INT, 1)
 		H.change_stat(STATKEY_PER, 1)
 
-/datum/outfit/job/thief/cutthroat/color_clothing(mob/living/carbon/human/H, thiefColor)
-	..()
+/datum/outfit/job/thief/poisoner/color_clothing(mob/living/carbon/human/H, thiefColor)
 	if(H)
 		var/obj/item/clothing/thiefShirt = H.get_item_by_slot(SLOT_SHIRT)
 		thiefShirt?.color = thiefColor
@@ -66,3 +65,4 @@
 		thiefJacket?.detail_color = thiefColor
 		thiefJacket?.update_icon()
 		H.equip_to_slot(thiefJacket, SLOT_ARMOR, TRUE)
+	..()

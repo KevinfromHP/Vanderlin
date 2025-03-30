@@ -65,11 +65,11 @@
 	thiefmask.color = thiefColor
 	H.equip_to_slot(thiefmask, SLOT_WEAR_MASK, TRUE)
 	thiefmask.AdjustClothes(H)
+	H.update_body()
 
 
 /datum/outfit/job/thief/proc/get_thief_color(mob/living/carbon/human/H)
-	var/list/thief_colors = list("Bleached White"	="#FFFFFF")
+	var/list/thief_colors = list(/*"Bleached White"	="#FFFFFF"*/)
 	thief_colors |= GLOB.peasant_dyes
-	thief_colors |= GLOB.noble_dyes
-	var/color_selection = input(H,"What color was I again?","Thief Color","Ash Grey") in thief_colors
+	var/color_selection = input(H,"What color was I again?","VANDERLIN","Soot Black") in thief_colors
 	return thief_colors[color_selection]

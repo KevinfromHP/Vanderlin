@@ -89,4 +89,4 @@
 
 	icon_state = "thiefcloak"
 	alternate_worn_layer = CLOAK_BEHIND_LAYER
-	detail_color = CLOTHING_ASH_GREY
+	color = CLOTHING_FYRITIUS_ORANGE
