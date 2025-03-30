@@ -3541,6 +3541,7 @@
 /obj/effect/decal/cleanable/dirt/cobweb{
 	dir = 1
 	},
+/obj/effect/decal/cleanable/glass,
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/caverogue)
 "cpA" = (
@@ -9030,6 +9031,7 @@
 /area/rogue/indoors/villagegarrison)
 "fYd" = (
 /obj/structure/table/wood/plain,
+/obj/effect/decal/cleanable/dirt/cobweb,
 /turf/open/floor/ruinedwood/spiralfade,
 /area/rogue/under/town/caverogue)
 "fYR" = (
@@ -16428,10 +16430,10 @@
 /area/rogue/outdoors/river)
 "kSu" = (
 /obj/structure/table/wood/plain,
-/obj/structure/fake_machine/musicbox/tavern{
-	pixel_y = 24
-	},
 /obj/machinery/light/fueled/wallfire/candle/weak/l,
+/obj/structure/fake_machine/musicbox/tavern{
+	pixel_y = 5
+	},
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/caverogue)
 "kTv" = (
@@ -19526,6 +19528,10 @@
 	dir = 1
 	},
 /obj/structure/table/wood/plain,
+/obj/structure/noticeboard{
+	dir = 4;
+	pixel_x = -32
+	},
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/caverogue)
 "ngd" = (
@@ -34331,6 +34337,7 @@
 /area/rogue/indoors/town/clinic_large)
 "xiz" = (
 /obj/item/bin/water/gross,
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/ruinedwood/spiralfade,
 /area/rogue/under/town/caverogue)
 "xiJ" = (
@@ -83455,7 +83462,7 @@ inE
 inE
 eNd
 iwt
-apR
+kcP
 nnT
 qMa
 qMa
@@ -83463,7 +83470,7 @@ qMa
 qMa
 fCS
 puO
-fCS
+qMa
 qMa
 daM
 jMi
@@ -83657,7 +83664,7 @@ inE
 inE
 sbR
 sbQ
-kcP
+apR
 wvM
 pSr
 qMa
@@ -85886,7 +85893,7 @@ pSi
 pSi
 jwv
 ylW
-hLb
+kHz
 gaY
 mor
 tjr
