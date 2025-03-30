@@ -15729,19 +15729,19 @@
 	pixel_x = -7;
 	pixel_y = 1
 	},
-/obj/item/natural/feather{
-	pixel_y = 10;
-	pixel_x = 1
-	},
-/obj/item/paper/scroll,
-/obj/item/paper/scroll,
-/obj/item/natural/feather{
-	pixel_y = 10;
-	pixel_x = 1
-	},
 /obj/machinery/light/fueled/wallfire/candle{
 	pixel_x = 32;
 	pixel_y = 0
+	},
+/obj/item/paper/scroll,
+/obj/item/paper/scroll,
+/obj/item/natural/feather{
+	pixel_y = 10;
+	pixel_x = 1
+	},
+/obj/item/natural/feather{
+	pixel_y = 10;
+	pixel_x = 1
 	},
 /turf/open/floor/cobble,
 /area/rogue/under/town/basement/thieves_guild)
@@ -19531,6 +19531,26 @@
 /obj/structure/noticeboard{
 	dir = 4;
 	pixel_x = -32
+	},
+/obj/item/paper{
+	pixel_x = -7;
+	pixel_y = 1
+	},
+/obj/item/paper{
+	pixel_x = -7;
+	pixel_y = 1
+	},
+/obj/item/paper{
+	pixel_x = -7;
+	pixel_y = 1
+	},
+/obj/item/paper{
+	pixel_x = -7;
+	pixel_y = 1
+	},
+/obj/item/natural/feather{
+	pixel_y = 1;
+	pixel_x = -4
 	},
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/caverogue)
@@ -83461,7 +83481,7 @@ eNd
 inE
 inE
 inE
-eNd
+inE
 iwt
 kcP
 nnT
