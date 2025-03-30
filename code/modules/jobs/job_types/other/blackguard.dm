@@ -54,7 +54,7 @@
 	to_chat(H, "<span class='info'>I can gesture in thieves' cant with ,t before my speech.</span>")
 
 /datum/outfit/job/thief/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	..()
+ 	..()
 	if(H)
 		var/thiefColor = get_thief_color(H)
 		color_clothing(H, thiefColor)
@@ -69,7 +69,8 @@
 
 
 /datum/outfit/job/thief/proc/get_thief_color(mob/living/carbon/human/H)
-	var/list/thief_colors = list(/*"Bleached White"	="#FFFFFF"*/)
+	var/list/thief_colors = list("Bleached White"	="#FFFFFF")
 	thief_colors |= GLOB.peasant_dyes
+	thief_colors |= GLOB.noble_dyes
 	var/color_selection = input(H,"What color was I again?","VANDERLIN","Soot Black") in thief_colors
 	return thief_colors[color_selection]
