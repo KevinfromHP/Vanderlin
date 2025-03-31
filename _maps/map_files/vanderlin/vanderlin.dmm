@@ -2054,6 +2054,12 @@
 	},
 /turf/open/floor/ruinedwood/chevron,
 /area/rogue/indoors/town/orphanage)
+"blg" = (
+/obj/structure/stairs{
+	dir = 8
+	},
+/turf/open/floor/ruinedwood/spiral,
+/area/rogue/under/town/basement/thieves_guild/bar)
 "blq" = (
 /obj/structure/rack,
 /obj/item/lockpick{
@@ -6093,6 +6099,7 @@
 "dSw" = (
 /obj/structure/table/wood/plain,
 /obj/effect/decal/cleanable/dirt/cobweb,
+/obj/structure/mirror,
 /turf/open/floor/ruinedwood/spiralfade,
 /area/rogue/under/town/basement/thieves_guild/bar)
 "dSF" = (
@@ -9381,10 +9388,6 @@
 /obj/structure/gate/bars,
 /turf/open/water/sewer,
 /area/rogue/under/town/sewer)
-"fZn" = (
-/obj/structure/mineral_door/wood/green,
-/turf/open/floor/ruinedwood/spiralfade,
-/area/rogue/under/town/basement/thieves_guild)
 "fZz" = (
 /obj/effect/landmark/start/priest,
 /turf/open/floor/churchmarble,
@@ -9862,9 +9865,8 @@
 /turf/open/floor/church,
 /area/rogue/indoors/town/church)
 "gqr" = (
-/obj/structure/mineral_door/wood/green{
-	lockid = "thievesguild"
-	},
+/obj/structure/mineral_door/wood/green,
+/obj/effect/mapping_helpers/door/access/town/thievesguild,
 /turf/open/floor/ruinedwood/spiralfade,
 /area/rogue/under/town/basement/thieves_guild/bar)
 "gqD" = (
@@ -12647,12 +12649,20 @@
 	pixel_y = -3
 	},
 /obj/item/reagent_containers/powder/moondust_purest{
-	pixel_x = -5;
-	pixel_y = 6
+	pixel_x = -3;
+	pixel_y = 8
 	},
 /obj/item/reagent_containers/powder/ozium{
 	pixel_x = -5;
 	pixel_y = -8
+	},
+/obj/item/reagent_containers/powder/moondust{
+	pixel_x = 7;
+	pixel_y = 0
+	},
+/obj/item/reagent_containers/powder/moondust_purest{
+	pixel_x = -5;
+	pixel_y = 5
 	},
 /turf/open/floor/carpet,
 /area/rogue/under/town/basement/thieves_guild/bar)
@@ -12718,9 +12728,8 @@
 /turf/open/floor/carpet,
 /area/rogue/indoors/town/tavern)
 "ien" = (
-/obj/structure/mineral_door/wood/donjon{
-	lockid = "thievesguild"
-	},
+/obj/structure/mineral_door/wood/donjon,
+/obj/effect/mapping_helpers/door/access/town/thievesguild,
 /turf/open/floor/ruinedwood/spiralfade,
 /area/rogue/under/town/basement/thieves_guild/bar)
 "ies" = (
@@ -17234,9 +17243,10 @@
 "leE" = (
 /obj/structure/mineral_door/wood/donjon{
 	locked = 1;
-	dir = 4;
-	lockid = "thievesguild"
+	dir = 4
 	},
+/obj/effect/mapping_helpers/door/access/town/thievesguild,
+/obj/effect/mapping_helpers/door/locker,
 /turf/open/floor/ruinedwood/spiralfade,
 /area/rogue/under/town/basement/thieves_guild/bar)
 "lfc" = (
@@ -19110,9 +19120,9 @@
 "mzS" = (
 /obj/structure/mineral_door/wood/donjon{
 	locked = 1;
-	dir = 4;
-	lockid = "forrestgarrison"
+	dir = 4
 	},
+/obj/effect/mapping_helpers/door/locker,
 /turf/open/floor/ruinedwood/spiralfade,
 /area/rogue/under/town/basement/thieves_guild)
 "mAn" = (
@@ -20572,6 +20582,8 @@
 /obj/structure/mineral_door/wood/donjon{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/door/access/town/thievesguild,
+/obj/effect/mapping_helpers/door/locker,
 /turf/open/floor/ruinedwood/spiralfade{
 	dir = 8
 	},
@@ -21112,9 +21124,9 @@
 "nMn" = (
 /obj/structure/mineral_door/wood/donjon{
 	dir = 1;
-	locked = 1;
-	lockid = "thievesguild"
+	locked = 1
 	},
+/obj/effect/mapping_helpers/door/locker,
 /turf/closed/wall/mineral/wooddark/horizontal,
 /area/rogue/under/town/basement/thieves_guild/bar)
 "nML" = (
@@ -21534,9 +21546,9 @@
 /area/rogue/indoors/town/orphanage)
 "ocR" = (
 /obj/structure/mineral_door/wood/green{
-	name = "storage";
-	lockid = "thievesguild"
+	name = "storage"
 	},
+/obj/effect/mapping_helpers/door/access/town/thievesguild,
 /turf/open/floor/ruinedwood/spiralfade{
 	dir = 8
 	},
@@ -22209,13 +22221,6 @@
 "ozO" = (
 /turf/open/floor/ruinedwood/darker,
 /area/rogue/indoors/villagegarrison)
-"oAi" = (
-/obj/structure/lever/wall{
-	dir = 4;
-	redstone_id = "thievesguildshutter"
-	},
-/turf/open/floor/carpet,
-/area/rogue/under/town/basement/thieves_guild/bar)
 "oAy" = (
 /obj/structure/chair/wood/alt/chair_noble{
 	dir = 8
@@ -23192,9 +23197,10 @@
 /area/rogue/under/town/sewer)
 "pmL" = (
 /obj/structure/mineral_door/wood/green{
-	name = "smuggler's quarters";
-	lockid = "thievesguild"
+	name = "smuggler's quarters"
 	},
+/obj/effect/mapping_helpers/door/access/town/thievesguild,
+/obj/effect/mapping_helpers/door/locker,
 /turf/open/floor/ruinedwood/spiralfade{
 	dir = 8
 	},
@@ -27728,9 +27734,9 @@
 /area/rogue/indoors/town)
 "srW" = (
 /obj/structure/mineral_door/wood/green{
-	name = "quarters";
-	lockid = "thievesguild"
+	name = "quarters"
 	},
+/obj/effect/mapping_helpers/door/access/town/thievesguild,
 /turf/open/floor/ruinedwood/spiralfade{
 	dir = 8
 	},
@@ -30462,9 +30468,9 @@
 /area/rogue/under/town/caverogue)
 "uil" = (
 /obj/structure/mineral_door/wood/green{
-	name = "supply room";
-	lockid = "thievesguild"
+	name = "supply room"
 	},
+/obj/effect/mapping_helpers/door/access/town/thievesguild,
 /turf/open/floor/ruinedwood/spiralfade{
 	dir = 8
 	},
@@ -31466,7 +31472,8 @@
 	},
 /obj/structure/fake_machine/scomm{
 	pixel_y = 0;
-	pixel_x = 32
+	pixel_x = 32;
+	name = "Stolen SCOM"
 	},
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/basement/thieves_guild)
@@ -33103,6 +33110,8 @@
 	dir = 1;
 	name = "the hole"
 	},
+/obj/effect/mapping_helpers/door/access/town/thievesguild,
+/obj/effect/mapping_helpers/door/locker,
 /turf/open/floor/ruinedwood/spiralfade,
 /area/rogue/under/town/basement/thieves_guild)
 "vNG" = (
@@ -46690,7 +46699,7 @@ vgJ
 vgJ
 vgJ
 tKr
-fGj
+blg
 tKr
 wDN
 wDN
@@ -46892,7 +46901,7 @@ vgJ
 vgJ
 vgJ
 tKr
-rlJ
+xDK
 tKr
 aKx
 wDN
@@ -47094,7 +47103,7 @@ wzl
 wzl
 wzl
 feV
-fZn
+pem
 feV
 wzl
 mzS
@@ -85878,7 +85887,7 @@ xDK
 xDK
 qqU
 fvL
-oAi
+dkj
 qJC
 tKr
 gjJ

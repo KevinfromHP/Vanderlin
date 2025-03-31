@@ -49,6 +49,9 @@
 /obj/effect/mapping_helpers/door/access/town/matron
 	access_string = ACCESS_MATRON
 
+/obj/effect/mapping_helpers/door/access/town/thievesguild
+	access_string = ACCESS_THIEVESGUILD
+
 /obj/effect/mapping_helpers/door/access/town/elder
 	access_string = ACCESS_ELDER
 /obj/effect/mapping_helpers/door/access/town/veteran
