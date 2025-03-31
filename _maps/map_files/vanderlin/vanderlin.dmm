@@ -3772,6 +3772,13 @@
 	},
 /turf/open/floor/ruinedwood/turned/darker,
 /area/rogue/indoors/town)
+"cyj" = (
+/obj/item/recipe_book/cooking{
+	pixel_x = -6;
+	pixel_y = -7
+	},
+/turf/open/floor/cobblerock,
+/area/rogue/under/town/basement)
 "cyn" = (
 /obj/machinery/light/fueled/wallfire/candle/blue,
 /turf/open/floor/churchrough,
@@ -14162,9 +14169,8 @@
 /obj/effect/decal/cleanable/dirt/cobweb{
 	dir = 8
 	},
-/obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/fermentation_keg,
-/turf/open/floor/cobblerock,
+/turf/open/floor/dirt/ambush,
 /area/rogue/under/town/basement)
 "jmD" = (
 /obj/effect/decal/cleanable/generic,
@@ -25355,6 +25361,7 @@
 /area/rogue/under/town/sewer)
 "rhd" = (
 /obj/structure/fermentation_keg/distiller,
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/cobblerock,
 /area/rogue/under/town/basement)
 "rhf" = (
@@ -85741,7 +85748,7 @@ jQv
 vJz
 vJz
 esK
-vJz
+iVa
 hLb
 vgJ
 vgJ
@@ -85941,7 +85948,7 @@ hLb
 kUG
 vJz
 vJz
-iVa
+vJz
 vJz
 vJz
 sgj
@@ -86346,7 +86353,7 @@ pdG
 rdg
 iUg
 hLb
-srw
+cyj
 srw
 hLb
 vgJ
