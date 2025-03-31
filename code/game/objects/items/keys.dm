@@ -862,6 +862,7 @@
 	lockid = "clinic"
 
 /obj/item/key/thieves_guild
-	name = "sewer key"
-	icon_state = "mazekey"
+	name = "rusty key"
+	desc = "There's a small etching: BG"
+	icon_state = "rustkey"
 	lockid = "thievesguild"

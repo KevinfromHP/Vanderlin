@@ -748,9 +748,12 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	converted_type = /area/rogue/outdoors/exposed/under/basement
 
 /area/rogue/under/town/basement/thieves_guild
-	first_time_text = "Thieves Guild"
+	first_time_text = "Blackguard's Hideout"
 	icon_state = "thieves_guild"
 	droning_sound = 'sound/music/area/towngen.ogg'
+
+/area/rogue/under/town/basement/thieves_guild/bar
+	first_time_text = "The Kneestingers Kiss"
 
 /area/rogue/outdoors/exposed/under/basement
 	icon_state = "basement"
