@@ -4592,7 +4592,8 @@
 /area/rogue/outdoors/mountains)
 "dap" = (
 /obj/structure/mineral_door/wood/green{
-	name = "supply room"
+	name = "supply room";
+	lockid = "thievesguild"
 	},
 /turf/open/floor/ruinedwood/spiralfade{
 	dir = 8
@@ -5056,7 +5057,8 @@
 /area/rogue/indoors/town)
 "dts" = (
 /obj/structure/mineral_door/wood/green{
-	name = "quarters"
+	name = "quarters";
+	lockid = "thievesguild"
 	},
 /turf/open/floor/ruinedwood/spiralfade{
 	dir = 8
@@ -5823,7 +5825,7 @@
 /obj/structure/mineral_door/wood/donjon{
 	locked = 1;
 	dir = 4;
-	lockid = "forrestgarrison"
+	lockid = "thievesguild"
 	},
 /turf/open/floor/ruinedwood/spiralfade,
 /area/rogue/under/town/basement/thieves_guild/bar)
@@ -10445,7 +10447,7 @@
 /area/rogue/indoors/town/smithy)
 "gQq" = (
 /obj/effect/mapping_helpers/thieves_cant_helper{
-	thieves_message = "BLACKGUARD HQ"
+	thieves_message = "BLACKGUARD"
 	},
 /turf/closed/wall/mineral/wooddark,
 /area/rogue/under/town/basement/thieves_guild/bar)
@@ -12819,7 +12821,9 @@
 /turf/open/floor/cobble,
 /area/rogue/outdoors/town)
 "iwt" = (
-/obj/structure/mineral_door/wood/donjon,
+/obj/structure/mineral_door/wood/donjon{
+	lockid = "thievesguild"
+	},
 /turf/open/floor/ruinedwood/spiralfade,
 /area/rogue/under/town/basement/thieves_guild/bar)
 "iwx" = (
@@ -23967,7 +23971,9 @@
 /turf/open/floor/ruinedwood,
 /area/rogue/indoors/town/church)
 "qgN" = (
-/obj/structure/mineral_door/wood/green,
+/obj/structure/mineral_door/wood/green{
+	lockid = "thievesguild"
+	},
 /turf/open/floor/ruinedwood/spiralfade,
 /area/rogue/under/town/basement/thieves_guild/bar)
 "qhI" = (
@@ -25072,7 +25078,8 @@
 /area/rogue/under/town/basement)
 "qVA" = (
 /obj/structure/mineral_door/wood/green{
-	name = "storage"
+	name = "storage";
+	lockid = "thievesguild"
 	},
 /turf/open/floor/ruinedwood/spiralfade{
 	dir = 8
@@ -25457,6 +25464,12 @@
 /obj/machinery/light/fueled/wallfire/candle/blue/l,
 /turf/open/floor/churchmarble,
 /area/rogue/indoors/town/clinic_large)
+"rlb" = (
+/obj/effect/mapping_helpers/thieves_cant_helper{
+	thieves_message = "BLACKGUARD HQ"
+	},
+/turf/closed/wall/mineral/wooddark/horizontal,
+/area/rogue/under/town/basement/thieves_guild/bar)
 "rmb" = (
 /obj/item/flashlight/flare/torch/metal,
 /obj/item/flashlight/flare/torch/metal,
@@ -26784,7 +26797,7 @@
 /obj/structure/mineral_door/wood/donjon{
 	dir = 1;
 	locked = 1;
-	lockid = "manor"
+	lockid = "thievesguild"
 	},
 /turf/closed/wall/mineral/wooddark/horizontal,
 /area/rogue/under/town/basement/thieves_guild/bar)
@@ -27782,7 +27795,6 @@
 /area/rogue/indoors/town/theatre)
 "sOd" = (
 /obj/structure/window/solid,
-/obj/structure/curtain/bounty,
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/basement/thieves_guild/bar)
 "sOg" = (
@@ -31358,6 +31370,10 @@
 /area/rogue/indoors/town/bath)
 "vde" = (
 /obj/structure/chair/wood/alt/chair3,
+/obj/structure/curtain{
+	color = "676767";
+	pixel_y = 32
+	},
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/basement/thieves_guild/bar)
 "vdh" = (
@@ -34779,7 +34795,8 @@
 /area/rogue/under/town/basement)
 "xtc" = (
 /obj/structure/mineral_door/wood/green{
-	name = "smuggler's quarters"
+	name = "smuggler's quarters";
+	lockid = "thievesguild"
 	},
 /turf/open/floor/ruinedwood/spiralfade{
 	dir = 8
@@ -83322,7 +83339,7 @@ eNd
 szt
 inE
 eNd
-eNd
+dDB
 vgJ
 cKW
 yjO
@@ -84331,7 +84348,7 @@ vgJ
 szt
 inE
 inE
-inE
+szt
 wIk
 lgh
 hOP
@@ -84533,7 +84550,7 @@ vgJ
 inE
 inE
 inE
-eNd
+dDB
 sOd
 vde
 xVv
@@ -84935,7 +84952,7 @@ eNd
 szt
 inE
 inE
-inE
+szt
 eNd
 eNd
 sOd
@@ -85139,7 +85156,7 @@ szt
 inE
 eNd
 eNd
-eNd
+dDB
 wIk
 tpY
 msj
@@ -85339,8 +85356,8 @@ inE
 szt
 szt
 eNd
-vgJ
-vgJ
+eNd
+eNd
 vgJ
 cKW
 yjO
@@ -85540,8 +85557,8 @@ szt
 szt
 szt
 eNd
-vgJ
-vgJ
+eNd
+eNd
 vgJ
 vgJ
 vgJ
@@ -85741,7 +85758,7 @@ inE
 szt
 szt
 eNd
-vgJ
+eNd
 vgJ
 vgJ
 vgJ
@@ -85941,8 +85958,8 @@ inE
 szt
 inE
 szt
+eNd
 dDB
-vgJ
 vgJ
 vgJ
 vgJ
@@ -86562,7 +86579,7 @@ vgJ
 vgJ
 vgJ
 vgJ
-wIk
+rlb
 lut
 wIk
 mWb
