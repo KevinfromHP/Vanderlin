@@ -9,7 +9,7 @@
 /datum/outfit/job/thief/muscle
 	head = /obj/item/clothing/head/helmet/leather/headscarf
 	neck = /obj/item/clothing/neck/gorget
-	cloak = /obj/item/clothing/cloak/cape/thief
+	cloak = /obj/item/clothing/cloak/cape/drifter
 	armor = /obj/item/clothing/armor/cuirass/iron
 	shirt = /obj/item/clothing/shirt/undershirt/black
 	gloves = /obj/item/clothing/gloves/angle

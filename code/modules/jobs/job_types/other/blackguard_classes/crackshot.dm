@@ -39,7 +39,7 @@
 	H.change_stat(STATKEY_PER, 3)
 	H.change_stat(STATKEY_END, 1)
 	H.change_stat(STATKEY_STR, 1)
-	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 
 /datum/outfit/job/thief/crackshot/color_clothing(mob/living/carbon/human/H, thiefColor)
 	if(H)

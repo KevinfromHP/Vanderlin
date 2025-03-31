@@ -77,11 +77,11 @@
 	sleeved = 'icons/roguetown/clothing/onmob/cloaks.dmi'
 	color = CLOTHING_BARK_BROWN
 
-/obj/item/clothing/cloak/drifter/ComponentInitialize()
+/obj/item/clothing/cloak/cape/drifter/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/storage/concrete/grid/cloak)
 
-/obj/item/clothing/cloak/drifter/dropped(mob/living/carbon/human/user)
+/obj/item/clothing/cloak/cape/drifter/dropped(mob/living/carbon/human/user)
 	..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	if(STR)
