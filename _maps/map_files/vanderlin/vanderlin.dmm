@@ -1322,10 +1322,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/closed/mineral,
 /area/rogue/under/town/caverogue)
-"aNr" = (
-/obj/effect/decal/cleanable/glass,
-/turf/open/floor/ruinedwood/spiral,
-/area/rogue/under/town/basement/thieves_guild/bar)
 "aNw" = (
 /obj/structure/window/solid,
 /obj/structure/curtain/bounty{
@@ -5543,10 +5539,6 @@
 "dAK" = (
 /turf/open/floor/woodturned/nosmooth,
 /area/rogue/under/town/basement)
-"dAL" = (
-/obj/effect/decal/cleanable/glass,
-/turf/open/floor/ruinedwood/spiralfade,
-/area/rogue/under/town/basement/thieves_guild/bar)
 "dBb" = (
 /obj/structure/table/wood/large/corner{
 	dir = 9
@@ -5816,10 +5808,6 @@
 /obj/structure/mannequin/male,
 /turf/open/floor/herringbone,
 /area/rogue/indoors/town/shop)
-"dKD" = (
-/obj/effect/decal/cleanable/glass,
-/turf/closed/wall/mineral/wooddark/vertical,
-/area/rogue/under/town/basement/thieves_guild/bar)
 "dKM" = (
 /obj/structure/table/wood{
 	icon_state = "longtable"
@@ -9689,7 +9677,6 @@
 /turf/open/floor/woodturned,
 /area/rogue/indoors/town/magician)
 "gjJ" = (
-/obj/effect/decal/cleanable/glass,
 /obj/structure/closet/crate/crafted_closet,
 /obj/item/reagent_containers/glass/bucket/wooden,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -10219,7 +10206,6 @@
 /turf/open/floor/wood,
 /area/rogue/indoors/town)
 "gAU" = (
-/obj/effect/decal/cleanable/glass,
 /obj/structure/mineral_door/wood/deadbolt{
 	dir = 4
 	},
@@ -12651,7 +12637,6 @@
 /turf/open/floor/ruinedwood/darker,
 /area/rogue/indoors/town/orphanage)
 "ibF" = (
-/obj/effect/decal/cleanable/glass,
 /obj/structure/rack/shelf/biggest,
 /obj/item/reagent_containers/powder/ozium{
 	pixel_x = -5;
@@ -20846,7 +20831,6 @@
 /turf/open/floor/metal,
 /area/rogue/outdoors/river)
 "nFE" = (
-/obj/effect/decal/cleanable/glass,
 /obj/machinery/light/fueled/wallfire/candle/weak/r,
 /turf/closed/wall/mineral/wooddark/horizontal,
 /area/rogue/under/town/basement/thieves_guild/bar)
@@ -21327,11 +21311,6 @@
 	icon_state = "weird1"
 	},
 /area/rogue/indoors/town)
-"nUU" = (
-/obj/effect/decal/cleanable/glass,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/ruinedwood/spiral,
-/area/rogue/under/town/basement/thieves_guild/bar)
 "nVk" = (
 /obj/structure/spider/stickyweb,
 /turf/open/floor/tile{
@@ -21890,11 +21869,6 @@
 	},
 /turf/open/floor/naturalstone,
 /area/rogue/under/town/basement)
-"onj" = (
-/obj/effect/decal/cleanable/glass,
-/obj/structure/chair/stool/crafted,
-/turf/open/floor/ruinedwood/spiral,
-/area/rogue/under/town/basement/thieves_guild/bar)
 "onl" = (
 /obj/structure/closet/crate/chest/crate,
 /obj/item/alch/sinew,
@@ -31067,10 +31041,6 @@
 	dir = 8
 	},
 /area/rogue/under/town/basement/thieves_guild)
-"uAc" = (
-/obj/effect/decal/cleanable/glass,
-/turf/open/floor/carpet,
-/area/rogue/under/town/basement/thieves_guild/bar)
 "uAe" = (
 /turf/closed/wall/mineral/roofwall/innercorner{
 	dir = 1
@@ -32780,7 +32750,6 @@
 	pixel_x = -9;
 	pixel_y = 6
 	},
-/obj/effect/decal/cleanable/glass,
 /turf/open/floor/carpet,
 /area/rogue/under/town/basement/thieves_guild/bar)
 "vDH" = (
@@ -33181,7 +33150,6 @@
 /obj/effect/decal/cleanable/dirt/cobweb{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/glass,
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/basement/thieves_guild/bar)
 "vQq" = (
@@ -34554,12 +34522,6 @@
 /obj/item/clothing/pants/tights/black,
 /turf/open/floor/wood,
 /area/rogue/indoors/town)
-"wKN" = (
-/obj/effect/decal/cleanable/glass,
-/turf/open/floor/ruinedwood/spiralfade{
-	dir = 4
-	},
-/area/rogue/under/town/basement/thieves_guild)
 "wLs" = (
 /obj/machinery/light/fueled/wallfire/candle{
 	pixel_x = -32;
@@ -47540,7 +47502,7 @@ pem
 ocR
 mxZ
 hcA
-wKN
+mxZ
 mxZ
 uqQ
 vgJ
@@ -84503,7 +84465,7 @@ xDK
 xDK
 xDK
 xDK
-aNr
+xDK
 qqU
 xDK
 xDK
@@ -84703,7 +84665,7 @@ itg
 pqO
 oVD
 xDK
-onj
+vaD
 vaD
 vOu
 tKr
@@ -85103,7 +85065,7 @@ szt
 tKr
 xoY
 qHD
-aNr
+xDK
 gLY
 vaD
 kvD
@@ -85912,10 +85874,10 @@ tKr
 fvL
 sWp
 xDK
-aNr
+xDK
 xDK
 qqU
-nUU
+fvL
 oAi
 qJC
 tKr
@@ -86529,7 +86491,7 @@ onl
 itg
 rlJ
 rlJ
-dAL
+rlJ
 bkj
 tKr
 vgJ
@@ -87132,7 +87094,7 @@ tKr
 bjr
 tKr
 ivf
-uAc
+dkj
 wFs
 tKr
 nxm
@@ -87536,7 +87498,7 @@ woP
 oCU
 woP
 oCU
-dKD
+oCU
 sDS
 woP
 oCU
