@@ -7,7 +7,7 @@
 
 /datum/outfit/job/thief/poisoner
 	neck = /obj/item/clothing/neck/phys
-	armor = /obj/item/clothing/armor/leather/vest/winterjacket
+	armor = /obj/item/clothing/armor/leather/jacket/apothecary
 	shirt = /obj/item/clothing/shirt/tunic
 	gloves = /obj/item/clothing/gloves/leather/phys
 	backr = /obj/item/storage/backpack/satchel/surgbag/basic

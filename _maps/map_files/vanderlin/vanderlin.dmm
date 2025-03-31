@@ -10727,7 +10727,7 @@
 	pixel_y = -1
 	},
 /obj/item/storage/sack{
-	pixel_x = -4;
+	pixel_x = 0;
 	pixel_y = -1
 	},
 /obj/effect/decal/cleanable/dirt/dust,
@@ -16864,13 +16864,6 @@
 /obj/structure/table/wood/plain/alt,
 /turf/open/floor/churchbrick,
 /area/rogue/under/town/sewer)
-"lef" = (
-/obj/structure/lever{
-	redstone_id = "merchantStorage";
-	pixel_y = 7
-	},
-/turf/open/floor/hexstone,
-/area/rogue/indoors/town/shop)
 "leh" = (
 /obj/structure/mineral_door/swing_door,
 /turf/open/floor/ruinedwood,
@@ -17414,6 +17407,13 @@
 	},
 /turf/open/floor/dirt,
 /area/rogue/outdoors/rtfield/safe)
+"lAn" = (
+/obj/structure/lever/wall{
+	dir = 4;
+	redstone_id = "thievesguildshutter"
+	},
+/turf/open/floor/carpet,
+/area/rogue/under/town/basement/thieves_guild/bar)
 "lAp" = (
 /obj/structure/fluff/railing/wood,
 /turf/open/floor/ruinedwood/turned,
@@ -21009,6 +21009,15 @@
 /obj/structure/bars/cemetery,
 /turf/open/floor/dirt,
 /area/rogue/outdoors/rtfield/safe)
+"ocq" = (
+/obj/structure/rack/shelf/biggest{
+	pixel_x = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/ruinedwood/spiralfade{
+	dir = 8
+	},
+/area/rogue/under/town/basement/thieves_guild)
 "ocA" = (
 /turf/open/floor/ruinedwood/turned/darker,
 /area/rogue/indoors/town)
@@ -25464,12 +25473,6 @@
 /obj/machinery/light/fueled/wallfire/candle/blue/l,
 /turf/open/floor/churchmarble,
 /area/rogue/indoors/town/clinic_large)
-"rlb" = (
-/obj/effect/mapping_helpers/thieves_cant_helper{
-	thieves_message = "BLACKGUARD HQ"
-	},
-/turf/closed/wall/mineral/wooddark/horizontal,
-/area/rogue/under/town/basement/thieves_guild/bar)
 "rmb" = (
 /obj/item/flashlight/flare/torch/metal,
 /obj/item/flashlight/flare/torch/metal,
@@ -27794,7 +27797,7 @@
 /turf/open/floor/ruinedwood/darker,
 /area/rogue/indoors/town/theatre)
 "sOd" = (
-/obj/structure/window/solid,
+/obj/structure/window/openclose/reinforced,
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/basement/thieves_guild/bar)
 "sOg" = (
@@ -28453,6 +28456,10 @@
 /obj/item/reagent_containers/powder/moondust_purest{
 	pixel_x = -5;
 	pixel_y = 6
+	},
+/obj/item/reagent_containers/powder/ozium{
+	pixel_x = -5;
+	pixel_y = -8
 	},
 /turf/open/floor/carpet,
 /area/rogue/under/town/basement/thieves_guild/bar)
@@ -31370,10 +31377,6 @@
 /area/rogue/indoors/town/bath)
 "vde" = (
 /obj/structure/chair/wood/alt/chair3,
-/obj/structure/curtain{
-	color = "676767";
-	pixel_y = 32
-	},
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/basement/thieves_guild/bar)
 "vdh" = (
@@ -33412,10 +33415,6 @@
 	},
 /turf/open/floor/carpet/lord/right,
 /area/rogue/indoors/town/manor)
-"wyd" = (
-/obj/structure/mineral_door/swing_door,
-/turf/closed/wall/mineral/wooddark/vertical,
-/area/rogue/under/town/basement/thieves_guild/bar)
 "wyi" = (
 /obj/machinery/light/fueled/cauldron,
 /obj/machinery/light/fueled/wallfire/candle/blue,
@@ -34599,6 +34598,7 @@
 /obj/machinery/light/fueled/wallfire/candle{
 	pixel_x = -16
 	},
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/ruinedwood/spiralfade{
 	dir = 8
 	},
@@ -35456,6 +35456,13 @@
 	},
 /turf/open/transparent/openspace,
 /area/rogue/indoors/town/tavern)
+"xRU" = (
+/obj/structure/bed/wool,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/ruinedwood/spiralfade{
+	dir = 8
+	},
+/area/rogue/under/town/basement/thieves_guild)
 "xSf" = (
 /turf/open/floor/ruinedwood/turned/darker,
 /area/rogue/indoors/town/theatre)
@@ -47181,8 +47188,8 @@ vgJ
 vgJ
 vgJ
 iKJ
-pwk
-mEr
+ocq
+xRU
 nMW
 iKJ
 nXI
@@ -83946,7 +83953,7 @@ szt
 inE
 inE
 inE
-sbR
+eNd
 wIk
 jQv
 wvM
@@ -84550,7 +84557,7 @@ vgJ
 inE
 inE
 inE
-dDB
+eNd
 sOd
 vde
 xVv
@@ -85163,9 +85170,9 @@ msj
 qMa
 fCS
 qMa
-wyd
+puO
 lfv
-lUb
+lAn
 gos
 wIk
 oBr
@@ -85772,7 +85779,7 @@ lop
 iyo
 qwm
 wIk
-dRW
+qwm
 wIk
 uWS
 jQv
@@ -85974,7 +85981,7 @@ iud
 wbW
 nTA
 mfk
-qwm
+dRW
 wIk
 kUG
 qwm
@@ -86579,7 +86586,7 @@ vgJ
 vgJ
 vgJ
 vgJ
-rlb
+wIk
 lut
 wIk
 mWb
@@ -100296,7 +100303,7 @@ ehF
 gZy
 nWe
 vZi
-lef
+lxU
 lxU
 lxU
 kWO
