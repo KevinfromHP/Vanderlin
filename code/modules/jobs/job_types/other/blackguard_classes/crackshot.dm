@@ -10,11 +10,11 @@
 	head = /obj/item/clothing/head/helmet/leather/headscarf
 	neck = /obj/item/clothing/neck/chaincoif/iron
 	cloak = /obj/item/clothing/cloak/cape/drifter
-	armor = /obj/item/clothing/armor/chainmail/iron
+	armor = /obj/item/clothing/armor/leather/hide
 	shirt = /obj/item/clothing/shirt/shortshirt/merc
 	gloves = /obj/item/clothing/gloves/leather
 	backr = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
-	backpack_contents = list(/obj/item/key/thieves_guild, /obj/item/storage/belt/pouch/coins/poor)
+	backpack_contents = list(/obj/item/key/thief, /obj/item/storage/belt/pouch/coins/poor)
 	beltl = /obj/item/weapon/knife/dagger/steel
 	beltr = /obj/item/ammo_holder/quiver/bolts
 

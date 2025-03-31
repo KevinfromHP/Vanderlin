@@ -707,19 +707,19 @@
 /area/rogue/indoors/town/garrison)
 "azl" = (
 /obj/structure/rack,
-/obj/item/key/thieves_guild{
+/obj/item/key/thief{
 	pixel_x = -6;
 	pixel_y = -4
 	},
-/obj/item/key/thieves_guild{
+/obj/item/key/thief{
 	pixel_x = -2;
 	pixel_y = -4
 	},
-/obj/item/key/thieves_guild{
+/obj/item/key/thief{
 	pixel_x = 2;
 	pixel_y = -4
 	},
-/obj/item/key/thieves_guild{
+/obj/item/key/thief{
 	pixel_x = 6;
 	pixel_y = -4
 	},

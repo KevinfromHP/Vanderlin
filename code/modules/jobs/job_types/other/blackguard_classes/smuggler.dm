@@ -33,7 +33,7 @@
 	shirt = /obj/item/clothing/armor/gambeson/light
 	gloves = /obj/item/clothing/gloves/fingerless
 	backl = /obj/item/storage/backpack/backpack //override
-	backpack_contents = list(/obj/item/key/thieves_guild, /obj/item/restraints/legcuffs/beartrap/crafted)
+	backpack_contents = list(/obj/item/key/thief, /obj/item/restraints/legcuffs/beartrap/crafted)
 	belt = /obj/item/storage/belt/leather/knifebelt/black/steel //override
 	beltl = /obj/item/weapon/knife/cleaver/combat
 	beltr = /obj/item/storage/belt/pouch/coins/mid

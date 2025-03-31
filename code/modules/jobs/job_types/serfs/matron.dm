@@ -73,4 +73,4 @@
 		beltl = /obj/item/storage/belt/pouch/coins/mid
 		backr = /obj/item/storage/backpack/satchel
 		cloak = /obj/item/clothing/cloak/matron
-		backpack_contents = list(/obj/item/weapon/knife/dagger/steel = 1, /obj/item/storage/keyring/matron = 1)
+		backpack_contents = list(/obj/item/weapon/knife/dagger/steel = 1, /obj/item/key/matron = 1)

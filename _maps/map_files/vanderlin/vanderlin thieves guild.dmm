@@ -2788,16 +2788,6 @@
 /obj/structure/water_pipe,
 /turf/open/floor/dirt,
 /area/rogue/outdoors/town)
-"bOJ" = (
-/obj/effect/mapping_helpers/secret_door_creator{
-	name = "Orphanage Secret Door";
-	floor_turf = /turf/open/floor/blocks;
-	vip_message = "Orphan";
-	vips = list("Orphan");
-	redstone_id = "matthiosroom"
-	},
-/turf/closed/wall/mineral/stone,
-/area/rogue/indoors/town/orphanage)
 "bPb" = (
 /obj/structure/fluff/walldeco/church/line{
 	dir = 1
@@ -5332,13 +5322,13 @@
 /obj/structure/table/wood/reinf_long{
 	dir = 1
 	},
-/obj/item/key/thieves_guild{
+/obj/item/key/thief{
 	pixel_x = -1
 	},
-/obj/item/key/thieves_guild{
+/obj/item/key/thief{
 	pixel_x = -10
 	},
-/obj/item/key/thieves_guild{
+/obj/item/key/thief{
 	pixel_x = -6
 	},
 /turf/open/floor/blocks,
@@ -5790,21 +5780,6 @@
 	dir = 4
 	},
 /area/rogue/under/town/caverogue)
-"dUB" = (
-/obj/structure/fluff/railing/border{
-	dir = 4
-	},
-/obj/item/natural/worms/leech{
-	pixel_x = -14;
-	pixel_y = -7
-	},
-/obj/item/natural/worms/leech,
-/obj/item/natural/worms/leech{
-	pixel_x = 7;
-	pixel_y = -8
-	},
-/turf/open/water/sewer,
-/area/rogue/under/town/basement)
 "dUF" = (
 /obj/structure/flora/newtree,
 /turf/open/floor/grass,
@@ -9996,10 +9971,6 @@
 	},
 /turf/open/floor/woodturned,
 /area/rogue/indoors/butchershop)
-"gJG" = (
-/obj/structure/chair/stool,
-/turf/open/floor/cobble/alt,
-/area/rogue/under/town/basement)
 "gKh" = (
 /turf/open/water/river{
 	dir = 8
@@ -15384,12 +15355,6 @@
 /obj/machinery/light/fueled/wallfire/candle/blue/r,
 /turf/open/floor/cobble,
 /area/rogue/indoors/town/magician)
-"kuv" = (
-/obj/machinery/light/fueled/lanternpost/fixed,
-/turf/open/floor/tile{
-	icon_state = "greenstone"
-	},
-/area/rogue/under/town/sewer)
 "kuR" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -22011,11 +21976,6 @@
 	},
 /turf/open/floor/carpet/purple,
 /area/rogue/indoors/town/magician)
-"pse" = (
-/obj/structure/bed/mediocre,
-/obj/item/bedsheet/cloth,
-/turf/open/floor/blocks,
-/area/rogue/under/town/basement)
 "psf" = (
 /obj/structure/fake_machine/drugmachine,
 /turf/open/floor/blocks/stonered/tiny,

@@ -15,7 +15,7 @@
 	gloves = /obj/item/clothing/gloves/angle
 	beltr = /obj/item/weapon/mace/steel/morningstar
 	beltl = /obj/item/weapon/shield/tower/buckleriron
-	backpack_contents = list(/obj/item/key/thieves_guild, /obj/item/storage/belt/pouch/coins/poor)
+	backpack_contents = list(/obj/item/key/thief, /obj/item/storage/belt/pouch/coins/poor)
 
 /datum/outfit/job/thief/muscle/pre_equip(mob/living/carbon/human/H)
 	..()

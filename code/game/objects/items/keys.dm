@@ -262,6 +262,12 @@
 	icon_state = "greenkey"
 	lockid = ACCESS_MERC
 
+/obj/item/key/thief
+	name = "rusty key"
+	desc = "There's a small etching: BG"
+	icon_state = "rustkey"
+	lockid = "thievesguild"
+
 /obj/item/key/warehouse
 	name = "Warehouse key"
 	desc = "This key opens the Steward's warehouse."

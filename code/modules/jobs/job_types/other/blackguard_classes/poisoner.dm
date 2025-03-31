@@ -11,7 +11,7 @@
 	shirt = /obj/item/clothing/shirt/tunic
 	gloves = /obj/item/clothing/gloves/leather/phys
 	backr = /obj/item/storage/backpack/satchel/surgbag/basic
-	backpack_contents = list(/obj/item/key/thieves_guild, /obj/item/storage/belt/pouch/coins/poor)
+	backpack_contents = list(/obj/item/key/thief, /obj/item/storage/belt/pouch/coins/poor)
 	beltl = /obj/item/weapon/knife/dagger/steel
 	beltr = /obj/item/weapon/sword/sabre/cutlass
 
