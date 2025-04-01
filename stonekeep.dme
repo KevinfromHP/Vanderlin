@@ -1217,7 +1217,7 @@
 #include "code\game\objects\structures\fake_machines\ATM.dm"
 #include "code\game\objects\structures\fake_machines\camera.dm"
 #include "code\game\objects\structures\fake_machines\drugmachine.dm"
-#include "code\game\objects\structures\fake_machines\fence.dm"
+#include "code\game\objects\structures\fake_machines\stranger.dm"
 #include "code\game\objects\structures\fake_machines\mail.dm"
 #include "code\game\objects\structures\fake_machines\merchant.dm"
 #include "code\game\objects\structures\fake_machines\money.dm"

@@ -1129,6 +1129,10 @@
 /obj/item/weapon/polearm/woodstaff/aries,
 /turf/open/floor/cobble,
 /area/rogue/outdoors)
+"iE" = (
+/obj/structure/smuggler_boat,
+/turf/open/water/cleanshallow,
+/area/rogue/indoors)
 "jt" = (
 /obj/structure/trench,
 /obj/structure/rotation_piece/cog/large,
@@ -1330,6 +1334,15 @@
 /turf/open/water/river{
 	dir = 4
 	},
+/area/rogue/indoors)
+"Dd" = (
+/obj/structure/fake_machine/smugglervend{
+	pixel_x = -32
+	},
+/turf/open/floor/blocks,
+/area/rogue/indoors)
+"DH" = (
+/turf/open/water/cleanshallow,
 /area/rogue/indoors)
 "DJ" = (
 /obj/structure/rotation_piece,
@@ -2761,13 +2774,13 @@ as
 as
 as
 ab
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 ac
 ac
 ac
@@ -3018,13 +3031,13 @@ as
 as
 as
 ab
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+ab
+DH
+DH
+bq
+Dd
+ck
+ab
 ac
 ac
 ac
@@ -3275,13 +3288,13 @@ aj
 aj
 aj
 ab
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+ab
+DH
+iE
+bq
+bq
+bq
+ab
 ac
 ac
 ac
@@ -3532,13 +3545,13 @@ zc
 aj
 aj
 ab
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+ab
+DH
+DH
+bq
+bq
+ck
+ab
 ac
 ac
 ac
@@ -3793,7 +3806,7 @@ ab
 ab
 ab
 ab
-ab
+bq
 ab
 ab
 ab
@@ -4050,7 +4063,7 @@ ax
 ax
 ax
 ax
-ax
+bq
 ax
 ax
 ax
