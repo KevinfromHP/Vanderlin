@@ -47,4 +47,3 @@
 #define SNUG_FIT               (1<<11) //Prevents knock-off from things like hat-throwing.
 #define ANTI_TINFOIL_MANEUVER   (1<<12) //Hats with negative effects when worn (i.e the tinfoil hat).
 #define CANT_SLEEP_IN			(1<<13) //Makes you unable to sleep with this on
-#define CHEAP_BOOTLEG			(1<<14) //Used for replicas of items to reduce value.
