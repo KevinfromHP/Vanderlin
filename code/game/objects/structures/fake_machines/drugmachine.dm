@@ -243,7 +243,7 @@
 
 	contents += "</center><BR>"
 
-	var/list/unlocked_cats = list("Narcotics","Instruments")
+	var/list/unlocked_cats = list("Consumable", "Narcotics",  "Seeds", "Tools")
 	if(current_cat == "1")
 		contents += "<center>"
 		for(var/X in unlocked_cats)
@@ -253,9 +253,9 @@
 		contents += "<center>[current_cat]<BR></center>"
 		contents += "<center><a href='byond://?src=[REF(src)];changecat=1'>\[RETURN\]</a><BR><BR></center>"
 		var/list/pax = list()
-		for(var/pack in SSmerchant.supply_packs && pack.purchase_flags & PURCHASE_ALCHEMIST)
+		for(var/pack in SSmerchant.supply_packs)
 			var/datum/supply_pack/PA = SSmerchant.supply_packs[pack]
-			if(PA.group == current_cat)
+			if(PA.group == current_cat && (PA.purchase_flags & PURCHASE_ALCHEMIST))
 				pax += PA
 		for(var/datum/supply_pack/PA in sortList(pax))
 			var/costy = PA.cost

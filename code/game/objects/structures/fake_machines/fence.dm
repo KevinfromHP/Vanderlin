@@ -1,6 +1,6 @@
 /obj/structure/fake_machine/smugglervend
 	name = "STRANGER"
-	desc = "."
+	desc = ""
 	icon = 'icons/roguetown/misc/machines.dmi'
 	icon_state = "feedinghole"
 	density = FALSE

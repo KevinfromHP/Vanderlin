@@ -10,7 +10,7 @@
 	contains = /obj/item/reagent_containers/glass/bottle/healthpot
 
 /datum/supply_pack/food/manapot
-	name = "Manna Potion"
+	name = "Mana Potion"
 	cost = 18
 	purchase_flags = PURCHASE_MERCHANT | PURCHASE_ALCHEMIST | PURCHASE_SMUGGLER
 	contains = /obj/item/reagent_containers/glass/bottle/manapot
@@ -24,7 +24,7 @@
 
 /datum/supply_pack/food/strongmanapot
 
-	name = "Strong Manna Potion"
+	name = "Strong Mana Potion"
 	cost = 32
 	purchase_flags = PURCHASE_ALCHEMIST
 	contains = /obj/item/reagent_containers/glass/bottle/strongmanapot

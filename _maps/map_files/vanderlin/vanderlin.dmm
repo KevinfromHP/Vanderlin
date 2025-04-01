@@ -4176,10 +4176,8 @@
 /turf/open/floor/wood,
 /area/rogue/indoors/town)
 "cBt" = (
-/obj/structure/table/wood{
-	icon_state = "map2"
-	},
 /obj/effect/decal/cleanable/debris/glass,
+/obj/structure/table/wood/large/corner_alt,
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/basement/thieves_guild)
 "cBw" = (
@@ -4537,7 +4535,9 @@
 	},
 /area/rogue/indoors/town/tavern)
 "cNA" = (
-/obj/structure/table/wood/reinf_long,
+/obj/structure/table/wood/large/corner_alt{
+	dir = 8
+	},
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/basement/thieves_guild)
 "cNG" = (
@@ -5577,8 +5577,8 @@
 /turf/open/floor/ruinedwood,
 /area/rogue/indoors/town)
 "dBn" = (
-/obj/structure/table/wood{
-	icon_state = "map6"
+/obj/structure/table/wood/large/corner_alt{
+	dir = 5
 	},
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/basement/thieves_guild)
@@ -8624,11 +8624,11 @@
 /turf/open/floor/churchbrick,
 /area/rogue/under/town/sewer)
 "fvi" = (
-/obj/structure/table/wood{
-	icon_state = "map5"
-	},
 /obj/item/paper/thieves,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/wood/large/corner_alt{
+	dir = 1
+	},
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/basement/thieves_guild)
 "fvl" = (
@@ -17671,10 +17671,10 @@
 /obj/structure/giantfur/small{
 	layer = 2.79
 	},
-/obj/structure/table/wood{
-	icon_state = "map4"
-	},
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/wood/large/corner_alt{
+	dir = 9
+	},
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/basement/thieves_guild)
 "luA" = (
@@ -22003,8 +22003,8 @@
 	},
 /area/rogue/under/town/sewer)
 "opa" = (
-/obj/structure/table/wood{
-	icon_state = "map3"
+/obj/structure/table/wood/large/corner_alt{
+	dir = 6
 	},
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/basement/thieves_guild)
@@ -22649,8 +22649,8 @@
 /turf/open/floor/wood,
 /area/rogue/indoors/town)
 "oMR" = (
-/obj/structure/table/wood{
-	icon_state = "map1"
+/obj/structure/table/wood/large/corner_alt{
+	dir = 10
 	},
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/basement/thieves_guild)
@@ -24906,6 +24906,9 @@
 	pixel_y = 0
 	},
 /obj/effect/decal/cleanable/debris/glass,
+/obj/structure/table/wood/large/corner_alt{
+	dir = 10
+	},
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/basement/thieves_guild)
 "qtB" = (
@@ -31561,13 +31564,13 @@
 /turf/open/floor/herringbone,
 /area/rogue/indoors/town/smithy)
 "uLi" = (
-/obj/structure/table/wood/reinf_long{
-	dir = 1
-	},
 /obj/structure/fake_machine/scomm{
 	pixel_y = 0;
 	pixel_x = 32;
 	name = "Stolen SCOM"
+	},
+/obj/structure/table/wood/large/corner_alt{
+	dir = 9
 	},
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/basement/thieves_guild)
