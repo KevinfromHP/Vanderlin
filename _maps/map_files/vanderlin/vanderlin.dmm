@@ -7211,14 +7211,6 @@
 "ezJ" = (
 /turf/closed/wall/mineral/wooddark/horizontal,
 /area/rogue/outdoors/town)
-"eAb" = (
-/obj/structure/table/wood/plain_alt,
-/obj/structure/mirror{
-	pixel_x = -32;
-	pixel_y = 0
-	},
-/turf/open/floor/blocks/paving,
-/area/rogue/indoors/town)
 "eAP" = (
 /obj/structure/mineral_door/wood/window,
 /obj/effect/mapping_helpers/door/locker,
@@ -26391,6 +26383,10 @@
 /obj/item/weapon/knife/dagger/steel,
 /turf/open/floor/concrete,
 /area/rogue/indoors/town/shop)
+"rwe" = (
+/obj/structure/smuggler_boat,
+/turf/open/water/cleanshallow,
+/area/rogue/under/cavewet)
 "rwf" = (
 /obj/structure/mineral_door/wood/window{
 	name = "orphanage"
@@ -29317,6 +29313,12 @@
 /obj/structure/closet/crate/chest/gold,
 /turf/open/floor/tile/masonic/spiral,
 /area/rogue/under/town/basement)
+"trC" = (
+/obj/structure/fake_machine/smugglervend{
+	pixel_x = 32
+	},
+/turf/open/floor/ruinedwood/spiralfade,
+/area/rogue/under/town/basement/thieves_guild/bar)
 "trK" = (
 /obj/structure/fluff/walldeco/customflag{
 	pixel_y = -32
@@ -46402,7 +46404,7 @@ vgJ
 xrW
 wDN
 wDN
-ydy
+rwe
 ydy
 ydy
 ydy
@@ -86804,7 +86806,7 @@ tKr
 cbl
 rlJ
 rlJ
-rlJ
+trC
 rlJ
 rlJ
 nMn
@@ -93042,7 +93044,7 @@ vgJ
 rnJ
 sVP
 nnK
-eAb
+sVP
 nlk
 vgJ
 vgJ
