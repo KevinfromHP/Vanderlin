@@ -137,3 +137,48 @@
 		COOLDOWN_START(src, bell_ring, 5 SECONDS)
 	else
 		return ..()
+
+
+
+/obj/item/smuggler_bell
+	name = "signal bell"
+	desc = "A small bell for signaling individuals offshore. Travels further than expected."
+	icon = 'icons/roguetown/items/misc.dmi'
+	icon_state = "smugglerbell"
+	throw_speed = 2
+	throw_range = 5
+	throwforce = 5
+	damtype = BRUTE
+	slot_flags = ITEM_SLOT_HIP
+	force = 5
+	hitsound = 'sound/items/bsmith1.ogg'
+	COOLDOWN_DECLARE(bell_ring)
+
+/obj/item/smuggler_bell/attack_self(mob/user)
+	. = ..()
+	if(!istype(user.area, /area/rogue/under/town/basement/thieves_guild/cove))
+		to_chat(user, span_warning("I need to be in the cove to use this."))
+		return
+	if(!COOLDOWN_FINISHED(src, bell_ring))
+		return
+	playsound(src.loc, 'sound/misc/handbell.ogg', 50, 1)
+
+	user.visible_message("<span class='notice'>[user] rings [src].</span>", span_notice("You ring [src]."))
+	for(var/mob/M in view(10, src.loc))
+		if(M != user && M.client)
+			to_chat(M, "<span class='notice'>You hear a small bell ringing.</span>")
+
+	COOLDOWN_START(src, bell_ring, 5 MINUTES)
+
+/obj/item/smuggler_bell/proc/sound_bell(mob/living/user)
+	user.visible_message("<span class='warning'>[user] rings the bell!</span>")
+	playsound(src, 'sound/misc/handbell.ogg', 100, TRUE)
+
+	for(var/mob/living/player in GLOB.player_list)
+		if(player.stat == DEAD)
+			continue
+		if(isbrain(player))
+			continue
+
+		player.playsound_local(get_turf(player), 'sound/misc/handbell.ogg', 35, FALSE, pressure_affected = FALSE)
+		to_chat(player, span_smallnotice("I hear a bell ringing faintly..."))

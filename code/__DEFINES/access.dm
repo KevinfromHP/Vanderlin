@@ -17,6 +17,7 @@
 #define ACCESS_ARTIFICER "artificer"
 #define ACCESS_BATHHOUSE "bathhouse"
 #define ACCESS_THIEVESGUILD "thievesguild"
+#define ACCESS_SMUGGLER "smuggler"
 
 // Town Garrison (Including forest)
 #define ACCESS_GARRISON "garrison"

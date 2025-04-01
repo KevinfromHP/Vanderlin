@@ -52,6 +52,9 @@
 /obj/effect/mapping_helpers/door/access/town/thievesguild
 	access_string = ACCESS_THIEVESGUILD
 
+/obj/effect/mapping_helpers/door/access/town/smuggler
+	access_string = ACCESS_SMUGGLER
+
 /obj/effect/mapping_helpers/door/access/town/elder
 	access_string = ACCESS_ELDER
 /obj/effect/mapping_helpers/door/access/town/veteran

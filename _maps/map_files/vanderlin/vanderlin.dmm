@@ -1273,7 +1273,7 @@
 "aKx" = (
 /obj/machinery/light/fueled/firebowl/stump,
 /turf/open/floor/naturalstone,
-/area/rogue/under/cavewet)
+/area/rogue/under/town/basement/thieves_guild/cove)
 "aKy" = (
 /obj/structure/table/wood/counter/end,
 /obj/item/paper,
@@ -9961,6 +9961,10 @@
 /obj/machinery/light/fueledstreet,
 /turf/open/floor/cobble,
 /area/rogue/outdoors/town)
+"gpn" = (
+/obj/effect/decal/cleanable/debris/stone,
+/turf/open/floor/dirt/road,
+/area/rogue/under/town/caverogue)
 "gpy" = (
 /obj/machinery/light/fueled/torchholder/l{
 	dir = 1
@@ -14911,6 +14915,9 @@
 	},
 /turf/open/floor/cobble,
 /area/rogue/outdoors/woods_safe)
+"juX" = (
+/turf/closed/mineral,
+/area/rogue/under/town/basement/thieves_guild/cove)
 "jvj" = (
 /mob/living/simple_animal/hostile/retaliate/saigabuck/tame,
 /obj/structure/fluff/nest{
@@ -15232,6 +15239,12 @@
 	anchored = 1
 	},
 /turf/open/floor/carpet/red,
+/area/rogue/under/town/caverogue)
+"jHb" = (
+/obj/effect/decal/cleanable/debris/stone{
+	dir = 8
+	},
+/turf/open/floor/dirt/road,
 /area/rogue/under/town/caverogue)
 "jHh" = (
 /obj/structure/closet/crate/crafted_closet,
@@ -19252,7 +19265,8 @@
 "mzS" = (
 /obj/structure/mineral_door/wood/donjon{
 	locked = null;
-	dir = 4
+	dir = 4;
+	name = "cove"
 	},
 /obj/effect/mapping_helpers/door/locker,
 /obj/effect/mapping_helpers/door/access/town/thievesguild,
@@ -26497,7 +26511,7 @@
 "rwe" = (
 /obj/structure/smuggler_boat,
 /turf/open/water/cleanshallow,
-/area/rogue/under/cavewet)
+/area/rogue/under/town/basement/thieves_guild/cove)
 "rwf" = (
 /obj/structure/mineral_door/wood/window{
 	name = "orphanage"
@@ -27031,6 +27045,9 @@
 /obj/structure/fluff/millstone,
 /turf/open/floor/wood,
 /area/rogue/indoors/town)
+"rMd" = (
+/turf/open/floor/naturalstone,
+/area/rogue/under/town/basement/thieves_guild/cove)
 "rMe" = (
 /obj/structure/fluff/walldeco/chains,
 /turf/open/floor/churchrough,
@@ -32434,6 +32451,9 @@
 /obj/structure/table/vtable,
 /turf/open/floor/blocks,
 /area/rogue/indoors/town/magician)
+"vmT" = (
+/turf/open/water/cleanshallow,
+/area/rogue/under/town/basement/thieves_guild/cove)
 "vna" = (
 /obj/structure/stairs,
 /turf/open/floor/ruinedwood/turned/darker,
@@ -45728,8 +45748,8 @@ vgJ
 vgJ
 vgJ
 vgJ
-xrW
-xrW
+juX
+juX
 vMb
 oZQ
 oZQ
@@ -45929,9 +45949,9 @@ vgJ
 vgJ
 vgJ
 vgJ
-xrW
-xrW
-wDN
+juX
+juX
+rMd
 aJo
 nYn
 oZQ
@@ -46131,9 +46151,9 @@ vgJ
 vgJ
 vgJ
 vgJ
-xrW
-wDN
-ydy
+juX
+rMd
+vmT
 aJo
 ahj
 nYn
@@ -46332,11 +46352,11 @@ vgJ
 vgJ
 vgJ
 vgJ
-xrW
-xrW
-wDN
-ydy
-ydy
+juX
+juX
+rMd
+vmT
+vmT
 aJo
 aJo
 nYn
@@ -46534,13 +46554,13 @@ vgJ
 vgJ
 vgJ
 vgJ
-xrW
-wDN
-wDN
+juX
+rMd
+rMd
 rwe
-ydy
-ydy
-ydy
+vmT
+vmT
+vmT
 aJo
 nYn
 oZQ
@@ -46737,12 +46757,12 @@ vgJ
 woP
 oCU
 woP
-wDN
-wDN
-wDN
-ydy
-ydy
-wDN
+rMd
+rMd
+rMd
+vmT
+vmT
+rMd
 xrW
 nYn
 oZQ
@@ -46939,12 +46959,12 @@ vgJ
 tKr
 blg
 tKr
-wDN
-wDN
-wDN
-wDN
-wDN
-xrW
+rMd
+rMd
+rMd
+rMd
+rMd
+juX
 xrW
 vgJ
 vgJ
@@ -47141,12 +47161,12 @@ vgJ
 tKr
 xDK
 tKr
-xrW
-wDN
-wDN
+juX
+rMd
+rMd
 aKx
-xrW
-xrW
+juX
+juX
 vgJ
 vgJ
 vgJ
@@ -49957,7 +49977,7 @@ vgJ
 vgJ
 vgJ
 vgJ
-wBa
+gpn
 wBa
 wBa
 wBa
@@ -50563,7 +50583,7 @@ vgJ
 vgJ
 vgJ
 vgJ
-wBa
+gpn
 vgJ
 vgJ
 vgJ
@@ -51371,7 +51391,7 @@ vgJ
 vgJ
 vgJ
 vgJ
-wBa
+jHb
 wBa
 vgJ
 vgJ

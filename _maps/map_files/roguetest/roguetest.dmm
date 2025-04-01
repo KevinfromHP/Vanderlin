@@ -1108,6 +1108,14 @@
 "cX" = (
 /turf/open/floor/carpet/lord/right,
 /area/rogue/indoors)
+"dA" = (
+/obj/machinery/light/fueled/firebowl,
+/turf/open/floor/blocks,
+/area/rogue/under/town/basement/thieves_guild/cove)
+"eA" = (
+/obj/effect/landmark/start/thief_leader,
+/turf/open/floor/blocks,
+/area/rogue/under/town/basement/thieves_guild/cove)
 "eE" = (
 /obj/structure/trench,
 /obj/structure/rotation_piece/cog,
@@ -1132,7 +1140,7 @@
 "iE" = (
 /obj/structure/smuggler_boat,
 /turf/open/water/cleanshallow,
-/area/rogue/indoors)
+/area/rogue/under/town/basement/thieves_guild/cove)
 "jt" = (
 /obj/structure/trench,
 /obj/structure/rotation_piece/cog/large,
@@ -1143,6 +1151,9 @@
 /obj/structure/waterwheel,
 /turf/open/floor/dirt/road,
 /area/rogue/outdoors)
+"kM" = (
+/turf/open/floor/blocks,
+/area/rogue/under/cavewet)
 "lY" = (
 /obj/structure/minecart_rail{
 	dir = 9
@@ -1340,10 +1351,10 @@
 	pixel_x = -32
 	},
 /turf/open/floor/blocks,
-/area/rogue/indoors)
+/area/rogue/under/town/basement/thieves_guild/cove)
 "DH" = (
 /turf/open/water/cleanshallow,
-/area/rogue/indoors)
+/area/rogue/under/town/basement/thieves_guild/cove)
 "DJ" = (
 /obj/structure/rotation_piece,
 /turf/open/floor/cobble,
@@ -1401,6 +1412,9 @@
 /obj/structure/vertical_gearbox,
 /turf/open/floor/dirt/road,
 /area/rogue/outdoors)
+"Lf" = (
+/turf/open/floor/blocks,
+/area/rogue/under/town/basement/thieves_guild/cove)
 "Lv" = (
 /obj/structure/stairs{
 	dir = 4
@@ -1457,9 +1471,16 @@
 /obj/structure/boiler,
 /turf/open/floor/dirt/road,
 /area/rogue/outdoors)
+"SU" = (
+/obj/effect/landmark/start/thief,
+/turf/open/floor/blocks,
+/area/rogue/under/town/basement/thieves_guild/cove)
 "SZ" = (
 /turf/closed/wall/mineral/stone/window/moss,
 /area/rogue/outdoors)
+"Tm" = (
+/turf/closed/mineral/bedrock,
+/area/rogue/under/cavewet)
 "Ty" = (
 /obj/effect/landmark/start/lord{
 	dir = 8
@@ -2774,13 +2795,13 @@ as
 as
 as
 ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
+Tm
+Tm
+Tm
+Tm
+Tm
+Tm
+Tm
 ac
 ac
 ac
@@ -3031,13 +3052,13 @@ as
 as
 as
 ab
-ab
+Tm
 DH
 DH
-bq
+SU
 Dd
-ck
-ab
+dA
+Tm
 ac
 ac
 ac
@@ -3288,13 +3309,13 @@ aj
 aj
 aj
 ab
-ab
+Tm
 DH
 iE
-bq
-bq
-bq
-ab
+eA
+Lf
+Lf
+Tm
 ac
 ac
 ac
@@ -3545,13 +3566,13 @@ zc
 aj
 aj
 ab
-ab
+Tm
 DH
 DH
-bq
-bq
-ck
-ab
+Lf
+Lf
+dA
+Tm
 ac
 ac
 ac
@@ -3802,13 +3823,13 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-bq
-ab
-ab
+Tm
+Tm
+Tm
+Tm
+kM
+Tm
+Tm
 ab
 ab
 ab

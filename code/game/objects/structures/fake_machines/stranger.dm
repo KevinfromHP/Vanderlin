@@ -13,7 +13,7 @@
 	var/budget = 0
 	var/upgrade_flags
 	var/current_cat = "1"
-	var/lockid = "smuggler"
+	var/lockid = ACCESS_SMUGGLER
 
 
 /obj/structure/fake_machine/smugglervend/Initialize()

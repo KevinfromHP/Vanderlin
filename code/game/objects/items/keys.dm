@@ -266,7 +266,13 @@
 	name = "rusty key"
 	desc = "There's a small etching: BG"
 	icon_state = "rustkey"
-	lockid = "thievesguild"
+	lockid = ACCESS_THIEVESGUILD
+
+/obj/item/key/smuggler
+	name = "Blackguard's key"
+	desc = "Even thieves need a place to hide their secrets."
+	icon_state = "cheesekey"
+	lockid = ACCESS_SMUGGLER
 
 /obj/item/key/warehouse
 	name = "Warehouse key"

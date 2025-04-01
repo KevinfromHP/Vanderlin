@@ -31,19 +31,20 @@
 	cloak = /obj/item/clothing/cloak/cape/drifter
 	armor = /obj/item/clothing/armor/leather/splint
 	shirt = /obj/item/clothing/armor/gambeson/light/brown
+	wrists = /obj/item/storage/keyring/smuggler
 	gloves = /obj/item/clothing/gloves/fingerless
 	backl = /obj/item/storage/backpack/backpack //override
-	backpack_contents = list(/obj/item/key/thief, /obj/item/restraints/legcuffs/beartrap/crafted)
+	backpack_contents = list(/obj/item/storage/belt/pouch/coins/rich, /obj/item/restraints/legcuffs/beartrap/crafted)
 	belt = /obj/item/storage/belt/leather/knifebelt/black/steel //override
 	beltl = /obj/item/weapon/knife/cleaver/combat
-	beltr = /obj/item/storage/belt/pouch/coins/rich
+	beltr = /obj/item/smuggler_bell
 
 /datum/outfit/job/thief/smuggler/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/axesmaces, 2, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/bows, pick(0, 0, 1), TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/bows, pick(1, 2, 3), TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/knives, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
@@ -51,13 +52,14 @@
 		H.mind.adjust_skillrank(/datum/skill/craft/bombs, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/traps, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/labor/mathematics, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 5, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/lockpicking, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/sewing, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 5, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/stealing, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/stealing, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/swimming, 4, TRUE)
 	H.change_stat(STATKEY_PER, 1)
 	H.change_stat(STATKEY_END, 1)

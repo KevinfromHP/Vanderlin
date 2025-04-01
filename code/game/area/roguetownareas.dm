@@ -747,6 +747,15 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	soundenv = 5
 	converted_type = /area/rogue/outdoors/exposed/under/basement
 
+/area/rogue/outdoors/exposed/under/basement
+	icon_state = "basement"
+	droning_sound = 'sound/music/area/catacombs.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+
+
+///// THIEVES GUILD AREAS /////
+
 /area/rogue/under/town/basement/thieves_guild
 	first_time_text = "Blackguard's Hideout"
 	icon_state = "thieves_guild"
@@ -755,11 +764,12 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 /area/rogue/under/town/basement/thieves_guild/bar
 	first_time_text = "The Kneestingers Kiss"
 
-/area/rogue/outdoors/exposed/under/basement
-	icon_state = "basement"
-	droning_sound = 'sound/music/area/catacombs.ogg'
-	droning_sound_dusk = null
-	droning_sound_night = null
+/area/rogue/under/town/basement/thieves_guild/cove
+	icon_state = "vault"
+	ambientsounds = AMB_CAVEWATER
+	ambientnight = AMB_CAVEWATER
+	spookysounds = SPOOKY_CAVE
+	spookynight = SPOOKY_CAVE
 
 
 ///// UNDERWORLD AREAS //////
