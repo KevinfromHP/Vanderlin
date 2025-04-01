@@ -6,6 +6,7 @@
 /datum/supply_pack/instruments/mbox
 	name = "Dwarven Music Box"
 	cost = 150
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/dmusicbox
 
 /datum/supply_pack/instruments/flute
@@ -21,11 +22,13 @@
 /datum/supply_pack/instruments/guitar
 	name = "Guitar"
 	cost = 20
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/instrument/guitar
 
 /datum/supply_pack/instruments/accord
 	name = "Accordion"
 	cost = 25
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/instrument/accord
 
 /datum/supply_pack/instruments/lute

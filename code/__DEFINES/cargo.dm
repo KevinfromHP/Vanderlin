@@ -16,6 +16,11 @@
 #define POD_NAME 2
 #define POD_DESC 3
 
+//Who can purchase this supply pack.
+#define PURCHASE_MERCHANT (1<<0)
+#define PURCHASE_ALCHEMIST (1<<1)
+#define PURCHASE_SMUGGLER (1<<2)
+
 #define POD_STYLES list(\
 	list("supplypod", "supply pod", "A Nanotrasen supply drop pod."),\
 	list("bluespacepod", "bluespace supply pod" , "A Nanotrasen Bluespace supply pod. Teleports back to CentCom after delivery."),\

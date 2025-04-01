@@ -6,6 +6,8 @@
 	var/cost = 700 // Minimum cost, or infinite points are possible.
 	var/access = FALSE
 	var/access_any = FALSE
+	//what machines can order these.
+	var/purchase_flags = PURCHASE_MERCHANT
 	var/list/contains = null
 	var/crate_name = "crate"
 	var/desc = ""//no desc by default

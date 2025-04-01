@@ -264,7 +264,7 @@
 		var/list/pax = list()
 		for(var/pack in SSmerchant.supply_packs)
 			var/datum/supply_pack/picked_pack = SSmerchant.supply_packs[pack]
-			if(picked_pack.group == current_cat)
+			if(picked_pack.group == current_cat && picked_pack.purchase_flags & PURCHASE_MERCHANT)
 				pax += picked_pack
 		for(var/datum/supply_pack/picked_pack in sortList(pax))
 			var/costy = picked_pack.cost

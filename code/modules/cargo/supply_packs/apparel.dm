@@ -6,11 +6,13 @@
 /datum/supply_pack/apparel/hood
 	name = "Shoulder Hood"
 	cost = 10
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/clothing/head/roguehood/random
 
 /datum/supply_pack/apparel/menacing
 	name = "Sack Hood"
 	cost = 8
+	purchase_flags = PURCHASE_SMUGGLER
 	contains = /obj/item/clothing/head/menacing
 
 /datum/supply_pack/apparel/strawhat
@@ -46,6 +48,7 @@
 /datum/supply_pack/apparel/headband
 	name = "Headband"
 	cost = 3
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/clothing/head/headband
 
 /datum/supply_pack/apparel/hennin
@@ -61,7 +64,8 @@
 /datum/supply_pack/apparel/shepherd
 	name = "Black Halfmask"
 	cost = 10
-	contains = /obj/item/clothing/face/shepherd
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
+	contains = /obj/item/clothing/face/shepherd/clothmask
 
 /datum/supply_pack/apparel/coif
 	name = "Leather Coif"
@@ -81,7 +85,14 @@
 /datum/supply_pack/apparel/raincloak_random
 	name = "Raincloak"
 	cost = 18
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/clothing/cloak/raincloak/random
+
+/datum/supply_pack/smuggler/apparel/driftercloak
+	name = "Drifter's Cloak"
+	cost = 25
+	purchase_flags = PURCHASE_SMUGGLER
+	contains = /obj/item/clothing/cloak/cape/drifter
 
 /datum/supply_pack/apparel/raincloak_furcloak_brown
 	name = "Brown Furcloak"
@@ -91,6 +102,7 @@
 /datum/supply_pack/apparel/halfcloak_random
 	name = "Halfcloak"
 	cost = 12
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/clothing/cloak/half/random
 
 /datum/supply_pack/apparel/armordress
@@ -101,11 +113,13 @@
 /datum/supply_pack/apparel/leather_vest_random
 	name = "Leather Vest"
 	cost = 15
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/clothing/armor/leather/vest/random
 
 /datum/supply_pack/apparel/workervest
 	name = "Worker Vest"
 	cost = 10
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/clothing/armor/gambeson/light/striped
 
 /datum/supply_pack/apparel/silkcoat
@@ -121,26 +135,31 @@
 /datum/supply_pack/apparel/undershirt_sailor
 	name = "Sailor Undershirt"
 	cost = 7
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/clothing/shirt/undershirt/sailor
 
 /datum/supply_pack/apparel/undershirt_sailor_red
 	name = "Red Sailor Undershirt"
 	cost = 7
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/clothing/shirt/undershirt/sailor/red
 
 /datum/supply_pack/apparel/shortshirt_random
 	name = "Shortshirt"
 	cost = 3
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/clothing/shirt/shortshirt/random
 
 /datum/supply_pack/apparel/tunic_random
 	name = "Tunic"
 	cost = 6
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/clothing/shirt/tunic/random
 
 /datum/supply_pack/apparel/dress_gen_random
 	name = "Cloth Dress"
 	cost = 7
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/clothing/shirt/dress/gen/random
 
 /datum/supply_pack/apparel/silkdress_random
@@ -151,31 +170,37 @@
 /datum/supply_pack/apparel/robe
 	name = "Robe"
 	cost = 5
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/clothing/shirt/robe/mage
 
 /datum/supply_pack/apparel/tights_random
 	name = "Cloth Tights"
 	cost = 4
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/clothing/pants/tights/random
 
 /datum/supply_pack/apparel/tights_sailor
 	name = "Sailor Tights"
 	cost = 5
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/clothing/pants/tights/sailor
 
 /datum/supply_pack/apparel/trousers
 	name = "Cloth Trousers"
 	cost = 4
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/clothing/pants/trou
 
 /datum/supply_pack/apparel/leather_trousers
 	name = "Leather Trousers"
 	cost = 10
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/clothing/pants/trou/leather
 
 /datum/supply_pack/apparel/simpleshoes
 	name = "Simple Shoes"
 	cost = 4
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/clothing/shoes/simpleshoes
 
 /datum/supply_pack/apparel/sandals
@@ -191,6 +216,7 @@
 /datum/supply_pack/apparel/boots
 	name = "Dark Boots"
 	cost = 13
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/clothing/shoes/boots
 
 /datum/supply_pack/apparel/shortboots
@@ -201,51 +227,61 @@
 /datum/supply_pack/apparel/ridingboots
 	name = "Riding Boots"
 	cost = 15
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/clothing/shoes/ridingboots
 
 /datum/supply_pack/apparel/leather_boots
 	name = "Leather Boots"
 	cost = 13
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/clothing/shoes/boots/leather
 
 /datum/supply_pack/apparel/leather_gloves
 	name = "Leather Gloves"
 	cost = 10
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/clothing/gloves/leather
 
 /datum/supply_pack/apparel/black_leather_gloves
 	name = "Black Leather Gloves"
 	cost = 12
+	purchase_flags = PURCHASE_SMUGGLER
 	contains = /obj/item/clothing/gloves/leather/black
 
 /datum/supply_pack/apparel/fingerless_gloves
 	name = "Fingerless Gloves"
 	cost = 4
+	purchase_flags = PURCHASE_SMUGGLER
 	contains = /obj/item/clothing/gloves/fingerless
 
 /datum/supply_pack/apparel/leather_belt
 	name = "Leather Belt"
 	cost = 5
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/storage/belt/leather
 
 /datum/supply_pack/apparel/black_leather_belt
 	name = "Black Leather Belt"
 	cost = 6
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/storage/belt/leather/black
 
 /datum/supply_pack/apparel/pouch
 	name = "Pouch"
 	cost = 4
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/storage/belt/pouch
 
 /datum/supply_pack/apparel/satchel
 	name = "Satchel"
 	cost = 10
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/storage/backpack/satchel
 
 /datum/supply_pack/apparel/backpack
 	name = "Backpack"
 	cost = 20
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/storage/backpack/backpack
 
 /datum/supply_pack/apparel/luxurydyes

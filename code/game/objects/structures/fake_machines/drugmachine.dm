@@ -253,7 +253,7 @@
 		contents += "<center>[current_cat]<BR></center>"
 		contents += "<center><a href='byond://?src=[REF(src)];changecat=1'>\[RETURN\]</a><BR><BR></center>"
 		var/list/pax = list()
-		for(var/pack in SSmerchant.supply_packs)
+		for(var/pack in SSmerchant.supply_packs && pack.purchase_flags & PURCHASE_ALCHEMIST)
 			var/datum/supply_pack/PA = SSmerchant.supply_packs[pack]
 			if(PA.group == current_cat)
 				pax += PA

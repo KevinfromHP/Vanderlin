@@ -18,11 +18,13 @@
 /datum/supply_pack/seeds/weed
 	name = "Pipe Weed"
 	cost = 8
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_ALCHEMIST | PURCHASE_SMUGGLER
 	contains = /obj/item/neuFarm/seed/westleach
 
 /datum/supply_pack/seeds/sleaf
 	name = "Swamp Weed"
 	cost = 15
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_ALCHEMIST | PURCHASE_SMUGGLER
 	contains = /obj/item/neuFarm/seed/swampleaf
 
 /datum/supply_pack/seeds/berry
@@ -63,4 +65,5 @@
 /datum/supply_pack/seeds/poppy
 	name = "Poppy"
 	cost = 50
+	purchase_flags = PURCHASE_ALCHEMIST | PURCHASE_SMUGGLER
 	contains = /obj/item/neuFarm/seed/poppy

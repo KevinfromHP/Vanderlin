@@ -30,13 +30,13 @@
 	neck = /obj/item/clothing/neck/gorget
 	cloak = /obj/item/clothing/cloak/cape/drifter
 	armor = /obj/item/clothing/armor/leather/splint
-	shirt = /obj/item/clothing/armor/gambeson/light
+	shirt = /obj/item/clothing/armor/gambeson/light/brown
 	gloves = /obj/item/clothing/gloves/fingerless
 	backl = /obj/item/storage/backpack/backpack //override
 	backpack_contents = list(/obj/item/key/thief, /obj/item/restraints/legcuffs/beartrap/crafted)
 	belt = /obj/item/storage/belt/leather/knifebelt/black/steel //override
 	beltl = /obj/item/weapon/knife/cleaver/combat
-	beltr = /obj/item/storage/belt/pouch/coins/mid
+	beltr = /obj/item/storage/belt/pouch/coins/rich
 
 /datum/outfit/job/thief/smuggler/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -63,6 +63,7 @@
 	H.change_stat(STATKEY_END, 1)
 	H.change_stat(STATKEY_SPD, 2)
 	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_SEEPRICES, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_LIGHT_STEP, TRAIT_GENERIC)
 
 /datum/outfit/job/thief/smuggler/color_clothing(mob/living/carbon/human/H, thiefColor)

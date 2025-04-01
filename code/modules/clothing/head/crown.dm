@@ -44,6 +44,17 @@
 	icon_state = "serpcrowno"
 	sellprice = VALUE_GOLD_ITEM
 
+/obj/item/clothing/head/serpcrown_fake
+	name = "crown of Vanderlin"
+	desc = "Heavy is the weight of the crown, and even heavier the responsibility it infers to its wearer."
+	icon_state = "serpcrown"
+	sellprice = VALUE_FANCY_HAT
+
+/obj/item/clothing/head/serpcrown_fake/examine(mob/user)
+	. = ..()
+	if(get_dist(user, src) < 2)
+		. += span_small("...of course, this is just a replica.")
+
 /obj/item/clothing/head/crown/sparrowcrown
 	name = "champions circlet"
 	desc = "Winner of tournaments, bask in Ravox's glory."

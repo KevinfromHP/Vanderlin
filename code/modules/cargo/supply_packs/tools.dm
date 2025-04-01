@@ -6,16 +6,19 @@
 /datum/supply_pack/tools/rope
 	name = "Rope"
 	cost = 7
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/rope
 
 /datum/supply_pack/tools/chain
 	name = "Chain"
 	cost = 11
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/rope/chain
 
 /datum/supply_pack/tools/lockpicks
 	name = "Lockpicks"
 	cost = 20
+	purchase_flags = PURCHASE_SMUGGLER
 	contains = /obj/item/lockpickring/mundane
 
 /datum/supply_pack/tools/needle
@@ -26,21 +29,25 @@
 /datum/supply_pack/tools/sack
 	name = "Sack"
 	cost = 4
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/storage/sack
 
 /datum/supply_pack/tools/sleepingbag
 	name = "Sleeping Bag"
 	cost = 12
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/sleepingbag
 
 /datum/supply_pack/tools/scroll
 	name = "Parchment Scroll"
 	cost = 2
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_ALCHEMIST | PURCHASE_SMUGGLER
 	contains = /obj/item/paper/scroll
 
 /datum/supply_pack/tools/parchment
 	name = "Parchment"
 	cost = 1
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_ALCHEMIST | PURCHASE_SMUGGLER
 	contains = /obj/item/paper
 
 /datum/supply_pack/tools/flint
@@ -63,6 +70,7 @@
 /datum/supply_pack/tools/lamptern
 	name = "Iron Lamptern"
 	cost = 20
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/flashlight/flare/torch/lantern
 
 /datum/supply_pack/tools/pick
@@ -83,6 +91,7 @@
 /datum/supply_pack/tools/shovel
 	name = "Shovel"
 	cost = 15
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/weapon/shovel
 
 /datum/supply_pack/tools/Sickle
@@ -103,16 +112,19 @@
 /datum/supply_pack/tools/bottle
 	name = "Glass Bottle"
 	cost = 2
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER | PURCHASE_ALCHEMIST
 	contains = /obj/item/reagent_containers/glass/bottle
 
 /datum/supply_pack/tools/alch_bottle
 	name = "Alchemy Bottle"
 	cost = 3
+	purchase_flags = PURCHASE_ALCHEMIST | PURCHASE_SMUGGLER
 	contains = /obj/item/reagent_containers/glass/alchemical
 
 /datum/supply_pack/tools/alch_bottles
 	name = "Bulk Alchemy Bottles"
 	cost = 20
+	purchase_flags = PURCHASE_ALCHEMIST
 	contains = list(/obj/item/reagent_containers/glass/alchemical,/obj/item/reagent_containers/glass/alchemical,/obj/item/reagent_containers/glass/alchemical,
 	/obj/item/reagent_containers/glass/alchemical,/obj/item/reagent_containers/glass/alchemical,/obj/item/reagent_containers/glass/alchemical,
 	/obj/item/reagent_containers/glass/alchemical,/obj/item/reagent_containers/glass/alchemical,/obj/item/reagent_containers/glass/alchemical)
@@ -144,6 +156,7 @@
 /datum/supply_pack/tools/wpipe
 	name = "Westman Pipe"
 	cost = 5
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER | PURCHASE_ALCHEMIST
 	contains = /obj/item/clothing/face/cigarette/pipe/westman
 
 /datum/supply_pack/tools/fishingrod
@@ -169,27 +182,32 @@
 /datum/supply_pack/tools/prarml
 	name = "Prosthetic Left Wooden Arm"
 	cost = 15
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/bodypart/l_arm/prosthetic/wood
 
 /datum/supply_pack/tools/prarmr
 	name = "Prosthetic Right Wooden Arm"
 	cost = 15
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/bodypart/r_arm/prosthetic/wood
 
 /datum/supply_pack/tools/prlegl
 	name = "Pegleg Left Leg"
 	cost = 15
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/bodypart/l_leg/prosthetic/wood
 
 /datum/supply_pack/tools/prlegr
 	name = "Pegleg Right Leg"
 	cost = 15
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/bodypart/r_leg/prosthetic/wood
 
 /datum/supply_pack/tools/surgerybag
 	name = "Set of Surgical Tools"
 	cost = 65
-	contains = /obj/item/storage/backpack/satchel/surgbag
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_ALCHEMIST
+	contains = /obj/item/storage/backpack/satchel/surgbag/basic
 
 /datum/supply_pack/tools/glassware_set
 	name = "Set of Glassware Cups"
