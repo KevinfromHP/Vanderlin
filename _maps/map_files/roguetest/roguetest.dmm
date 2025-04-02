@@ -1412,13 +1412,6 @@
 	dir = 4
 	},
 /area/rogue/indoors)
-"FS" = (
-/obj/effect/landmark/tram/queued_path/fence_map_exit{
-	dir = 6;
-	next_path_id = "fence_map_enter"
-	},
-/turf/open/water/cleanshallow,
-/area/rogue/under/cavewet)
 "GY" = (
 /turf/closed/wall/mineral/stone,
 /area/rogue/under/cavewet)
@@ -1499,6 +1492,13 @@
 	},
 /turf/open/floor/dirt/road,
 /area/rogue/outdoors)
+"Qx" = (
+/obj/effect/landmark/tram/queued_path/fence_map_exit{
+	dir = 1;
+	next_path_id = "fence_map_enter"
+	},
+/turf/open/water/cleanshallow,
+/area/rogue/under/cavewet)
 "QQ" = (
 /obj/structure/industrial_lift/tram{
 	icon = 'icons/roguetown/misc/structure.dmi';
@@ -1853,8 +1853,8 @@ Tm
 Tm
 Tm
 Tm
-FS
 lD
+tU
 Tm
 ac
 ac
@@ -2110,8 +2110,8 @@ tU
 tU
 tU
 tU
-tU
 QQ
+Qx
 Tm
 ac
 ac
@@ -2367,8 +2367,8 @@ tU
 tU
 tU
 tU
-nH
 XE
+nH
 Tm
 ac
 ac

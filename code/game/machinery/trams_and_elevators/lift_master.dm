@@ -694,19 +694,22 @@ GLOBAL_LIST_EMPTY(active_lifts_by_type)
 	var/turf/location = get_turf(picked)
 
 	var/gold = floor(total_coin_value/10)
-	new /obj/item/coin/gold(location, gold)
+	if(gold)
+		new /obj/item/coin/gold(location, gold)
 	total_coin_value -= gold*10
 	if(!total_coin_value)
 		return
 
 	var/silver = floor(total_coin_value/5)
-	new /obj/item/coin/silver(location, silver)
+	if(silver)
+		new /obj/item/coin/silver(location, silver)
 	total_coin_value -= silver*5
 	if(!total_coin_value)
 		return
 
 	var/copper = floor(total_coin_value)
-	new /obj/item/coin/copper(location, copper)
+	if(copper)
+		new /obj/item/coin/copper(location, copper)
 	total_coin_value -= copper
 
 	var/obj/structure/closet/crate/chest/chest = new /obj/structure/closet/crate/chest(location)

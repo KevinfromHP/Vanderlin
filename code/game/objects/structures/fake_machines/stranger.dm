@@ -108,7 +108,7 @@
 	var/shamelessReference = pick(
 		"What're ya buyin'?",
 		"What you see is what I've got.",
-		"Well then. What can I do for you?",
+		"Well then. What can I do you for?",
 		"That coin in your pocket, or your life? Easy choice, mate.",
 	)
 	var/contents
