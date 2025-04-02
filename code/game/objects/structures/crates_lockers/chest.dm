@@ -34,6 +34,11 @@
 	locked = TRUE
 	masterkey = TRUE
 
+/obj/structure/closet/crate/chest/thief
+	lockid = "thief"
+	locked = TRUE
+	masterkey = TRUE
+
 /obj/structure/closet/crate/chest/lootbox/PopulateContents()
 	var/list/loot = list(
 		/obj/item/storage/fancy/cigarettes/zig/empty=40,

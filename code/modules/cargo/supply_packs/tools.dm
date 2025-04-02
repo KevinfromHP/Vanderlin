@@ -21,6 +21,12 @@
 	purchase_flags = PURCHASE_SMUGGLER
 	contains = /obj/item/lockpickring/mundane
 
+/datum/supply_pack/tools/lockpicks
+	name = "Smokebomb"
+	cost = 20
+	purchase_flags = PURCHASE_SMUGGLER
+	contains = /obj/item/smokebomb
+
 /datum/supply_pack/tools/needle
 	name = "Sewing Needle"
 	cost = 10

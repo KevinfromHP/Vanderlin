@@ -170,17 +170,19 @@
 	if(!usr.canUseTopic(src, BE_CLOSE) || locked)
 		return
 	if(href_list["buy"])
-		var/mob/M = usr
 		var/path = text2path(href_list["buy"])
 		if(!ispath(path, /datum/supply_pack))
-			message_admins("APOTHECARY [usr.key] IS TRYING TO BUY A [path] WITH THE GOLDFACE. THIS IS AN EXPLOIT.")
+			message_admins("APOTHECARY [usr.key] IS TRYING TO BUY A [path] WITH THE PURITY. THIS IS AN EXPLOIT.")
 			return
-		var/datum/supply_pack/PA = new path
-		var/cost = PA.cost
+		var/datum/supply_pack/picked_pack = SSmerchant.supply_packs[path]
+		if(!picked_pack)
+			message_admins("Merchant [usr.key] attempted to buy [path] from a vendor, but it was not found. Message the devs.")
+			return
+		var/cost = picked_pack.cost
 		var/tax_amt=round(SStreasury.tax_value * cost)
 		cost=cost+tax_amt
 		if(upgrade_flags & UPGRADE_NOTAX)
-			cost = PA.cost
+			cost = picked_pack.cost
 		if(budget >= cost)
 			budget -= cost
 			if(!(upgrade_flags & UPGRADE_NOTAX))
@@ -188,10 +190,13 @@
 		else
 			say("Not enough!")
 			return
-		var/pathi = pick(PA.contains)
-		var/obj/item/I = new pathi(get_turf(src))
-		M.put_in_hands(I)
-		qdel(PA)
+		if(ispath(picked_pack.contains))
+			var/obj/item/packitem = picked_pack.contains
+			new packitem(get_turf(usr))
+		else
+			for(var/in_pack in picked_pack.contains)
+				var/obj/item/packitem = in_pack
+				new packitem(get_turf(usr))
 	if(href_list["change"])
 		if(budget > 0)
 			budget2change(budget, usr)

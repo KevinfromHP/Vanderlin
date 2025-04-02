@@ -333,10 +333,20 @@ GLOBAL_LIST_EMPTY(thieves_guild_doors)
 
 	var/message2recognize = sanitize_hear_message(raw_message)
 	if((vip.Find(H.job) || vip.Find(H.get_role_title())) && findtext(message2recognize, "set phrase"))
-		for(var/obj/structure/mineral_door/secret/D in GLOB.keep_doors)
+		for(var/obj/structure/mineral_door/secret/D in GLOB.thieves_guild_doors)
 			D.set_phrase(open_phrase)
 	return TRUE
 
+/obj/structure/mineral_door/secret/thieves_guild/examine(mob/user)
+	. = ..()
+	if(HAS_TRAIT(user, TRAIT_KNOWTHIEVESGUILDDOORS))
+		. += span_purple("There's a hidden wall here...")
+
+/proc/know_thieves_guild_door_password(mob/living/carbon/human/H)
+	var/obj/structure/mineral_door/secret/D = GLOB.thieves_guild_doors[1]
+	var/str = "The Blackguard's secret doors answer to '[D.open_phrase]'"
+	to_chat(H, span_notice(str))
+	H.add_memory(str)
 
 ///// MAPPERS /////
 /obj/effect/mapping_helpers/secret_door_creator

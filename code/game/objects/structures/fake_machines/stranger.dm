@@ -69,7 +69,10 @@
 		if(!ispath(path, /datum/supply_pack))
 			message_admins("MERCHANT [usr.key] IS TRYING TO BUY A [path] WITH STRANGER. THIS IS AN EXPLOIT.")
 			return
-		var/datum/supply_pack/picked_pack = new path
+		var/datum/supply_pack/picked_pack = SSmerchant.supply_packs[path]
+		if(!picked_pack)
+			message_admins("Merchant [usr.key] attempted to buy [path] from a vendor, but it was not found. Message the devs.")
+			return
 		var/cost = picked_pack.cost
 		if(budget >= cost)
 			budget -= cost
@@ -79,12 +82,9 @@
 		if(ispath(picked_pack.contains))
 			var/obj/item/packitem = picked_pack.contains
 			SSmerchant.fencerequestlist += packitem
-			say("I'll add it to your next shipment, mate." )
 		else
-			for(var/in_pack in picked_pack.contains)
-				var/obj/item/packitem = in_pack
-				new packitem(get_turf(usr))
-		qdel(picked_pack)
+			SSmerchant.fencerequestlist += picked_pack
+		say("I'll add it to your next shipment, mate." )
 	if(href_list["change"])
 		if(budget > 0)
 			budget2change(budget, usr)
@@ -114,7 +114,7 @@
 	var/contents
 	contents = "<center>STRANGER<BR>\
 				<center>Blackguard's Export Fee: 25%<BR>\
-				<center><i>\"[shamelessReference]\"</i><BR>\""
+				<center><i>\"[shamelessReference]\"</i><BR>"
 	contents += "<a href='byond://?src=[REF(src)];change=1'>MAMMON LOADED:</a> [budget]<BR>"
 
 	var/mob/living/carbon/human/H = user

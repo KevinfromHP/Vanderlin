@@ -1,7 +1,7 @@
 /datum/supply_pack/disguises
 	group = "Disguises"
 	crate_name = "blackguard's crate"
-	crate_type = /obj/structure/closet/crate/chest/merchant
+	crate_type = /obj/structure/closet/crate/chest/thief
 	purchase_flags = PURCHASE_SMUGGLER
 
 /datum/supply_pack/disguises/nobleman

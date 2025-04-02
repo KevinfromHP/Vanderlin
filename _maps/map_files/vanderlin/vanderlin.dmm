@@ -1524,7 +1524,10 @@
 /turf/open/floor/dirt/road,
 /area/rogue/under/town/sewer)
 "aQp" = (
-/obj/effect/mapping_helpers/secret_door_creator/thieves_guild,
+/obj/effect/mapping_helpers/secret_door_creator/thieves_guild{
+	override_floor = 1;
+	floor_turf = /turf/open/floor/dirt/road
+	},
 /turf/closed/mineral,
 /area/rogue/under/town/caverogue)
 "aQB" = (
@@ -9680,6 +9683,10 @@
 /area/rogue/indoors/town/dwarfin)
 "gdp" = (
 /obj/effect/decal/cleanable/generic,
+/obj/effect/mapping_helpers/secret_door_creator/thieves_guild{
+	override_floor = 1;
+	floor_turf = /turf/open/floor/ruinedwood/spiralfade
+	},
 /turf/closed/wall/mineral/wooddark/horizontal,
 /area/rogue/under/town/basement/thieves_guild/bar)
 "gdQ" = (
@@ -9758,10 +9765,6 @@
 /area/rogue/indoors/town/bath)
 "gfB" = (
 /obj/machinery/light/fueled/wallfire/candle/weak/r,
-/obj/effect/mapping_helpers/secret_door_creator/thieves_guild{
-	override_floor = 1;
-	floor_turf = /turf/open/floor/ruinedwood/spiralfade
-	},
 /turf/closed/wall/mineral/wooddark/horizontal,
 /area/rogue/under/town/basement/thieves_guild/bar)
 "gfE" = (
@@ -10719,7 +10722,7 @@
 	},
 /obj/effect/mapping_helpers/door/access/town/thievesguild,
 /obj/effect/mapping_helpers/door/locker,
-/turf/open/floor/ruinedwood/spiral,
+/turf/open/floor/naturalstone,
 /area/rogue/under/town/basement/thieves_guild)
 "gMP" = (
 /obj/structure/fluff/telescope,
@@ -13326,7 +13329,8 @@
 /obj/structure/industrial_lift/tram{
 	icon = 'icons/roguetown/misc/structure.dmi';
 	icon_state = "rowboat0";
-	name = "dinghy"
+	name = "dinghy";
+	horizontal_speed = 2
 	},
 /turf/open/water,
 /area/rogue/outdoors/river)
@@ -13345,9 +13349,12 @@
 	dir = 4;
 	specific_lift_id = "fence"
 	},
-/obj/structure/industrial_lift/tram{
+/obj/structure/industrial_lift/tram/storage{
 	icon = 'icons/roguetown/misc/structure.dmi';
 	icon_state = "rowboat1";
+	icon_state_empty = "rowboat1";
+	icon_state_full = "rowboat2";
+	horizontal_speed = 2;
 	name = "dinghy"
 	},
 /turf/open/water,
@@ -13527,10 +13534,10 @@
 /area/rogue/outdoors/mountains)
 "iEe" = (
 /obj/structure/mineral_door/wood/donjon{
-	dir = 1;
-	locked = 1
+	dir = 1
 	},
 /obj/effect/mapping_helpers/door/locker,
+/obj/effect/mapping_helpers/door/access/town/thievesguild,
 /turf/open/floor/ruinedwood/spiralfade,
 /area/rogue/under/town/basement/thieves_guild/bar)
 "iEv" = (
@@ -16372,7 +16379,8 @@
 /obj/item/reagent_containers/food/snacks/crow{
 	name = "Zenny";
 	pixel_y = 14;
-	dir = 8
+	dir = 8;
+	tame = 1
 	},
 /obj/structure/table/wood/plain,
 /obj/structure/fluff/nest{
@@ -23619,8 +23627,7 @@
 	dir = 4
 	},
 /obj/effect/mapping_helpers/door/access/town/thievesguild,
-/obj/effect/mapping_helpers/door/locker,
-/turf/open/floor/ruinedwood/spiralfade,
+/turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/basement/thieves_guild)
 "pwh" = (
 /obj/item/clothing/head/helmet/townwatch{
@@ -25239,7 +25246,9 @@
 	},
 /obj/effect/mapping_helpers/door/locker,
 /obj/effect/mapping_helpers/door/access/town/thievesguild,
-/turf/open/floor/ruinedwood/spiralfade,
+/turf/open/floor/ruinedwood/spiralfade{
+	dir = 4
+	},
 /area/rogue/under/town/basement/thieves_guild)
 "qwG" = (
 /obj/structure/bars/grille,
@@ -28830,7 +28839,7 @@
 /turf/open/water/river{
 	dir = 8
 	},
-/area/rogue/under/cavewet)
+/area/rogue/outdoors/river)
 "sSj" = (
 /obj/structure/rack/shelf/biggest,
 /turf/open/floor/carpet,
@@ -32367,7 +32376,7 @@
 /turf/open/water/river{
 	dir = 8
 	},
-/area/rogue/under/cavewet)
+/area/rogue/outdoors/river)
 "veJ" = (
 /obj/structure/table/wood{
 	icon_state = "longtable_mid";
@@ -35168,8 +35177,10 @@
 "wPV" = (
 /obj/structure/closet/crate/crafted_closet/dark{
 	lockid = "smuggler";
-	locked = 1
+	locked = 1;
+	keylock = 1
 	},
+/obj/item/clothing/cloak/cape/drifter,
 /obj/item/smuggler_bell,
 /turf/open/floor/ruinedwood/spiralfade{
 	dir = 8
@@ -38780,7 +38791,7 @@ rRU
 rRU
 rRU
 jwO
-dGW
+rfC
 nYn
 oZQ
 nYn
@@ -40599,7 +40610,7 @@ vgJ
 vgJ
 vgJ
 vgJ
-rfC
+dGW
 rfC
 rfC
 nYn
@@ -46268,9 +46279,9 @@ vgJ
 vgJ
 vgJ
 uNa
-uNa
 lhN
-aJo
+llT
+nYn
 nYn
 oZQ
 dSR
@@ -46469,11 +46480,11 @@ vgJ
 vgJ
 vgJ
 vgJ
-uNa
+lhN
 lhN
 llT
 sRG
-ahj
+oZQ
 nYn
 oZQ
 nYn
@@ -46670,13 +46681,13 @@ vgJ
 vgJ
 vgJ
 vgJ
-uNa
-uNa
 lhN
-vVh
+lhN
+llT
+llT
 llT
 vey
-aJo
+nYn
 nYn
 oZQ
 nYn
@@ -46872,14 +46883,14 @@ vgJ
 vgJ
 vgJ
 vgJ
-uNa
+fRA
 lhN
-lhN
+vVh
 llT
 llT
 llT
 ovz
-aJo
+nYn
 nYn
 oZQ
 nYn
@@ -47076,12 +47087,12 @@ fCU
 eDS
 fCU
 lhN
-lhN
 aGh
 llT
 llT
+ovz
 lhN
-xrW
+uNa
 nYn
 oZQ
 oZQ
@@ -47279,11 +47290,11 @@ tEq
 vND
 lhN
 lhN
-lhN
-lhN
+llT
+llT
 lhN
 uNa
-xrW
+uNa
 vgJ
 vgJ
 vgJ
@@ -47479,7 +47490,7 @@ vgJ
 vND
 iOR
 vND
-fRA
+lhN
 lhN
 lhN
 lhN
@@ -50700,9 +50711,9 @@ vgJ
 vgJ
 vgJ
 wBa
-vgJ
-vgJ
-vgJ
+wBa
+wBa
+wBa
 vgJ
 vgJ
 vgJ
@@ -50904,7 +50915,7 @@ vgJ
 eFg
 vgJ
 vgJ
-vgJ
+wBa
 vgJ
 vgJ
 vgJ
@@ -51105,8 +51116,8 @@ vgJ
 vgJ
 wBa
 vgJ
-vgJ
-vgJ
+kRk
+wBa
 vgJ
 vgJ
 vgJ
@@ -51307,7 +51318,7 @@ vgJ
 vgJ
 wBa
 vgJ
-vgJ
+wBa
 vgJ
 vgJ
 vgJ
@@ -51509,7 +51520,7 @@ vgJ
 vgJ
 wBa
 vgJ
-vgJ
+wBa
 vgJ
 vgJ
 vgJ
@@ -51709,9 +51720,9 @@ vgJ
 vgJ
 vgJ
 vgJ
-kRk
 wBa
-vgJ
+wBa
+wBa
 vgJ
 vgJ
 vgJ

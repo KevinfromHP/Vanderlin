@@ -8,22 +8,25 @@
 	total_positions = 1
 	spawn_positions = 1
 	min_pq = 12
-	bypass_lastclass = TRUE //REMOVE ME
 
 	shows_in_list = FALSE
 	//TODO:  when racelock PR gets pushed change this
-	allowed_races = ALL_PLAYER_RACES_BY_NAME
+	allowed_races = list(
+		"Humen",
+		"Rakshari",
+		"Elf",
+		"Half-Elf",
+		"Dwarf",
+		"Tiefling",
+		"Dark Elf",
+		"Aasimar",
+		"Half-Orc"
+	)
+
 
 	outfit = /datum/outfit/job/thief/smuggler
 	cmode_music = 'sound/music/cmode/adventurer/CombatRogue.ogg'
 
-/datum/job/smuggler/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
-	. = ..()
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
-		ADD_TRAIT(H, TRAIT_THIEVESGUILD, TRAIT_GENERIC)
-		H.grant_language(/datum/language/thievescant)
-		to_chat(H, "<span class='info'>I can gesture in thieves' cant with ,t before my speech.</span>")
 
 /datum/outfit/job/thief/smuggler
 	head = /obj/item/clothing/head/roguehood/brown

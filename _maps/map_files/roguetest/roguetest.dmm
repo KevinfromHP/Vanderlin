@@ -1153,7 +1153,9 @@
 "lD" = (
 /obj/structure/industrial_lift/tram{
 	icon = 'icons/roguetown/misc/structure.dmi';
-	icon_state = "rowboat0"
+	icon_state = "rowboat0";
+	name = "dinghy";
+	horizontal_speed = 2
 	},
 /turf/open/water/cleanshallow,
 /area/rogue/under/cavewet)
@@ -1484,6 +1486,14 @@
 	},
 /turf/open/floor/dirt/road,
 /area/rogue/indoors)
+"OB" = (
+/obj/item/key/smuggler,
+/turf/open/floor/blocks,
+/area/rogue/under/town/basement/thieves_guild/cove)
+"Pi" = (
+/obj/item/smuggler_bell,
+/turf/open/floor/blocks,
+/area/rogue/under/town/basement/thieves_guild/cove)
 "Pq" = (
 /obj/structure/minecart_rail,
 /obj/structure/fluff/traveltile{
@@ -1500,14 +1510,18 @@
 /turf/open/water/cleanshallow,
 /area/rogue/under/cavewet)
 "QQ" = (
-/obj/structure/industrial_lift/tram{
-	icon = 'icons/roguetown/misc/structure.dmi';
-	icon_state = "rowboat1"
-	},
 /obj/effect/landmark/tram/queued_path/fence_map_enter{
 	next_path_id = "point_1";
 	dir = 4;
 	specific_lift_id = "fence"
+	},
+/obj/structure/industrial_lift/tram/storage{
+	icon = 'icons/roguetown/misc/structure.dmi';
+	icon_state = "rowboat1";
+	icon_state_empty = "rowboat1";
+	icon_state_full = "rowboat2";
+	horizontal_speed = 2;
+	name = "dinghy"
 	},
 /turf/open/water/cleanshallow,
 /area/rogue/under/cavewet)
@@ -1518,7 +1532,10 @@
 /obj/structure/fake_machine/smugglervend{
 	pixel_x = -32
 	},
-/obj/item/key/smuggler,
+/obj/item/coin/gold/pile,
+/obj/item/coin/gold/pile,
+/obj/item/coin/gold/pile,
+/obj/item/coin/gold/pile,
 /turf/open/floor/blocks,
 /area/rogue/under/town/basement/thieves_guild/cove)
 "RC" = (
@@ -3132,8 +3149,8 @@ Tm
 yR
 Jk
 eA
-Lf
-Lf
+OB
+Pi
 Tm
 ac
 ac

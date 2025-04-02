@@ -18,6 +18,8 @@
 	static_debris = list(/obj/item/natural/feather=1)
 	fried_type = /obj/item/reagent_containers/food/snacks/friedcrow
 	cooked_smell = /datum/pollutant/food/fried_crow
+	var/tame = FALSE
+
 
 /obj/item/reagent_containers/food/snacks/friedcrow
 	name = "fried zad"
@@ -60,7 +62,7 @@
 	else
 		if(isliving(user))
 			var/mob/living/L = user
-			if(prob(L.STASPD * 2))
+			if(prob(L.STASPD * 2) || tame)
 				..()
 			else
 				if(isturf(loc))

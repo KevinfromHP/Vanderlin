@@ -179,7 +179,10 @@
 		if(!ispath(path, /datum/supply_pack))
 			message_admins("MERCHANT [usr.key] IS TRYING TO BUY A [path] WITH THE GOLDFACE. THIS IS AN EXPLOIT.")
 			return
-		var/datum/supply_pack/picked_pack = new path
+		var/datum/supply_pack/picked_pack = SSmerchant.supply_packs[path]
+		if(!picked_pack)
+			message_admins("Merchant [usr.key] attempted to buy [path] from a vendor, but it was not found. Message the devs.")
+			return
 		var/cost = picked_pack.cost
 		var/tax_amt=round(SStreasury.tax_value * cost)
 		cost=cost+tax_amt
@@ -199,7 +202,6 @@
 			for(var/in_pack in picked_pack.contains)
 				var/obj/item/packitem = in_pack
 				new packitem(get_turf(usr))
-		qdel(picked_pack)
 	if(href_list["change"])
 		if(budget > 0)
 			budget2change(budget, usr)
