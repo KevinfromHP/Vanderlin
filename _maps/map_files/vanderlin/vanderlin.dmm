@@ -11507,10 +11507,6 @@
 /obj/machinery/light/fueled/wallfire/candle,
 /turf/open/floor/ruinedwood/spiralfade,
 /area/rogue/indoors/town)
-"hiC" = (
-/obj/effect/mapping_helpers/secret_door_creator/thieves_guild,
-/turf/closed/wall/mineral/stone/moss,
-/area/rogue/under/town/caverogue)
 "hiF" = (
 /turf/closed/wall/mineral/stone/window,
 /area/rogue/indoors/town/shop)
@@ -11713,10 +11709,6 @@
 /obj/structure/mineral_door/wood/deadbolt,
 /turf/open/floor/churchmarble,
 /area/rogue/indoors/town/shop)
-"hqI" = (
-/mob/living/carbon/human/species/skeleton/npc/warrior,
-/turf/closed/mineral,
-/area/rogue/under/town/caverogue)
 "hqJ" = (
 /turf/open/floor/dirt/road,
 /area/rogue/indoors/town/magician)
@@ -14026,6 +14018,10 @@
 /obj/structure/fake_machine/scomm/l,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/manor)
+"iMY" = (
+/mob/living/carbon/human/species/skeleton/npc/warrior,
+/turf/open/floor/naturalstone,
+/area/rogue/outdoors/river)
 "iNf" = (
 /obj/machinery/light/fueled/wallfire/candle/l,
 /obj/structure/fermentation_keg/random/water,
@@ -14227,12 +14223,6 @@
 	icon_state = "weird1"
 	},
 /area/rogue/indoors/town/magician)
-"iSq" = (
-/obj/structure/bed/wool,
-/turf/open/floor/ruinedwood/spiralfade{
-	dir = 8
-	},
-/area/rogue/under/town/basement/thieves_guild)
 "iSs" = (
 /obj/structure/fluff/railing/border{
 	dir = 8
@@ -21159,7 +21149,6 @@
 /area/rogue/indoors/town/merc_guild)
 "nFg" = (
 /obj/effect/decal/cleanable/debris/stone,
-/obj/effect/decal/cleanable/debris/glass,
 /turf/open/floor/naturalstone,
 /area/rogue/under/town/basement/thieves_guild)
 "nFh" = (
@@ -21229,6 +21218,10 @@
 	dir = 8
 	},
 /area/rogue/under/town/basement/thieves_guild)
+"nGK" = (
+/mob/living/carbon/human/species/skeleton/npc/peasant,
+/turf/open/floor/naturalstone,
+/area/rogue/outdoors/river)
 "nGT" = (
 /obj/structure/closet/crate/chest/neu,
 /turf/open/floor/tile/tilerg,
@@ -22108,10 +22101,9 @@
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/basement)
 "ojQ" = (
-/turf/open/floor/tile{
-	icon_state = "greenstone"
-	},
-/area/rogue/under/town/caverogue)
+/obj/effect/mapping_helpers/secret_door_creator/thieves_guild,
+/turf/closed/wall/mineral/stone/moss,
+/area/rogue/under/town/sewer)
 "ojT" = (
 /obj/structure/table/wood/reinforced_alter,
 /obj/item/candle/yellow,
@@ -24150,10 +24142,6 @@
 	},
 /turf/open/floor/ruinedwood/turned,
 /area/rogue/indoors/town)
-"pFI" = (
-/obj/effect/landmark/start/thief_leader,
-/turf/open/floor/naturalstone,
-/area/rogue/under/town/basement/thieves_guild/cove)
 "pFT" = (
 /obj/item/reagent_containers/glass/bottle/water{
 	pixel_x = 6;
@@ -25978,6 +25966,7 @@
 	icon_state = "floor2-old"
 	},
 /obj/structure/chair/wood/alt/chair3,
+/obj/effect/decal/cleanable/debris/glass,
 /turf/open/floor/naturalstone,
 /area/rogue/under/town/basement/thieves_guild)
 "qSc" = (
@@ -27664,6 +27653,7 @@
 	pixel_x = -16;
 	pixel_y = 32
 	},
+/obj/effect/landmark/start/thief_leader,
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/basement/thieves_guild)
 "saK" = (
@@ -29151,10 +29141,6 @@
 	},
 /turf/open/floor/ruinedwood,
 /area/rogue/indoors/town)
-"sYn" = (
-/mob/living/carbon/human/species/skeleton/npc/peasant,
-/turf/closed/mineral/salt,
-/area/rogue/under/town/caverogue)
 "sYB" = (
 /obj/structure/fluff/railing/border{
 	dir = 5
@@ -29219,6 +29205,10 @@
 	icon_state = "bluestone"
 	},
 /area/rogue/indoors/town/church)
+"taX" = (
+/obj/item/chair,
+/turf/open/floor/ruinedwood/spiral,
+/area/rogue/under/town/basement/thieves_guild)
 "tbk" = (
 /obj/structure/table/wood/counter/end{
 	dir = 1
@@ -37534,7 +37524,7 @@ bjz
 rRU
 rRU
 rRU
-rRU
+mxc
 rRU
 fkZ
 fkZ
@@ -37736,7 +37726,7 @@ rRU
 rRU
 rRU
 rRU
-rRU
+vtX
 iFO
 vgJ
 vgJ
@@ -38340,9 +38330,9 @@ rRU
 rRU
 rRU
 rRU
-pFI
+rfC
 lwU
-oZQ
+nYn
 nYn
 vgJ
 vgJ
@@ -38744,9 +38734,9 @@ rRU
 rRU
 rRU
 jwO
-rfC
+nGK
 nYn
-nYn
+oZQ
 nYn
 hGO
 vgJ
@@ -39349,7 +39339,7 @@ rRU
 rRU
 vgJ
 jwO
-sYn
+jwO
 vgJ
 vgJ
 nYn
@@ -39712,7 +39702,7 @@ rRU
 bjz
 bjz
 bjz
-mxc
+rRU
 rRU
 rRU
 rRU
@@ -39914,7 +39904,7 @@ rRU
 rRU
 iIk
 rRU
-vtX
+rRU
 rRU
 rRU
 aZt
@@ -40571,7 +40561,7 @@ nYn
 nYn
 vgJ
 vgJ
-hqI
+vgJ
 vgJ
 vgJ
 vgJ
@@ -41378,7 +41368,7 @@ vgJ
 lwU
 nYn
 mLm
-rfC
+iMY
 rfC
 vgJ
 vgJ
@@ -48246,7 +48236,7 @@ nFg
 eNt
 feV
 fPU
-wWn
+taX
 wWn
 pem
 tfd
@@ -48859,7 +48849,7 @@ pem
 uqQ
 qmt
 aiw
-iSq
+aiw
 bKj
 uqQ
 vgJ
@@ -52278,10 +52268,10 @@ vgJ
 vgJ
 vgJ
 vgJ
-qMe
-qMe
-hiC
-qMe
+vgJ
+vgJ
+wBa
+vgJ
 vgJ
 vgJ
 vgJ
@@ -52480,10 +52470,10 @@ vgJ
 vgJ
 vgJ
 vgJ
-qMe
+lfU
+lfU
 ojQ
-ojQ
-qMe
+lfU
 vgJ
 vgJ
 vgJ
@@ -52682,10 +52672,10 @@ vgJ
 vgJ
 vgJ
 vgJ
-qMe
-ojQ
-qMe
-qMe
+lfU
+oGi
+oGi
+lfU
 vgJ
 vgJ
 vgJ
@@ -52886,7 +52876,7 @@ gxZ
 gxZ
 lfU
 oGi
-gxZ
+lfU
 lfU
 gxZ
 vgJ

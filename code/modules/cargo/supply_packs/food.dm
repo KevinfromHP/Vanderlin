@@ -6,13 +6,13 @@
 /datum/supply_pack/food/healthpot
 	name = "Healing Potion"
 	cost = 24
-	purchase_flags = PURCHASE_MERCHANT | PURCHASE_ALCHEMIST | PURCHASE_SMUGGLER
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_ALCHEMIST
 	contains = /obj/item/reagent_containers/glass/bottle/healthpot
 
 /datum/supply_pack/food/manapot
 	name = "Mana Potion"
 	cost = 18
-	purchase_flags = PURCHASE_MERCHANT | PURCHASE_ALCHEMIST | PURCHASE_SMUGGLER
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_ALCHEMIST
 	contains = /obj/item/reagent_containers/glass/bottle/manapot
 
 /datum/supply_pack/food/stronghealthpot

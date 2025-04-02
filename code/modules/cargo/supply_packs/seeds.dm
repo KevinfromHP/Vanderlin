@@ -50,6 +50,7 @@
 /datum/supply_pack/seeds/sunflowers
 	name = "Sunflowers"
 	cost = 15
+	purchase_flags = PURCHASE_ALCHEMIST
 	contains = /obj/item/neuFarm/seed/sunflower
 
 /datum/supply_pack/seeds/turnip

@@ -20,7 +20,7 @@
 
 /obj/effect/landmark/tram/queued_path/fence_map_enter/Initialize(mapload)
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_DISPATCH_CARGO, PROC_REF(dispatch_cargo))
+	RegisterSignal(SSdcs, COMSIG_DISPATCH_FENCE, PROC_REF(dispatch_cargo))
 
 /obj/effect/landmark/tram/queued_path/fence_map_enter/tram_reached_travel_point(datum/source, datum/lift_master/tram/tram)
 	held_tram = tram
@@ -36,7 +36,7 @@
 		return
 	var/obj/effect/landmark/tram/destination_platform
 	for (var/obj/effect/landmark/tram/destination as anything in GLOB.tram_landmarks[specific_lift_id])
-		if(destination.platform_code == next_path_id)
+		if(destination.platform_code == next_path_id && destination.specific_lift_id == specific_lift_id)
 			destination_platform = destination
 			break
 

@@ -799,7 +799,7 @@ GLOBAL_LIST_INIT(all_radial_directions, list(
 		SSmerchant.fence_boat = master_datum
 		SSmerchant.fence_boat.hide_tram()
 #endif
-	return .
+	return
 
 
 /obj/structure/industrial_lift/tram/AddItemOnLift(datum/source, atom/movable/AM)

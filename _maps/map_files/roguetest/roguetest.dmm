@@ -1506,7 +1506,8 @@
 	},
 /obj/effect/landmark/tram/queued_path/fence_map_enter{
 	next_path_id = "point_1";
-	dir = 4
+	dir = 4;
+	specific_lift_id = "fence"
 	},
 /turf/open/water/cleanshallow,
 /area/rogue/under/cavewet)

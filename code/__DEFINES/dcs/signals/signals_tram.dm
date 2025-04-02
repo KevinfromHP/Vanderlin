@@ -17,3 +17,4 @@
 #define COMSIG_TRAM_EMPTY "tram_empty"
 
 #define COMSIG_DISPATCH_CARGO "dispatch_cargo_boat"
+#define COMSIG_DISPATCH_FENCE "dispatch_fence_boat"

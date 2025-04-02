@@ -67,18 +67,19 @@
 	if(href_list["buy"])
 		var/path = text2path(href_list["buy"])
 		if(!ispath(path, /datum/supply_pack))
-			message_admins("MERCHANT [usr.key] IS TRYING TO BUY A [path] WITH THE GOLDFACE. THIS IS AN EXPLOIT.")
+			message_admins("MERCHANT [usr.key] IS TRYING TO BUY A [path] WITH STRANGER. THIS IS AN EXPLOIT.")
 			return
 		var/datum/supply_pack/picked_pack = new path
-		var/cost = picked_pack.cost
+		var/cost = picked_pack.cost * (1 + SSmerchant.fence_tax)
 		if(budget >= cost)
 			budget -= cost
 		else
-			say("Not enough mammon, stranger!" )
+			say("Not enough coin, stranger!" )
 			return
 		if(ispath(picked_pack.contains))
 			var/obj/item/packitem = picked_pack.contains
-			new packitem(get_turf(usr))
+			SSmerchant.fencerequestlist += packitem
+			say("I'll add it to your shipment, mate." )
 		else
 			for(var/in_pack in picked_pack.contains)
 				var/obj/item/packitem = in_pack
@@ -104,9 +105,16 @@
 	user.changeNext_move(CLICK_CD_MELEE)
 	playsound(loc, 'sound/misc/beep.ogg', 100, FALSE, -1)
 	var/canread = user.can_read(src, TRUE)
+	var/shamelessReference = pick(
+		"What're ya buyin'?",
+		"What you see is what I've got.",
+		"Well then. What can I do for you?",
+		"That coin in your pocket, or your life? Easy choice, mate.",
+	)
 	var/contents
 	contents = "<center>STRANGER<BR>\
-				<center><i>\"What're ya buyin'?\"</i><BR>"
+				<center>Blackguard's Fee: [SSmerchant.fence_tax]<BR>\
+				<center><i>\"[shamelessReference]\"</i><BR>\""
 	contents += "<a href='byond://?src=[REF(src)];change=1'>MAMMON LOADED:</a> [budget]<BR>"
 
 	var/mob/living/carbon/human/H = user
@@ -135,7 +143,7 @@
 				pax += picked_pack
 		for(var/datum/supply_pack/picked_pack in sortList(pax))
 			var/costy = picked_pack.cost
-			contents += "[picked_pack.name] - ([costy])<a href='byond://?src=[REF(src)];buy=[picked_pack.type]'>BUY</a><BR>"
+			contents += "[picked_pack.name] - ([costy] + [costy * SSmerchant.fence_tax])<a href='byond://?src=[REF(src)];buy=[picked_pack.type]'>BUY</a><BR>"
 
 	if(!canread)
 		contents = stars(contents)

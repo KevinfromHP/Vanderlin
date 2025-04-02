@@ -24,19 +24,19 @@
 
 /datum/supply_pack/narcotics/spice
 	name = "Spice"
-	cost = 25
+	cost = 30
 	purchase_flags = PURCHASE_SMUGGLER
 	contains = /obj/item/reagent_containers/powder/spice
 
 /datum/supply_pack/narcotics/ozium
 	name = "Ozium"
-	cost = 12
+	cost = 15
 	purchase_flags = PURCHASE_SMUGGLER
 	contains = /obj/item/reagent_containers/powder/ozium
 
 /datum/supply_pack/narcotics/moondust
 	name = "Moon Dust"
-	cost = 25
+	cost = 30
 	purchase_flags = PURCHASE_SMUGGLER
 	contains = /obj/item/reagent_containers/powder/moondust
 
@@ -54,12 +54,12 @@
 
 /datum/supply_pack/narcotics/poison
 	name = "Poison"
-	cost = 25
+	cost = 30
 	purchase_flags = PURCHASE_SMUGGLER
 	contains = /obj/item/reagent_containers/glass/bottle/poison
 
 /datum/supply_pack/narcotics/spoison
 	name = "Stamina Poison"
-	cost = 22
+	cost = 20
 	purchase_flags = PURCHASE_SMUGGLER
 	contains = /obj/item/reagent_containers/glass/bottle/stampoison

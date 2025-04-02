@@ -18,7 +18,6 @@
 /datum/supply_pack/armor/nasalh
 	name = "Nasal Helmet"
 	cost = 31
-	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/clothing/head/helmet/nasal
 
 /datum/supply_pack/armor/sallet
