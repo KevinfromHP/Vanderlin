@@ -70,7 +70,7 @@
 			message_admins("MERCHANT [usr.key] IS TRYING TO BUY A [path] WITH STRANGER. THIS IS AN EXPLOIT.")
 			return
 		var/datum/supply_pack/picked_pack = new path
-		var/cost = picked_pack.cost * (1 + SSmerchant.fence_tax)
+		var/cost = picked_pack.cost
 		if(budget >= cost)
 			budget -= cost
 		else
@@ -79,7 +79,7 @@
 		if(ispath(picked_pack.contains))
 			var/obj/item/packitem = picked_pack.contains
 			SSmerchant.fencerequestlist += packitem
-			say("I'll add it to your shipment, mate." )
+			say("I'll add it to your next shipment, mate." )
 		else
 			for(var/in_pack in picked_pack.contains)
 				var/obj/item/packitem = in_pack
@@ -113,7 +113,7 @@
 	)
 	var/contents
 	contents = "<center>STRANGER<BR>\
-				<center>Blackguard's Fee: [SSmerchant.fence_tax]<BR>\
+				<center>Blackguard's Export Fee: 25%<BR>\
 				<center><i>\"[shamelessReference]\"</i><BR>\""
 	contents += "<a href='byond://?src=[REF(src)];change=1'>MAMMON LOADED:</a> [budget]<BR>"
 
@@ -143,7 +143,7 @@
 				pax += picked_pack
 		for(var/datum/supply_pack/picked_pack in sortList(pax))
 			var/costy = picked_pack.cost
-			contents += "[picked_pack.name] - ([costy] + [costy * SSmerchant.fence_tax])<a href='byond://?src=[REF(src)];buy=[picked_pack.type]'>BUY</a><BR>"
+			contents += "[picked_pack.name] - ([costy])<a href='byond://?src=[REF(src)];buy=[picked_pack.type]'>BUY</a><BR>"
 
 	if(!canread)
 		contents = stars(contents)

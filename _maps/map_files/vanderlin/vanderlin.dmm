@@ -13326,8 +13326,7 @@
 /obj/structure/industrial_lift/tram{
 	icon = 'icons/roguetown/misc/structure.dmi';
 	icon_state = "rowboat0";
-	name = "dinghy";
-	density = 1
+	name = "dinghy"
 	},
 /turf/open/water,
 /area/rogue/outdoors/river)

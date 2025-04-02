@@ -23,9 +23,6 @@ SUBSYSTEM_DEF(merchant)
 	var/list/staticly_setup_types = list()
 
 	var/datum/lift_master/tram/fence_boat
-	var/fence_tax_min = 0.1
-	var/fence_tax = 0.15
-	var/fence_tax_max = 0.2
 	var/fence_docked = TRUE
 
 /datum/controller/subsystem/merchant/Initialize(timeofday)
@@ -39,7 +36,6 @@ SUBSYSTEM_DEF(merchant)
 	for(var/faction in typesof(/datum/world_faction))
 		var/datum/world_faction/made = new faction()
 		world_factions |= made
-	fence_tax = rand(fence_tax_min, fence_tax_max)
 	return ..()
 
 /datum/controller/subsystem/merchant/fire(resumed)
@@ -93,7 +89,6 @@ SUBSYSTEM_DEF(merchant)
 
 	cargo_boat.tram_travel(destination_platform, rapid = FALSE)
 	cargo_boat.callback_platform = destination_platform
-
 
 
 /datum/controller/subsystem/merchant/proc/prepare_fence_shipment()
