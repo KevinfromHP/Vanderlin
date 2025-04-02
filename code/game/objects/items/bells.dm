@@ -160,7 +160,7 @@
 		to_chat(user, span_warning("I need to be in the cove to use this."))
 		return
 	if(!COOLDOWN_FINISHED(src, smuggler_bell_ring))
-		to_chat(user, span_warning("The boat can't be called for another [smuggler_bell_ring / 10] seconds."))
+		to_chat(user, span_warning("The boat can't be called for another [COOLDOWN_TIMELEFT(src, smuggler_bell_ring)/10] seconds."))
 		return
 	playsound(src.loc, 'sound/misc/handbell.ogg', 50, 1)
 
@@ -174,7 +174,7 @@
 			SSmerchant.send_fence_ship_back()
 		else if(SSmerchant.fence_docked)
 			SSmerchant.prepare_fence_shipment()
-	COOLDOWN_START(src, smuggler_bell_ring, 90 SECONDS)
+	COOLDOWN_START(src, smuggler_bell_ring, 10 SECONDS)
 
 /obj/item/smuggler_bell/proc/sound_bell(mob/living/user)
 	user.visible_message("<span class='warning'>[user] rings the bell!</span>")

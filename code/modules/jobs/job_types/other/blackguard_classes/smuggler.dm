@@ -8,7 +8,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	min_pq = 12
-
+	bypass_lastclass = TRUE //REMOVE ME
 
 	shows_in_list = FALSE
 	//TODO:  when racelock PR gets pushed change this

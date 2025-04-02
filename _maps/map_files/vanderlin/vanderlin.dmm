@@ -3047,7 +3047,7 @@
 /area/rogue/outdoors/town)
 "bOE" = (
 /obj/structure/mineral_door/wood/deadbolt,
-/turf/open/floor/ruinedwood/spiral,
+/turf/open/floor/ruinedwood/spiralfade,
 /area/rogue/under/town/basement/thieves_guild/bar)
 "bOJ" = (
 /obj/effect/mapping_helpers/secret_door_creator{
@@ -3603,6 +3603,32 @@
 "ceJ" = (
 /turf/closed/wall/mineral/wood,
 /area/rogue/indoors/town/dwarfin)
+"ceO" = (
+/obj/effect/decal/cobbleedge{
+	icon_state = "borderfall"
+	},
+/obj/effect/decal/cleanable/debris/wood,
+/obj/structure/table/wood/counter/end{
+	dir = 8
+	},
+/obj/item/paper{
+	pixel_x = -7;
+	pixel_y = 1
+	},
+/obj/item/paper{
+	pixel_x = -7;
+	pixel_y = 1
+	},
+/obj/item/paper{
+	pixel_x = -7;
+	pixel_y = 1
+	},
+/obj/item/paper{
+	pixel_x = -7;
+	pixel_y = 1
+	},
+/turf/open/floor/ruinedwood/spiralfade,
+/area/rogue/under/town/basement/thieves_guild/bar)
 "cfD" = (
 /turf/open/floor/carpet/green,
 /area/rogue/indoors/town/steward)
@@ -6581,6 +6607,10 @@
 "ehF" = (
 /turf/open/floor/cobblerock,
 /area/rogue/outdoors/town)
+"ehQ" = (
+/obj/effect/decal/cleanable/debris/glass,
+/turf/open/floor/carpet,
+/area/rogue/under/town/basement/thieves_guild/bar)
 "ehW" = (
 /obj/structure/mineral_door/wood/violet{
 	name = "Waterfront V";
@@ -7267,8 +7297,8 @@
 /obj/structure/mineral_door/wood/green{
 	name = "smuggler's quarters"
 	},
-/obj/effect/mapping_helpers/door/access/town/thievesguild,
 /obj/effect/mapping_helpers/door/locker,
+/obj/effect/mapping_helpers/door/access/town/smuggler,
 /turf/open/floor/ruinedwood/spiralfade{
 	dir = 8
 	},
@@ -9349,7 +9379,7 @@
 /area/rogue/under/town/basement/thieves_guild/cove)
 "fRO" = (
 /obj/effect/decal/cleanable/debris/wood{
-	dir = 1
+	dir = 8
 	},
 /turf/open/floor/ruinedwood/spiralfade{
 	dir = 8
@@ -12223,6 +12253,11 @@
 /obj/structure/fake_machine/scomm,
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/indoors/town/orphanage)
+"hOs" = (
+/obj/structure/chair/stool,
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/ruinedwood/spiralfade,
+/area/rogue/under/town/basement/thieves_guild/bar)
 "hPm" = (
 /obj/structure/handcart,
 /turf/open/floor/blocks/newstone/alt,
@@ -12709,7 +12744,7 @@
 /obj/structure/mineral_door/wood/violet{
 	name = "Wizard's Tower"
 	},
-/obj/effect/mapping_helpers/door/access/town/tower,
+/obj/effect/mapping_helpers/door/access/manor/mage,
 /turf/open/floor/tile,
 /area/rogue/indoors/town/magician)
 "iem" = (
@@ -12747,7 +12782,6 @@
 /area/rogue/under/town/sewer)
 "igB" = (
 /obj/machinery/light/fueled/wallfire/candle/weak/l,
-/obj/effect/decal/cleanable/debris/glass,
 /turf/open/floor/ruinedwood/spiralfade,
 /area/rogue/under/town/basement/thieves_guild/bar)
 "igW" = (
@@ -13292,7 +13326,8 @@
 /obj/structure/industrial_lift/tram{
 	icon = 'icons/roguetown/misc/structure.dmi';
 	icon_state = "rowboat0";
-	name = "dinghy"
+	name = "dinghy";
+	density = 1
 	},
 /turf/open/water,
 /area/rogue/outdoors/river)
@@ -14703,15 +14738,6 @@
 	},
 /turf/open/floor/twig,
 /area/rogue/outdoors/rtfield/safe)
-"jvy" = (
-/obj/effect/decal/cleanable/dirt/cobweb{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/debris/wood{
-	dir = 8
-	},
-/turf/open/floor/ruinedwood/spiralfade,
-/area/rogue/under/town/basement/thieves_guild/bar)
 "jvH" = (
 /turf/open/floor/metal{
 	icon_state = "plating2"
@@ -17054,7 +17080,6 @@
 /turf/open/floor/hexstone,
 /area/rogue/indoors/town/church)
 "kTS" = (
-/obj/structure/table/wood/plain,
 /obj/structure/mirror{
 	icon_state = "mirror_broke"
 	},
@@ -17062,6 +17087,8 @@
 	icon_state = "mirror1";
 	broken = 1
 	},
+/obj/item/bin/water/gross,
+/obj/effect/decal/cleanable/debris/glass,
 /turf/open/floor/ruinedwood/spiralfade,
 /area/rogue/under/town/basement/thieves_guild/bar)
 "kTV" = (
@@ -17989,18 +18016,7 @@
 /obj/structure/fluff/railing/border{
 	dir = 1
 	},
-/obj/structure/noticeboard{
-	dir = 4;
-	pixel_x = -32;
-	color = "#676767"
-	},
-/obj/item/natural/feather{
-	pixel_y = 1;
-	pixel_x = -4
-	},
-/obj/structure/table/wood/counter/end{
-	dir = 4
-	},
+/obj/structure/table/wood/plain,
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/basement/thieves_guild/bar)
 "lDP" = (
@@ -19195,6 +19211,15 @@
 /obj/structure/table/wood/large/corner_alt{
 	dir = 5
 	},
+/obj/structure/noticeboard{
+	dir = 4;
+	pixel_x = -32;
+	color = "#676767"
+	},
+/obj/item/natural/feather{
+	pixel_y = 1;
+	pixel_x = -4
+	},
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/basement/thieves_guild)
 "mxz" = (
@@ -19408,24 +19433,9 @@
 /area/rogue/under/town/basement)
 "mEQ" = (
 /obj/machinery/light/fueled/wallfire/candle/weak/l,
-/obj/item/paper{
-	pixel_x = -7;
-	pixel_y = 1
-	},
-/obj/item/paper{
-	pixel_x = -7;
-	pixel_y = 1
-	},
-/obj/item/paper{
-	pixel_x = -7;
-	pixel_y = 1
-	},
-/obj/item/paper{
-	pixel_x = -7;
-	pixel_y = 1
-	},
-/obj/structure/table/wood/counter/end{
-	dir = 8
+/obj/structure/table/wood/plain,
+/obj/structure/fake_machine/musicbox/tavern{
+	pixel_y = 23
 	},
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/basement/thieves_guild/bar)
@@ -20170,8 +20180,11 @@
 /turf/open/floor/cobblerock,
 /area/rogue/under/town/caverogue)
 "naf" = (
-/obj/item/bin/water/gross,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/wood/plain,
+/obj/effect/decal/cleanable/dirt/cobweb{
+	dir = 1
+	},
 /turf/open/floor/ruinedwood/spiralfade,
 /area/rogue/under/town/basement/thieves_guild/bar)
 "nah" = (
@@ -20413,7 +20426,7 @@
 "nln" = (
 /obj/effect/mapping_helpers/door/locker,
 /obj/structure/mineral_door/wood/violet,
-/obj/effect/mapping_helpers/door/access/town/tower,
+/obj/effect/mapping_helpers/door/access/manor/mage,
 /turf/open/floor/ruinedwood/darker,
 /area/rogue/indoors/town/magician)
 "nlp" = (
@@ -22072,6 +22085,10 @@
 	},
 /turf/open/floor/cobble,
 /area/rogue/indoors/villagegarrison)
+"ovz" = (
+/obj/structure/flora/grass/water/reeds,
+/turf/open/water/cleanshallow,
+/area/rogue/under/town/basement/thieves_guild/cove)
 "ovH" = (
 /obj/effect/mapping_helpers/secret_door_creator/keep{
 	redstone_id = 515;
@@ -22328,6 +22345,30 @@
 	},
 /obj/structure/table/wood/large/corner_alt{
 	dir = 4
+	},
+/obj/item/paper{
+	pixel_x = -7;
+	pixel_y = 1
+	},
+/obj/item/paper{
+	pixel_x = -7;
+	pixel_y = 1
+	},
+/obj/item/paper{
+	pixel_x = -7;
+	pixel_y = 1
+	},
+/obj/item/paper{
+	pixel_x = -7;
+	pixel_y = 1
+	},
+/obj/item/paper{
+	pixel_x = -7;
+	pixel_y = 1
+	},
+/obj/item/paper{
+	pixel_x = -7;
+	pixel_y = 1
 	},
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/basement/thieves_guild)
@@ -22764,9 +22805,7 @@
 /obj/structure/chair/wood/alt/chair3{
 	dir = 4
 	},
-/obj/structure/fluff/nest{
-	name = "patch of straw"
-	},
+/obj/effect/decal/cleanable/debris/glass,
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/basement/thieves_guild/bar)
 "oSq" = (
@@ -23885,7 +23924,6 @@
 "pHA" = (
 /obj/machinery/light/fueled/wallfire/candle/r,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/debris/glass,
 /turf/open/floor/carpet,
 /area/rogue/under/town/basement/thieves_guild/bar)
 "pHF" = (
@@ -24288,7 +24326,18 @@
 /turf/open/transparent/openspace,
 /area/rogue/indoors/town/clocktower)
 "pTV" = (
-/obj/structure/chair/stool,
+/obj/structure/table/wood/counter/end{
+	dir = 4
+	},
+/obj/item/natural/feather{
+	pixel_y = 1;
+	pixel_x = -4
+	},
+/obj/structure/noticeboard{
+	dir = 4;
+	pixel_x = -32;
+	color = "#676767"
+	},
 /turf/open/floor/ruinedwood/spiralfade,
 /area/rogue/under/town/basement/thieves_guild/bar)
 "pUG" = (
@@ -25612,10 +25661,6 @@
 	desc = "A somewhat unfitting sign for a physician's office.";
 	name = "Medicae Office";
 	pixel_y = -32
-	},
-/obj/structure/table/wood/plain,
-/obj/structure/fake_machine/musicbox/tavern{
-	pixel_y = 5
 	},
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/basement/thieves_guild/bar)
@@ -30395,6 +30440,7 @@
 /obj/item/natural/cloth,
 /obj/item/natural/cloth,
 /obj/item/needle,
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/basement/thieves_guild/bar)
 "tRt" = (
@@ -31176,7 +31222,9 @@
 /obj/effect/decal/cleanable/dirt/cobweb{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/debris/glass,
+/obj/structure/fluff/nest{
+	name = "patch of straw"
+	},
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/under/town/basement/thieves_guild/bar)
 "utQ" = (
@@ -32538,7 +32586,7 @@
 "vnE" = (
 /obj/effect/mapping_helpers/door/locker,
 /obj/structure/mineral_door/wood/violet,
-/obj/effect/mapping_helpers/door/access/town/tower,
+/obj/effect/mapping_helpers/door/access/manor/mage,
 /turf/open/floor/ruinedwood,
 /area/rogue/indoors/town/magician)
 "vnF" = (
@@ -35123,7 +35171,6 @@
 	lockid = "smuggler";
 	locked = 1
 	},
-/obj/effect/decal/cleanable/dirt/dust,
 /obj/item/smuggler_bell,
 /turf/open/floor/ruinedwood/spiralfade{
 	dir = 8
@@ -35857,7 +35904,7 @@
 "xsl" = (
 /obj/effect/mapping_helpers/door/locker,
 /obj/structure/mineral_door/wood/violet,
-/obj/effect/mapping_helpers/door/access/town/tower,
+/obj/effect/mapping_helpers/door/access/manor/mage,
 /turf/open/floor/blocks,
 /area/rogue/indoors/town/magician)
 "xsq" = (
@@ -40353,7 +40400,7 @@ vgJ
 vgJ
 vgJ
 rfC
-gFA
+wqL
 nYn
 nYn
 oZQ
@@ -40960,7 +41007,7 @@ vgJ
 vgJ
 rfC
 rfC
-xfD
+nYn
 nYn
 nYn
 rfC
@@ -41569,7 +41616,7 @@ vgJ
 vgJ
 vgJ
 nYn
-dSR
+oZQ
 mLm
 rfC
 vgJ
@@ -41975,7 +42022,7 @@ vgJ
 pag
 nYn
 itg
-dSR
+oZQ
 vgJ
 vgJ
 vgJ
@@ -42784,7 +42831,7 @@ vgJ
 vgJ
 nYn
 oZQ
-xfD
+nYn
 vgJ
 vgJ
 vgJ
@@ -43389,7 +43436,7 @@ vgJ
 vgJ
 vgJ
 vgJ
-vMb
+nYn
 nYn
 nYn
 lwU
@@ -43591,7 +43638,7 @@ vgJ
 vgJ
 vgJ
 vgJ
-vMb
+nYn
 wfB
 nYn
 nYn
@@ -44000,7 +44047,7 @@ xfD
 oZQ
 oZQ
 cdn
-iTb
+oZQ
 nYn
 nYn
 nYn
@@ -44605,7 +44652,7 @@ vgJ
 vgJ
 vgJ
 nYn
-dSR
+oZQ
 oZQ
 oZQ
 oZQ
@@ -45617,7 +45664,7 @@ vgJ
 vgJ
 vgJ
 vgJ
-vMb
+nYn
 oZQ
 iRK
 nYn
@@ -45820,7 +45867,7 @@ vgJ
 vgJ
 vgJ
 vgJ
-vMb
+nYn
 nYn
 nYn
 nYn
@@ -46022,7 +46069,7 @@ vgJ
 vgJ
 uNa
 uNa
-vMb
+nYn
 nYn
 oZQ
 oZQ
@@ -46832,7 +46879,7 @@ lhN
 llT
 llT
 llT
-llT
+ovz
 aJo
 nYn
 oZQ
@@ -84398,7 +84445,7 @@ vgJ
 vND
 naf
 mCa
-jvy
+bMT
 vND
 vgJ
 vgJ
@@ -84797,7 +84844,7 @@ szt
 tOW
 vND
 pTV
-pJW
+ceO
 lDp
 mEQ
 aJx
@@ -84806,7 +84853,7 @@ qOS
 vND
 oSl
 jUc
-mPr
+iOR
 tRh
 vND
 vgJ
@@ -85200,7 +85247,7 @@ szt
 eNd
 eNd
 vND
-nHV
+hOs
 pJW
 rvP
 iOR
@@ -85807,7 +85854,7 @@ cHG
 hYi
 edq
 iOR
-qFp
+iOR
 fhx
 oTD
 iOR
@@ -86210,7 +86257,7 @@ eNd
 cHG
 mnI
 edq
-iOR
+qFp
 hkf
 fhx
 kDf
@@ -87633,7 +87680,7 @@ vND
 vNY
 vND
 vIx
-hhH
+ehQ
 azL
 vND
 cXi
