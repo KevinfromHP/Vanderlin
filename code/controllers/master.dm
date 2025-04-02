@@ -224,6 +224,7 @@ GLOBAL_REAL(Master, /datum/controller/master)
 		SetRunLevel(1)
 
 	setup_cargo_boat()
+	setup_fence_boat()
 	// Sort subsystems by display setting for easy access.
 	#ifndef LOWMEMORYMODE
 	sortTim(subsystems, GLOBAL_PROC_REF(cmp_subsystem_display))

@@ -2,7 +2,7 @@ GLOBAL_LIST_EMPTY(tram_landmarks)
 
 /obj/effect/landmark/tram
 	name = "tram destination" //the tram buttons will mention this.
-	icon_state = "tram"
+	icon_state = "arrow"
 
 	///the id of the tram we're linked to.
 	var/specific_lift_id = "generic_tram"

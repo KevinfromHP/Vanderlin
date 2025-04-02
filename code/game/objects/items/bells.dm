@@ -156,11 +156,11 @@
 
 /obj/item/smuggler_bell/attack_self(mob/user)
 	. = ..()
-	if(!istype(user.area, /area/rogue/under/town/basement/thieves_guild/cove))
-		to_chat(user, span_warning("I need to be in the cove to use this."))
-		return
-	if(!COOLDOWN_FINISHED(src, bell_ring))
-		return
+	//if(!istype(get_area(user.loc), /area/rogue/under/town/basement/thieves_guild/cove))
+	//	to_chat(user, span_warning("I need to be in the cove to use this."))
+	//	return
+	//if(!COOLDOWN_FINISHED(src, bell_ring))
+	//	return
 	playsound(src.loc, 'sound/misc/handbell.ogg', 50, 1)
 
 	user.visible_message("<span class='notice'>[user] rings [src].</span>", span_notice("You ring [src]."))
@@ -168,7 +168,12 @@
 		if(M != user && M.client)
 			to_chat(M, "<span class='notice'>You hear a small bell ringing.</span>")
 
-	COOLDOWN_START(src, bell_ring, 5 MINUTES)
+	if(SSmerchant.fence_boat)
+		if(!SSmerchant.fence_docked && SSmerchant.fence_boat.check_living())
+			SSmerchant.send_fence_ship_back()
+		else if(SSmerchant.fence_docked)
+			SSmerchant.prepare_fence_shipment()
+	COOLDOWN_START(src, bell_ring, 10 SECONDS)
 
 /obj/item/smuggler_bell/proc/sound_bell(mob/living/user)
 	user.visible_message("<span class='warning'>[user] rings the bell!</span>")

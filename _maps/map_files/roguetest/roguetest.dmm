@@ -1137,10 +1137,6 @@
 /obj/item/weapon/polearm/woodstaff/aries,
 /turf/open/floor/cobble,
 /area/rogue/outdoors)
-"iE" = (
-/obj/structure/smuggler_boat,
-/turf/open/water/cleanshallow,
-/area/rogue/under/town/basement/thieves_guild/cove)
 "jt" = (
 /obj/structure/trench,
 /obj/structure/rotation_piece/cog/large,
@@ -1153,6 +1149,13 @@
 /area/rogue/outdoors)
 "kM" = (
 /turf/open/floor/blocks,
+/area/rogue/under/cavewet)
+"lD" = (
+/obj/structure/industrial_lift/tram{
+	icon = 'icons/roguetown/misc/structure.dmi';
+	icon_state = "rowboat0"
+	},
+/turf/open/water/cleanshallow,
 /area/rogue/under/cavewet)
 "lY" = (
 /obj/structure/minecart_rail{
@@ -1180,6 +1183,13 @@
 "nG" = (
 /turf/open/floor/cobble,
 /area)
+"nH" = (
+/obj/effect/landmark/tram/queued_path/fence_exit{
+	dir = 8;
+	next_path_id = "fence_map_exit"
+	},
+/turf/open/water/cleanshallow,
+/area/rogue/under/cavewet)
 "oB" = (
 /obj/structure/minecart_rail,
 /obj/structure/closet/crate/miningcar,
@@ -1258,12 +1268,23 @@
 	water_volume = 500
 	},
 /area/rogue/outdoors)
+"tU" = (
+/turf/open/water/cleanshallow,
+/area/rogue/under/cavewet)
 "uL" = (
 /obj/structure/minecart_rail{
 	dir = 6
 	},
 /turf/open/floor/dirt/road,
 /area/rogue/outdoors)
+"vB" = (
+/obj/effect/landmark/tram/queued_path{
+	platform_code = "point_3";
+	next_path_id = "fence_exit";
+	specific_lift_id = "fence"
+	},
+/turf/open/water/cleanshallow,
+/area/rogue/under/cavewet)
 "vV" = (
 /obj/structure/ladder,
 /turf/open/floor/cobble,
@@ -1290,6 +1311,15 @@
 	},
 /turf/open/floor/cobble,
 /area/rogue/outdoors)
+"yR" = (
+/obj/effect/landmark/tram/queued_path{
+	platform_code = "point_2";
+	next_path_id = "point_3";
+	dir = 8;
+	specific_lift_id = "fence"
+	},
+/turf/open/water/cleanshallow,
+/area/rogue/under/town/basement/thieves_guild/cove)
 "zc" = (
 /obj/machinery/light/fueled/torchholder/r,
 /turf/open/floor/dirt/road,
@@ -1346,12 +1376,6 @@
 	dir = 4
 	},
 /area/rogue/indoors)
-"Dd" = (
-/obj/structure/fake_machine/smugglervend{
-	pixel_x = -32
-	},
-/turf/open/floor/blocks,
-/area/rogue/under/town/basement/thieves_guild/cove)
 "DH" = (
 /turf/open/water/cleanshallow,
 /area/rogue/under/town/basement/thieves_guild/cove)
@@ -1388,6 +1412,16 @@
 	dir = 4
 	},
 /area/rogue/indoors)
+"FS" = (
+/obj/effect/landmark/tram/queued_path/fence_map_exit{
+	dir = 6;
+	next_path_id = "fence_map_enter"
+	},
+/turf/open/water/cleanshallow,
+/area/rogue/under/cavewet)
+"GY" = (
+/turf/closed/wall/mineral/stone,
+/area/rogue/under/cavewet)
 "Hl" = (
 /obj/structure/minecart_rail{
 	dir = 5
@@ -1408,6 +1442,13 @@
 /obj/structure/closet/crate/miningcar,
 /turf/open/floor/dirt/road,
 /area/rogue/outdoors)
+"Jk" = (
+/obj/effect/landmark/tram/queued_path/fence_stop{
+	dir = 1;
+	next_path_id = "point_2"
+	},
+/turf/open/water/cleanshallow,
+/area/rogue/under/town/basement/thieves_guild/cove)
 "Kh" = (
 /obj/structure/vertical_gearbox,
 /turf/open/floor/dirt/road,
@@ -1458,9 +1499,27 @@
 	},
 /turf/open/floor/dirt/road,
 /area/rogue/outdoors)
+"QQ" = (
+/obj/structure/industrial_lift/tram{
+	icon = 'icons/roguetown/misc/structure.dmi';
+	icon_state = "rowboat1"
+	},
+/obj/effect/landmark/tram/queued_path/fence_map_enter{
+	next_path_id = "point_1";
+	dir = 4
+	},
+/turf/open/water/cleanshallow,
+/area/rogue/under/cavewet)
 "QR" = (
 /turf/open/floor/dirt,
 /area/rogue/outdoors/woods)
+"Rb" = (
+/obj/structure/fake_machine/smugglervend{
+	pixel_x = -32
+	},
+/obj/item/key/smuggler,
+/turf/open/floor/blocks,
+/area/rogue/under/town/basement/thieves_guild/cove)
 "RC" = (
 /obj/structure/fluff/railing/wood{
 	dir = 1
@@ -1491,6 +1550,13 @@
 /obj/structure/fermentation_keg/distiller,
 /turf/open/floor/dirt/road,
 /area/rogue/indoors)
+"TK" = (
+/obj/effect/landmark/tram/queued_path/fence_pre_enter{
+	next_path_id = "fence_stop";
+	dir = 4
+	},
+/turf/open/water/cleanshallow,
+/area/rogue/under/cavewet)
 "Ua" = (
 /obj/structure/water_pipe,
 /turf/open/floor/dirt/road,
@@ -1530,6 +1596,15 @@
 /obj/structure/rotation_piece/cog,
 /turf/open/floor/dirt/road,
 /area/rogue/outdoors)
+"XE" = (
+/obj/effect/landmark/tram/queued_path{
+	platform_code = "point_1";
+	next_path_id = "fence_pre_enter";
+	dir = 1;
+	specific_lift_id = "fence"
+	},
+/turf/open/water/cleanshallow,
+/area/rogue/under/cavewet)
 "XL" = (
 /obj/structure/kneestingers,
 /turf/open/floor/concrete,
@@ -1767,19 +1842,19 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Tm
+Tm
+Tm
+Tm
+Tm
+Tm
+Tm
+Tm
+Tm
+Tm
+FS
+lD
+Tm
 ac
 ac
 ac
@@ -2024,19 +2099,19 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Tm
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+QQ
+Tm
 ac
 ac
 ac
@@ -2281,19 +2356,19 @@ DW
 as
 as
 ab
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Tm
+vB
+TK
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+nH
+XE
+Tm
 ac
 ac
 ac
@@ -2538,19 +2613,19 @@ mY
 mY
 mY
 ab
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Tm
+tU
+tU
+Tm
+Tm
+Tm
+Tm
+Tm
+Tm
+Tm
+Tm
+Tm
+Tm
 ac
 ac
 ac
@@ -2796,11 +2871,11 @@ as
 as
 ab
 Tm
-Tm
-Tm
-Tm
-Tm
-Tm
+DH
+DH
+SU
+Rb
+dA
 Tm
 ac
 ac
@@ -3053,11 +3128,11 @@ as
 as
 ab
 Tm
-DH
-DH
-SU
-Dd
-dA
+yR
+Jk
+eA
+Lf
+Lf
 Tm
 ac
 ac
@@ -3311,10 +3386,10 @@ aj
 ab
 Tm
 DH
-iE
-eA
+DH
 Lf
 Lf
+dA
 Tm
 ac
 ac
@@ -3567,11 +3642,11 @@ aj
 aj
 ab
 Tm
-DH
-DH
-Lf
-Lf
-dA
+Tm
+Tm
+GY
+kM
+GY
 Tm
 ac
 ac
@@ -3826,9 +3901,9 @@ ab
 Tm
 Tm
 Tm
-Tm
+GY
 kM
-Tm
+GY
 Tm
 ab
 ab

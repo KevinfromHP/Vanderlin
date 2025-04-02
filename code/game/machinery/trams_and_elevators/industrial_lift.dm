@@ -787,6 +787,21 @@ GLOBAL_LIST_INIT(all_radial_directions, list(
 
 	create_multitile_platform = TRUE
 
+/obj/structure/industrial_lift/tram/Initialize(mapload)
+	. = ..()
+#ifdef LOWMEMORYMODE //Lazy init in lowmem
+	var/datum/lift_master/tram/master_datum = lift_master_datum
+	var/obj/effect/landmark/tram/queued_path/located_enter = master_datum?.idle_platform
+	if(istype(located_enter, /obj/effect/landmark/tram/queued_path/cargo_map_enter))
+		SSmerchant.cargo_boat = master_datum
+		SSmerchant.cargo_boat.hide_tram()
+	else if (istype(located_enter, /obj/effect/landmark/tram/queued_path/fence_map_enter))
+		SSmerchant.fence_boat = master_datum
+		SSmerchant.fence_boat.hide_tram()
+#endif
+	return .
+
+
 /obj/structure/industrial_lift/tram/AddItemOnLift(datum/source, atom/movable/AM)
 	. = ..()
 	if(travelling)

@@ -456,6 +456,7 @@
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 25, "embedded_fall_chance" = 20)
 	melting_material = /datum/material/iron
 	melt_amount = 50
+	sellprice = 4
 
 /obj/item/weapon/knife/throwingknife/steel
 	name = "steel tossblade"
@@ -469,6 +470,7 @@
 	icon_state = "throw_knifes"
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 30, "embedded_fall_chance" = 15)
 	melt_amount = 50
+	sellprice = 8
 
 /obj/item/weapon/knife/throwingknife/psydon
 	name = "psydonian tossblade"
@@ -482,6 +484,6 @@
 	icon_state = "throw_knifes"
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 50, "embedded_fall_chance" = 0)
 	is_silver = TRUE
-	sellprice = 65
+	sellprice = 28
 	melting_material = /datum/material/silver
 	melt_amount = 50
