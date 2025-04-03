@@ -1151,7 +1151,6 @@
 /turf/open/floor/blocks,
 /area/rogue/under/cavewet)
 "lD" = (
-/obj/structure/fake_dinghy,
 /obj/structure/industrial_lift/tram{
 	horizontal_speed = 2;
 	icon = null

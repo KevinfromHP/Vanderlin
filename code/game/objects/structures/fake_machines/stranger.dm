@@ -83,7 +83,8 @@
 			var/obj/item/packitem = picked_pack.contains
 			SSmerchant.fencerequestlist += packitem
 		else
-			SSmerchant.fencerequestlist += picked_pack
+			for(var/in_pack in picked_pack.contains)
+				SSmerchant.fencerequestlist += in_pack
 		say("I'll add it to your next shipment, mate." )
 	if(href_list["change"])
 		if(budget > 0)
