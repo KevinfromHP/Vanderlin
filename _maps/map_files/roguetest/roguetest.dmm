@@ -1625,7 +1625,7 @@
 /area/rogue/outdoors)
 "YV" = (
 /obj/structure/fluff/buysign{
-	name = "dinghy alpha doesnt reset on roguetest. Set it to 255."
+	name = "dinghy alpha doesnt reset on lowmem. Set it to 255."
 	},
 /turf/open/floor/blocks,
 /area/rogue/under/town/basement/thieves_guild/cove)
