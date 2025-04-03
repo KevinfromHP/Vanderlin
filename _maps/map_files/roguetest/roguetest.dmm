@@ -1147,6 +1147,10 @@
 /obj/structure/waterwheel,
 /turf/open/floor/dirt/road,
 /area/rogue/outdoors)
+"kn" = (
+/obj/item/key/merchant,
+/turf/open/floor/cobble,
+/area/rogue/outdoors)
 "kM" = (
 /turf/open/floor/blocks,
 /area/rogue/under/cavewet)
@@ -1299,6 +1303,10 @@
 "xh" = (
 /obj/effect/landmark/start,
 /turf/open/floor/cobble,
+/area/rogue/outdoors)
+"xj" = (
+/obj/structure/fake_machine/smugglervend,
+/turf/open/floor/dirt/road,
 /area/rogue/outdoors)
 "xp" = (
 /obj/structure/trench,
@@ -1581,6 +1589,10 @@
 "Uv" = (
 /turf/closed,
 /area/rogue)
+"UK" = (
+/obj/structure/fake_machine/merchantvend,
+/turf/open/floor/cobble,
+/area/rogue/outdoors)
 "UY" = (
 /obj/structure/minecart_rail{
 	dir = 9
@@ -9310,7 +9322,7 @@ aJ
 aJ
 aJ
 cm
-aJ
+kn
 aJ
 aJ
 aJ
@@ -9567,7 +9579,7 @@ WA
 aJ
 aJ
 aJ
-aJ
+UK
 cs
 ct
 aJ
@@ -9824,7 +9836,7 @@ WA
 aL
 al
 al
-co
+xj
 al
 ai
 al
@@ -10081,7 +10093,7 @@ WA
 ai
 ai
 al
-al
+co
 al
 ai
 al
