@@ -1151,11 +1151,10 @@
 /turf/open/floor/blocks,
 /area/rogue/under/cavewet)
 "lD" = (
+/obj/structure/fake_dinghy,
 /obj/structure/industrial_lift/tram{
-	icon = 'icons/roguetown/misc/structure.dmi';
-	icon_state = "rowboat0";
-	name = "dinghy";
-	horizontal_speed = 2
+	horizontal_speed = 2;
+	icon = null
 	},
 /turf/open/water/cleanshallow,
 /area/rogue/under/cavewet)
@@ -1515,14 +1514,11 @@
 	dir = 4;
 	specific_lift_id = "fence"
 	},
-/obj/structure/industrial_lift/tram/storage{
-	icon = 'icons/roguetown/misc/structure.dmi';
-	icon_state = "rowboat1";
-	icon_state_empty = "rowboat1";
-	icon_state_full = "rowboat2";
+/obj/structure/industrial_lift/tram{
 	horizontal_speed = 2;
-	name = "dinghy"
+	icon = icon
 	},
+/obj/structure/closet/crate/dinghy,
 /turf/open/water/cleanshallow,
 /area/rogue/under/cavewet)
 "QR" = (
@@ -1627,6 +1623,12 @@
 /obj/structure/kneestingers,
 /turf/open/floor/concrete,
 /area/rogue/outdoors)
+"YV" = (
+/obj/structure/fluff/buysign{
+	name = "dinghy alpha doesnt reset on roguetest. Set it to 255."
+	},
+/turf/open/floor/blocks,
+/area/rogue/under/town/basement/thieves_guild/cove)
 "Zs" = (
 /obj/structure/fluff/traveltile{
 	aportalid = "test-in";
@@ -3407,7 +3409,7 @@ DH
 DH
 Lf
 Lf
-dA
+YV
 Tm
 ac
 ac

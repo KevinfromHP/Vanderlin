@@ -30,14 +30,14 @@
 
 /datum/outfit/job/thief/smuggler
 	head = /obj/item/clothing/head/roguehood/brown
-	neck = /obj/item/clothing/neck/gorget
+	neck = /obj/item/storage/belt/pouch/coins/rich
 	cloak = /obj/item/clothing/cloak/cape/drifter
 	armor = /obj/item/clothing/armor/leather/splint
 	shirt = /obj/item/clothing/armor/gambeson/light/brown
 	wrists = /obj/item/storage/keyring/smuggler
 	gloves = /obj/item/clothing/gloves/fingerless
 	backl = /obj/item/storage/backpack/backpack //override
-	backpack_contents = list(/obj/item/storage/belt/pouch/coins/rich, /obj/item/restraints/legcuffs/beartrap/crafted)
+	backpack_contents = list(/obj/item/restraints/legcuffs/beartrap/crafted)
 	belt = /obj/item/storage/belt/leather/knifebelt/black/steel //override
 	beltl = /obj/item/weapon/knife/cleaver/combat
 	beltr = /obj/item/smuggler_bell

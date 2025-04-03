@@ -74,3 +74,36 @@
 	close_sound = 'sound/blank.ogg'
 	open_sound_volume = 25
 	close_sound_volume = 50
+
+/// chest used for fence tram.
+/obj/structure/closet/crate/dinghy
+	name = "dinghy"
+	desc = ""
+
+	icon = 'icons/roguetown/misc/dinghy.dmi'
+	base_icon_state = "dinghy"
+	icon_state = "dinghyopen"
+	pixel_x = -32
+
+	density = FALSE
+	dense_when_open = FALSE
+
+	max_integrity = 1200
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	anchored = TRUE
+
+
+	open_sound = 'sound/foley/cartdump.ogg'
+	close_sound = 'sound/foley/cartadd.ogg'
+
+//second half of the dinghy. Not a storage container.
+/obj/structure/fake_dinghy
+	name = "dinghy"
+	desc = ""
+
+	density = TRUE
+	climbable = TRUE
+	max_integrity = 1200
+	anchored = TRUE
+
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
