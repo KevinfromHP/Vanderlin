@@ -70,6 +70,8 @@ GLOBAL_LIST_INIT(all_radial_directions, list(
 	/// A lazylist of REFs to all mobs which have a radial open currently
 	var/list/current_operators
 
+	/// These are container types that start on the tram and can still be used for selling.
+	var/list/initial_container_whitelist = list()
 	///this is our held_cargo
 	var/list/held_cargo = list()
 	var/list/moving_lifts = list()

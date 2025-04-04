@@ -83,10 +83,13 @@
 	icon = 'icons/roguetown/misc/dinghy.dmi'
 	base_icon_state = "dinghy"
 	icon_state = "dinghyopen"
+	bound_width = 64
+	bound_x = -32
 	pixel_x = -32
+	appearance_flags = PIXEL_SCALE|KEEP_TOGETHER
 
-	density = FALSE
-	dense_when_open = FALSE
+	density = TRUE
+	dense_when_open = TRUE
 
 	max_integrity = 1200
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF

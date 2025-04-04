@@ -13315,13 +13315,13 @@
 	dir = 4;
 	specific_lift_id = "fence"
 	},
-/obj/structure/closet/crate/dinghy,
 /obj/structure/industrial_lift/tram{
 	icon = null;
 	icon_state = null;
 	name = null;
 	horizontal_speed = 2
 	},
+/obj/structure/closet/crate/dinghy,
 /turf/open/water,
 /area/rogue/outdoors/river)
 "iyL" = (

@@ -30,7 +30,7 @@ GLOBAL_LIST_EMPTY(active_lifts_by_type)
 	///this is so cursed
 	var/ignore_pathing_obstacles = FALSE
 	var/list/objects_pre_alpha = list()
-		///this is our held_cargo
+	///this is our held_cargo
 	var/list/held_cargo = list()
 
 /datum/lift_master/New(obj/structure/industrial_lift/lift_platform)
@@ -595,9 +595,9 @@ GLOBAL_LIST_EMPTY(active_lifts_by_type)
 /datum/lift_master/tram/proc/show_tram()
 	ignore_pathing_obstacles = FALSE
 	for(var/obj/structure/industrial_lift/tram/platform in lift_platforms)
-		platform.horizontal_speed = 4
-		base_horizontal_speed = 4
-		horizontal_speed = 4
+		platform.horizontal_speed = base_horizontal_speed
+		base_horizontal_speed = base_horizontal_speed
+		horizontal_speed = base_horizontal_speed
 		platform.obj_flags |= BLOCK_Z_OUT_DOWN
 		platform.alpha = 255
 		for(var/atom/movable/movable in objects_pre_alpha)
@@ -607,7 +607,7 @@ GLOBAL_LIST_EMPTY(active_lifts_by_type)
 			movable.density = initial(movable.density)
 
 		for(var/obj/structure/industrial_lift/tram/moving_platform in platform.moving_lifts)
-			moving_platform.horizontal_speed = 4
+			moving_platform.horizontal_speed = base_horizontal_speed
 			moving_platform.obj_flags |= BLOCK_Z_OUT_DOWN
 			moving_platform.alpha = 255
 

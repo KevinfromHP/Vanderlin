@@ -1156,8 +1156,11 @@
 /area/rogue/under/cavewet)
 "lD" = (
 /obj/structure/industrial_lift/tram{
+	icon = null;
+	icon_state = null;
+	name = null;
 	horizontal_speed = 2;
-	icon = null
+	base_horizontal_speed = 2
 	},
 /turf/open/water/cleanshallow,
 /area/rogue/under/cavewet)
@@ -1313,6 +1316,13 @@
 /obj/structure/rotation_piece,
 /turf/open/floor/dirt/road,
 /area/rogue/outdoors)
+"xs" = (
+/obj/structure/fluff/buysign{
+	name = "Read me";
+	desc = "Dinghy alpha doesnt set properly on low memory. Set it to 255."
+	},
+/turf/closed/wall/mineral/stone,
+/area/rogue/under/cavewet)
 "yP" = (
 /obj/structure/minecart_rail{
 	dir = 4
@@ -1473,6 +1483,14 @@
 /obj/structure/rotation_piece,
 /turf/open/floor/dirt/road,
 /area/rogue/outdoors)
+"Mw" = (
+/obj/item/smuggler_bell,
+/obj/structure/table/wood{
+	icon_state = "tablewood2";
+	dir = 10
+	},
+/turf/open/floor/blocks,
+/area/rogue/under/town/basement/thieves_guild/cove)
 "Nb" = (
 /obj/structure/rotation_piece/cog,
 /turf/open/floor/dirt/road,
@@ -1492,14 +1510,6 @@
 	},
 /turf/open/floor/dirt/road,
 /area/rogue/indoors)
-"OB" = (
-/obj/item/key/smuggler,
-/turf/open/floor/blocks,
-/area/rogue/under/town/basement/thieves_guild/cove)
-"Pi" = (
-/obj/item/smuggler_bell,
-/turf/open/floor/blocks,
-/area/rogue/under/town/basement/thieves_guild/cove)
 "Pq" = (
 /obj/structure/minecart_rail,
 /obj/structure/fluff/traveltile{
@@ -1522,8 +1532,11 @@
 	specific_lift_id = "fence"
 	},
 /obj/structure/industrial_lift/tram{
+	icon = null;
+	icon_state = null;
+	name = null;
 	horizontal_speed = 2;
-	icon = icon
+	base_horizontal_speed = 2
 	},
 /obj/structure/closet/crate/dinghy,
 /turf/open/water/cleanshallow,
@@ -1533,12 +1546,10 @@
 /area/rogue/outdoors/woods)
 "Rb" = (
 /obj/structure/fake_machine/smugglervend{
-	pixel_x = -32
+	pixel_x = -32;
+	budget = 500;
+	locked = 0
 	},
-/obj/item/coin/gold/pile,
-/obj/item/coin/gold/pile,
-/obj/item/coin/gold/pile,
-/obj/item/coin/gold/pile,
 /turf/open/floor/blocks,
 /area/rogue/under/town/basement/thieves_guild/cove)
 "RC" = (
@@ -1634,12 +1645,6 @@
 /obj/structure/kneestingers,
 /turf/open/floor/concrete,
 /area/rogue/outdoors)
-"YV" = (
-/obj/structure/fluff/buysign{
-	name = "dinghy alpha doesnt reset on lowmem. Set it to 255."
-	},
-/turf/open/floor/blocks,
-/area/rogue/under/town/basement/thieves_guild/cove)
 "Zs" = (
 /obj/structure/fluff/traveltile{
 	aportalid = "test-in";
@@ -2906,7 +2911,7 @@ DH
 DH
 SU
 Rb
-dA
+Mw
 Tm
 ac
 ac
@@ -3162,8 +3167,8 @@ Tm
 yR
 Jk
 eA
-OB
-Pi
+Lf
+Lf
 Tm
 ac
 ac
@@ -3420,7 +3425,7 @@ DH
 DH
 Lf
 Lf
-YV
+dA
 Tm
 ac
 ac
@@ -3675,7 +3680,7 @@ ab
 Tm
 Tm
 Tm
-GY
+xs
 kM
 GY
 Tm
