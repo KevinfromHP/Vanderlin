@@ -957,6 +957,7 @@
 #include "code\game\machinery\loom.dm"
 #include "code\game\machinery\trams_and_elevators\industrial_lift.dm"
 #include "code\game\machinery\trams_and_elevators\lift_master.dm"
+#include "code\game\machinery\trams_and_elevators\shipping_sell_handler.dm"
 #include "code\game\machinery\trams_and_elevators\tram\cargo_line.dm"
 #include "code\game\machinery\trams_and_elevators\tram\fence_line.dm"
 #include "code\game\machinery\trams_and_elevators\tram\setup_cargo_tram.dm"

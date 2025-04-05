@@ -1159,8 +1159,7 @@
 	icon = null;
 	icon_state = null;
 	name = null;
-	horizontal_speed = 2;
-	base_horizontal_speed = 2
+	horizontal_speed = 8
 	},
 /turf/open/water/cleanshallow,
 /area/rogue/under/cavewet)
@@ -1535,8 +1534,7 @@
 	icon = null;
 	icon_state = null;
 	name = null;
-	horizontal_speed = 2;
-	base_horizontal_speed = 2
+	horizontal_speed = 8
 	},
 /obj/structure/closet/crate/dinghy,
 /turf/open/water/cleanshallow,

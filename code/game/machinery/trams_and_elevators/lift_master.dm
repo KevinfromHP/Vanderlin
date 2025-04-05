@@ -30,6 +30,8 @@ GLOBAL_LIST_EMPTY(active_lifts_by_type)
 	///this is so cursed
 	var/ignore_pathing_obstacles = FALSE
 	var/list/objects_pre_alpha = list()
+	///these are container types that start on the tram and can still be used for selling.
+	var/list/initial_container_whitelist = list(/obj/structure/closet/crate/chest,)
 	///this is our held_cargo
 	var/list/held_cargo = list()
 
@@ -611,7 +613,10 @@ GLOBAL_LIST_EMPTY(active_lifts_by_type)
 			moving_platform.obj_flags |= BLOCK_Z_OUT_DOWN
 			moving_platform.alpha = 255
 
+// VANDERLIN: this entire system is archaic. Needs to be reworked in the future
 /datum/lift_master/tram/proc/try_process_order(fence = FALSE)
+	if(fence)
+		return
 	var/total_coin_value = 0
 	var/list/requested_supplies = list()
 	var/list/request_fufillment = list()
@@ -689,32 +694,43 @@ GLOBAL_LIST_EMPTY(active_lifts_by_type)
 
 
 /datum/lift_master/tram/proc/spawn_coins(total_coin_value, obj/structure/industrial_lift/tram/platform)
+	if(!total_coin_value)
+		return
 
 	var/obj/structure/industrial_lift/tram/picked = pick(platform.moving_lifts)
 	var/turf/location = get_turf(picked)
 
-	var/gold = floor(total_coin_value/10)
+	var/gold = floor(total_coin_value / 10)
+	total_coin_value %= 10
+	var/silver = floor(total_coin_value / 5)
+	total_coin_value %= 5
+	var/copper = total_coin_value
+
+	//turn up to 5 pieces of gold into equivalent silver pieces
+	var/randGoldToSilver = rand(0, min(gold, 5))
+	gold -= randGoldToSilver
+	silver += randGoldToSilver * 2
+	//turn up to 3 silver pieces into equivalent copper
+	var/randSilverToCopper = rand(0, min(silver, 3))
+	silver -= randSilverToCopper
+	copper += randSilverToCopper * 5
+
 	if(gold)
 		new /obj/item/coin/gold(location, gold)
-	total_coin_value -= gold*10
-	if(!total_coin_value)
-		return
-
-	var/silver = floor(total_coin_value/5)
 	if(silver)
 		new /obj/item/coin/silver(location, silver)
-	total_coin_value -= silver*5
-	if(!total_coin_value)
-		return
-
-	var/copper = floor(total_coin_value)
 	if(copper)
 		new /obj/item/coin/copper(location, copper)
-	total_coin_value -= copper
 
-	var/obj/structure/closet/crate/chest/chest = new /obj/structure/closet/crate/chest(location)
-	chest.open() //teehee
-	chest.close()
+	var/obj/structure/closet/crate/container = null
+	for(var/atom/movable/A as anything in location.contents)
+		if(istype(A, /obj/structure/closet/crate))
+			container = A
+			break
+	if(!container)
+		container = new /obj/structure/closet/crate/chest(location)
+	container.open() //teehee
+	container.close()
 
 /datum/lift_master/tram/proc/check_living()
 	for(var/obj/structure/industrial_lift/tram/platform in lift_platforms)
@@ -725,11 +741,6 @@ GLOBAL_LIST_EMPTY(active_lifts_by_type)
 	return TRUE
 
 /datum/lift_master/tram/proc/try_sell_items(fence = FALSE)
-	var/total_coin_value = 0
-	var/sell_modifer = 1
-	if(fence)
-		sell_modifer = 0.75
-
 	for(var/obj/structure/industrial_lift/tram/platform in lift_platforms)
 		var/list/atom/movable/original_contents = list()
 		for(var/datum/weakref/initial_contents_ref as anything in platform.initial_contents)
@@ -746,99 +757,16 @@ GLOBAL_LIST_EMPTY(active_lifts_by_type)
 
 			original_contents += resolved_contents
 
-		var/list/sold_items = list()
-		var/list/sold_count = list()
+
+		var/datum/shipping_sell_handler/sell_handler = new()
+		if(fence)
+			sell_handler.sell_modifer = 0.75
 		for(var/atom/movable/listed_atom in platform.lift_load)
-			if(listed_atom in original_contents)
+			if(listed_atom in original_contents && !istype(listed_atom, /obj/structure/closet/crate/chest))
 				continue
-			if(!listed_atom.sellprice)
-				continue
-			if(istype(listed_atom, /obj/item/paper/scroll/cargo))
-				continue
-			if(istype(listed_atom, /obj/structure/closet/crate/chest))
-				continue
-			if(istype(listed_atom, /obj/item/coin))
-				continue
+			sell_handler.sell_atom(listed_atom)
 
-			total_coin_value += FLOOR(listed_atom.sellprice * sell_modifer * SSmerchant.return_sell_modifier(listed_atom.type), 1)
-			var/old_price = FLOOR(listed_atom.sellprice * sell_modifer * SSmerchant.return_sell_modifier(listed_atom.type), 1)
-			if(!(initial(listed_atom.name) in sold_items))
-				sold_items |= initial(listed_atom.name)
-				sold_count |= initial(listed_atom.name)
-
-				sold_count[initial(listed_atom.name)] = 1
-				sold_items[initial(listed_atom.name)] = FLOOR(listed_atom.sellprice * sell_modifer * SSmerchant.return_sell_modifier(listed_atom.type), 1)
-
-			else
-				sold_count[initial(listed_atom.name)]++
-				sold_items[initial(listed_atom.name)] += FLOOR(listed_atom.sellprice * sell_modifer * SSmerchant.return_sell_modifier(listed_atom.type), 1)
-			SSmerchant.handle_selling(listed_atom.type)
-			var/new_price = FLOOR(listed_atom.sellprice * sell_modifer * SSmerchant.return_sell_modifier(listed_atom.type), 1)
-
-			if(old_price != new_price)
-				SSmerchant.changed_sell_prices(listed_atom.type, old_price, new_price)
-
-
-			for(var/atom/movable/inside in listed_atom.get_all_contents())
-				if(inside == listed_atom)
-					continue
-				if(inside in original_contents)
-					continue
-				if(!inside.sellprice)
-					continue
-				if(istype(inside, /obj/item/paper/scroll/cargo))
-					continue
-				if(istype(inside, /obj/structure/closet/crate/chest))
-					continue
-				if(istype(inside, /obj/item/coin))
-					continue
-
-				total_coin_value += FLOOR(inside.sellprice * sell_modifer, 1)
-				if(!(initial(inside.name) in sold_items))
-					sold_items |= initial(inside.name)
-					sold_count |= initial(inside.name)
-
-					sold_count[initial(inside.name)] = 1
-					sold_items[initial(inside.name)] = FLOOR(inside.sellprice * sell_modifer, 1)
-
-				else
-					sold_count[initial(inside.name)]++
-					sold_items[initial(inside.name)] += FLOOR(inside.sellprice * sell_modifer, 1)
-
-			if(istype(listed_atom, /obj/item/clothing/head/mob_holder))
-				var/obj/item/clothing/head/mob_holder/holder = listed_atom
-				for(var/obj/item/item in holder.held_mob.get_equipped_items())
-					item.forceMove(get_turf(holder))
-				to_chat(holder.held_mob, span_boldwarning("You have been sold."))
-				qdel(holder.held_mob) //so long my friend
-			qdel(listed_atom)
-
-		spawn_coins(total_coin_value, platform)
-
-		if(length(sold_items) && !fence)
-			var/scrolls_to_spawn = CEILING(length(sold_items) / 6, 1)
-			for(var/i = 1 to scrolls_to_spawn)
-				var/list/items = list()
-				var/list/count = list()
-				var/current_count = 0
-				for(var/b = 1 to length(sold_items))
-					if(current_count >= 6)
-						continue
-					current_count++
-					var/first_item = sold_items[1]
-					items |= first_item
-					items[first_item] = sold_items[first_item]
-					sold_items -= first_item
-
-					var/first_count = sold_count[1]
-					count |= first_item
-					count[first_count] = sold_count[first_count]
-					sold_items -= first_count
-
-
-				var/obj/structure/industrial_lift/tram/picked = pick(platform.moving_lifts)
-				var/turf/location = get_turf(picked)
-				var/obj/item/paper/scroll/sold_manifest/manifest = new /obj/item/paper/scroll/sold_manifest(location)
-				manifest.count = count.Copy()
-				manifest.items = items.Copy()
-				manifest.rebuild_info()
+		if(length(sell_handler.sold_items) && !fence)
+			sell_handler.generate_manifest(platform)
+		spawn_coins(sell_handler.total_coin_value, platform)
+		qdel(sell_handler)
