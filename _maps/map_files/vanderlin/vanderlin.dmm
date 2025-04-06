@@ -544,10 +544,8 @@
 /obj/structure/industrial_lift/tram{
 	icon = null;
 	icon_state = null;
-	name = null;
-	horizontal_speed = 2
+	name = null
 	},
-/obj/structure/fake_dinghy,
 /turf/open/water,
 /area/rogue/outdoors/river)
 "aqu" = (
@@ -1570,7 +1568,6 @@
 /obj/effect/mapping_helpers/door/access/manor/mage,
 /obj/merge_conflict_marker{
 	name = "---Merge Conflict Marker---";
-	
 	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
 	},
 /obj/structure/fluff/railing/wood{
@@ -9249,7 +9246,6 @@
 /obj/effect/mapping_helpers/door/access/manor/mage,
 /obj/merge_conflict_marker{
 	name = "---Merge Conflict Marker---";
-	
 	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
 	},
 /obj/machinery/light/fueled/wallfire/candle/l,
@@ -15252,7 +15248,6 @@
 /obj/structure/table/wood/plain_alt,
 /obj/merge_conflict_marker{
 	name = "---Merge Conflict Marker---";
-	
 	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
 	},
 /turf/closed/mineral,
@@ -16532,7 +16527,6 @@
 /obj/effect/mapping_helpers/door/access/manor/mage,
 /obj/merge_conflict_marker{
 	name = "---Merge Conflict Marker---";
-	
 	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
 	},
 /turf/open/floor/church,
@@ -29458,8 +29452,7 @@
 /obj/structure/industrial_lift/tram{
 	icon = null;
 	icon_state = null;
-	name = null;
-	horizontal_speed = 2
+	name = null
 	},
 /obj/structure/closet/crate/dinghy,
 /turf/open/water,
@@ -31177,7 +31170,6 @@
 /obj/effect/mapping_helpers/door/access/manor/mage,
 /obj/merge_conflict_marker{
 	name = "---Merge Conflict Marker---";
-	
 	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
 	},
 /turf/closed/wall/mineral/roofwall/center,
