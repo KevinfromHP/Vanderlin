@@ -347,7 +347,7 @@ GLOBAL_LIST_EMPTY(thieves_guild_doors)
 	var/mob/living/carbon/human/H = speaker
 
 	var/message2recognize = sanitize_hear_message(raw_message)
-	if((vip.Find(H?.mind.assigned_role)) && findtext(message2recognize, "set phrase"))
+	if((vip.Find(H.job) || vip.Find(H.get_role_title())) && findtext(message2recognize, "set phrase"))
 		for(var/obj/structure/mineral_door/secret/D in GLOB.thieves_guild_doors)
 			D.set_phrase(open_phrase)
 	return TRUE
