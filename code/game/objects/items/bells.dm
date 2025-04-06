@@ -162,12 +162,12 @@
 	if(!COOLDOWN_FINISHED(src, smuggler_bell_ring))
 		to_chat(user, span_warning("The boat can't be called for another [COOLDOWN_TIMELEFT(src, smuggler_bell_ring)/10] seconds."))
 		return
-	playsound(src.loc, 'sound/misc/handbell.ogg', 50, 1)
+	playsound(src.loc, 'sound/misc/smuggler_bell.ogg', 50, 1)
 
 	user.visible_message("<span class='notice'>[user] rings [src].</span>", span_notice("You ring [src]."))
 	for(var/mob/M in view(10, src.loc))
 		if(M != user && M.client)
-			to_chat(M, "<span class='notice'>You hear a small bell ringing.</span>")
+			to_chat(M, "<span class='notice'>You hear a bell ringing faintly.</span>")
 
 	if(SSmerchant.fence_boat)
 		if(!SSmerchant.fence_docked && SSmerchant.fence_boat.check_living())
@@ -175,16 +175,3 @@
 		else if(SSmerchant.fence_docked)
 			SSmerchant.prepare_fence_shipment()
 	COOLDOWN_START(src, smuggler_bell_ring, 10 SECONDS)
-
-/obj/item/smuggler_bell/proc/sound_bell(mob/living/user)
-	user.visible_message("<span class='warning'>[user] rings the bell!</span>")
-	playsound(src, 'sound/misc/handbell.ogg', 100, TRUE)
-
-	for(var/mob/living/player in GLOB.player_list)
-		if(player.stat == DEAD)
-			continue
-		if(isbrain(player))
-			continue
-
-		player.playsound_local(get_turf(player), 'sound/misc/handbell.ogg', 35, FALSE, pressure_affected = FALSE)
-		to_chat(player, span_smallnotice("I hear a bell ringing faintly..."))
