@@ -327,8 +327,8 @@ GLOBAL_LIST_EMPTY(thieves_guild_doors)
 ///// THIEVES GUILD DOORS /////
 /obj/structure/mineral_door/secret/thieves_guild
 	vip = list(
-		datum/job/thief,
-		datum/job/smuggler
+		/datum/job/thief,
+		/datum/job/smuggler
 	)
 	lang = /datum/language/thievescant
 	icon = 'icons/turf/walls/stonebrick.dmi'

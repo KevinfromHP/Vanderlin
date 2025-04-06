@@ -10,19 +10,7 @@
 	min_pq = 12
 
 	shows_in_list = FALSE
-	//TODO:  when racelock PR gets pushed change this
-	allowed_races = list(
-		"Humen",
-		"Rakshari",
-		"Elf",
-		"Half-Elf",
-		"Dwarf",
-		"Tiefling",
-		"Dark Elf",
-		"Aasimar",
-		"Half-Orc"
-	)
-
+	allowed_races = RACES_PLAYER_NONEXOTIC
 
 	outfit = /datum/outfit/job/thief/smuggler
 	cmode_music = 'sound/music/cmode/adventurer/CombatRogue.ogg'

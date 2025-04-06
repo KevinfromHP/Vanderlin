@@ -12,7 +12,7 @@
 	min_pq = 10
 
 	shows_in_list = FALSE
-	allowed_races = ALL_PLAYER_RACES_BY_NAME
+	allowed_races = RACES_PLAYER_ALL
 	advclass_cat_rolls = list(CTAG_THIEF = 20)
 
 
