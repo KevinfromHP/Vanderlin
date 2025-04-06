@@ -162,7 +162,7 @@
 	if(!COOLDOWN_FINISHED(src, smuggler_bell_ring))
 		to_chat(user, span_warning("The boat can't be called for another [COOLDOWN_TIMELEFT(src, smuggler_bell_ring)/10] seconds."))
 		return
-	playsound(src.loc, 'sound/misc/smuggler_bell.ogg', 50, 1)
+	playsound(src.loc, 'sound/misc/smugglerbell.ogg', 50, 1)
 
 	user.visible_message("<span class='notice'>[user] rings [src].</span>", span_notice("You ring [src]."))
 	for(var/mob/M in view(10, src.loc))
