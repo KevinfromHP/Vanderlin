@@ -575,7 +575,7 @@ GLOBAL_LIST_EMPTY(active_lifts_by_type)
 	ignore_pathing_obstacles = TRUE
 	for(var/obj/structure/industrial_lift/tram/platform in lift_platforms)
 		platform.horizontal_speed = 0.1
-		base_horizontal_speed = 0.1
+		base_horizontal_speed = horizontal_speed
 		horizontal_speed = 0.1
 		platform.obj_flags &= ~BLOCK_Z_OUT_DOWN
 		platform.alpha = 0

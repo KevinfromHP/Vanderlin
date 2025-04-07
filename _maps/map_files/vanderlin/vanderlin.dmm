@@ -1561,15 +1561,6 @@
 /turf/open/floor/wood/nosmooth,
 /area/rogue/indoors/town/shop)
 "aSl" = (
-/obj/effect/mapping_helpers/door/locker,
-/obj/structure/mineral_door/wood/violet{
-	name = "Wizard's Tower"
-	},
-/obj/effect/mapping_helpers/door/access/manor/mage,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/fluff/railing/wood{
 	dir = 4
 	},
@@ -9241,13 +9232,6 @@
 /turf/open/floor/cobble/mossy,
 /area/rogue/outdoors/rtfield)
 "fMQ" = (
-/obj/effect/mapping_helpers/door/locker,
-/obj/structure/mineral_door/wood/violet,
-/obj/effect/mapping_helpers/door/access/manor/mage,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/machinery/light/fueled/wallfire/candle/l,
 /turf/open/floor/ruinedwood{
 	icon_state = "weird1"
@@ -15244,14 +15228,6 @@
 /obj/structure/kneestingers,
 /turf/open/floor/naturalstone,
 /area/rogue/under/cavewet)
-"jCJ" = (
-/obj/structure/table/wood/plain_alt,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed/mineral,
-/area/rogue/under/town/caverogue)
 "jCK" = (
 /obj/structure/table/wood{
 	icon_state = "longtable_mid";
@@ -16521,16 +16497,6 @@
 	},
 /turf/open/floor/church,
 /area/rogue/indoors/town/church)
-"klF" = (
-/obj/effect/mapping_helpers/door/locker,
-/obj/structure/mineral_door/wood/violet,
-/obj/effect/mapping_helpers/door/access/manor/mage,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/church,
-/area/rogue/outdoors/town/roofs)
 "klG" = (
 /obj/structure/mineral_door/wood/green,
 /obj/effect/mapping_helpers/door/locker,
@@ -31164,16 +31130,6 @@
 /obj/machinery/light/fueled/firebowl,
 /turf/open/floor/dirt/road,
 /area/rogue/under/cavewet)
-"tRc" = (
-/obj/effect/mapping_helpers/door/locker,
-/obj/structure/mineral_door/wood/violet,
-/obj/effect/mapping_helpers/door/access/manor/mage,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/closed/wall/mineral/roofwall/center,
-/area/rogue/indoors/town)
 "tRt" = (
 /obj/structure/closet/crate/drawer{
 	pixel_y = 6
@@ -94175,7 +94131,7 @@ mUs
 vgJ
 vgJ
 vgJ
-jCJ
+vgJ
 rnJ
 sVP
 nnK
@@ -176791,7 +176747,7 @@ ago
 oZg
 oZg
 oZg
-tRc
+oZg
 oZg
 oZg
 oZg
@@ -177604,7 +177560,7 @@ oZg
 oZg
 oZg
 nQk
-klF
+bOg
 jOd
 acx
 acx
