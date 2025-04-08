@@ -41,6 +41,9 @@
 	to_chat(H, "<span class='info'>I can gesture in thieves' cant with ,t before my speech.</span>")
 	if(GLOB.thieves_guild_doors.len > 0)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(know_thieves_guild_door_password), H), 30)
+	if(H.gender == MALE)
+		if(H.dna?.species.id == "human")
+			H.dna.species.soundpack_m = new /datum/voicepack/male/zeth()
 
 
 /datum/outfit/job/thief/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

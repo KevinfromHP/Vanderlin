@@ -8334,9 +8334,8 @@
 	pixel_y = 7;
 	pixel_x = 3
 	},
-/obj/machinery/light/fueled/oven/east{
-	pixel_x = 0;
-	pixel_y = 32
+/obj/machinery/light/fueled/oven{
+	pixel_y = 31
 	},
 /turf/open/floor/ruinedwood/spiralfade,
 /area/rogue/under/town/basement/thieves_guild/bar)

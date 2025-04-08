@@ -24,7 +24,7 @@
 		H.mind.adjust_skillrank(/datum/skill/combat/axesmaces, pick(1, 1, 2), TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/bows, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/traps, 2, TRUE)
