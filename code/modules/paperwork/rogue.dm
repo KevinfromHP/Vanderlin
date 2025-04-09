@@ -442,29 +442,36 @@
 	info += "</div>"
 
 
-/obj/item/paper/scroll/sell_price_changes
-	name = "updated purchasing prices"
+/obj/item/paper/scroll/mercantile
+	name = "Mercator's Guild Document"
 	icon_state = "contractsigned"
 	old_render = FALSE
-
-	var/list/sell_prices
+	var/doc_type "Mercator's Guild"
 	var/writers_name
 	var/faction
 
-/obj/item/paper/scroll/sell_price_changes/New(loc, list/prices, faction_name)
+/obj/item/paper/scroll/mercantile/New(loc, faction_name)
 	. = ..()
-
+	writers_name = pick( world.file2list("strings/rt/names/human/humnorm.txt") )
 	faction = faction_name
 	if(!faction)
-		faction = pick("Heartfelt", "Zybantine", "Grenzelhoft", "Kingsfield")
-
-	sell_prices = prices
-	if(!length(sell_prices))
-		sell_prices = generated_test_data()
-	writers_name = pick( world.file2list("strings/rt/names/human/humnorm.txt") )
+		faction = pick("Heartfelt", "The Zybantine Empire", "Grenzelhoft", "Kingsfield", "Valorian Republias", "Rockhill")
 	rebuild_info()
 
-/obj/item/paper/scroll/sell_price_changes/update_icon_state()
+/obj/item/paper/scroll/mercantile/proc/rebuild_info()
+	info = null
+	info += "<div style='vertical-align:top'>"
+	info += "<h2 style='color:#06080F;font-family:\"Segoe Script\"'>[doc_type]</h2>"
+	info += "<hr/>"
+	get_document_info()
+	info += "<br/></font>"
+	info += "<font size=\"2\" face=\"[FOUNTAIN_PEN_FONT]\" color=#27293f>[writers_name] - Shipwright of [faction]</font>"
+	info += "</div>"
+
+/obj/item/paper/scroll/mercantile/proc/get_document_info()
+	return
+
+/obj/item/paper/scroll/mercantile/update_icon_state()
 	if(open)
 		icon_state = "contractsigned"
 		name = initial(name)
@@ -473,12 +480,38 @@
 		name = "scroll"
 
 
-/obj/item/paper/scroll/sell_price_changes/proc/rebuild_info()
-	info = null
-	info += "<div style='vertical-align:top'>"
-	info += "<h2 style='color:#06080F;font-family:\"Segoe Script\"'>Purchasing Prices</h2>"
-	info += "<hr/>"
+/obj/item/paper/scroll/mercantile/trade_request
+	doc_type = "Trade Request"
+	var/list/requests
+	var/reward
 
+/obj/item/paper/scroll/mercantile/trade_request/New(loc, faction_name, list/trade_request, coin)
+	requests = trade_request
+	reward = coin
+	. = ..()
+
+/obj/item/paper/scroll/mercantile/trade_request/get_document_info()
+	if(requests.len)
+		info += "<ul>"
+		for(var/datum/trade_request/request in requests)
+			info += "<li style='color:#06080F;font-size:11px;font-family:\"Segoe Script\"'>[requests[request]] x [request]</li><br/>"
+			info += "<br>"
+		info += "<li style='color:#06080F;font-size:11px;font-family:\"Segoe Script\"'>[reward] mammon paid upon successful delivery.</li><br/>"
+		info += "<br><li style='color:#06080F;font-size:11px;font-family:\"Segoe Script\"'>Deliver within a container containing this parchment as well as the requested items.</li><br/>"
+		info += "</ul>"
+
+
+/obj/item/paper/scroll/mercantile/sell_price_changes
+	doc_type = "Purchasing Prices"
+	var/list/sell_prices
+
+/obj/item/paper/scroll/mercantile/sell_price_changes/New(loc, faction_name, list/prices)
+	sell_prices = prices
+	if(!length(sell_prices))
+		sell_prices = generated_test_data()
+	. = ..()
+
+/obj/item/paper/scroll/mercantile/sell_price_changes/get_document_info()
 	if(sell_prices.len)
 		info += "<ul>"
 		for(var/atom/type_path as anything in sell_prices)
@@ -486,14 +519,7 @@
 			info += "<li style='color:#06080F;font-size:9px;font-family:\"Segoe Script\"'>[initial(type_path.name)] [prices[1]] > [prices[2]] mammons</li><br/>"
 		info += "</ul>"
 
-	info += "<br/></font>"
-
-	info += "<font size=\"2\" face=\"[FOUNTAIN_PEN_FONT]\" color=#27293f>[writers_name] Shipwright of [faction]</font>"
-
-	info += "</div>"
-
-/obj/item/paper/scroll/sell_price_changes/proc/generated_test_data()
-
+/obj/item/paper/scroll/mercantile/sell_price_changes/proc/generated_test_data()
 	var/list/prices = list()
 	for(var/i = 1 to rand(2, 4))
 		var/datum/supply_pack/pack = pick(SSmerchant.supply_packs)

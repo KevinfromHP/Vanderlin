@@ -5,6 +5,8 @@ SUBSYSTEM_DEF(merchant)
 	runlevels = RUNLEVEL_SETUP | RUNLEVEL_GAME
 
 	var/list/supply_packs = list()
+	var/list/trade_packs = list()
+
 	var/list/supply_cats = list()
 	var/list/shoppinglist = list()
 	var/list/requestlist = list()
@@ -33,6 +35,11 @@ SUBSYSTEM_DEF(merchant)
 		supply_packs[P.type] = P
 		if(!(P.group in supply_cats))
 			supply_cats += P.group
+	for(var/tradePack in subtypesof(/datum/trade_pack))
+		var/datum/trade_pack/T = new tradePack()
+		if(!T.contains)
+			continue
+		trade_packs[T.type] = T
 	for(var/faction in typesof(/datum/world_faction))
 		var/datum/world_faction/made = new faction()
 		world_factions |= made

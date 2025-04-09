@@ -21,6 +21,21 @@
 #define PURCHASE_ALCHEMIST (1<<1)
 #define PURCHASE_SMUGGLER (1<<2)
 
+#define TRADE_FACTION_KINGSFIELD	"Kingsfield"
+#define TRADE_FACTION_ZYBANTINE		"Zybantine Empire"
+#define TRADE_FACTION_GRENZELHOFT	"Grenzelhoft"
+#define TRADE_FACTION_VALORIAN		"Valorian Republias"
+#define TRADE_FACTION_HEARTFELT		"Heartfelt"
+#define TRADE_FACTION_ROCKHILL		"Rockhill"
+#define TRADE_ALL	list(
+	TRADE_FACTION_KINGSFIELD,
+	TRADE_FACTION_ZYBANTINE,
+	TRADE_FACTION_GRENZELHOFT,
+	TRADE_FACTION_VALORIAN,
+	TRADE_FACTION_HEARTFELT,
+	TRADE_FACTION_ROCKHILL
+)
+
 #define POD_STYLES list(\
 	list("supplypod", "supply pod", "A Nanotrasen supply drop pod."),\
 	list("bluespacepod", "bluespace supply pod" , "A Nanotrasen Bluespace supply pod. Teleports back to CentCom after delivery."),\

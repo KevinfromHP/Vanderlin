@@ -69,7 +69,7 @@
 	var/list/sell_data = list()
 	for(var/atom/list_type as anything in price_change_manifest)
 		if(index_num >= 4)
-			SSmerchant.sending_stuff |= new /obj/item/paper/scroll/sell_price_changes(null, sell_data, faction_name)
+			SSmerchant.sending_stuff |= new /obj/item/paper/scroll/mercantile/sell_price_changes(null, faction_name, sell_data)
 			index_num = 0
 			sell_data = list()
 			continue
@@ -78,7 +78,7 @@
 		sell_data[list_type] = prices.Copy()
 
 	if(length(sell_data))
-		SSmerchant.sending_stuff |= new /obj/item/paper/scroll/sell_price_changes(null, sell_data, faction_name)
+		SSmerchant.sending_stuff |= new /obj/item/paper/scroll/mercantile/sell_price_changes(null, faction_name, sell_data)
 
 
 /datum/world_faction/proc/return_sell_modifier(atom/sell_type)
