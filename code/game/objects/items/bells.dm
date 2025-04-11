@@ -152,26 +152,27 @@
 	slot_flags = ITEM_SLOT_HIP
 	force = 5
 	hitsound = 'sound/items/bsmith1.ogg'
-	COOLDOWN_DECLARE(smuggler_bell_ring)
+
 
 /obj/item/smuggler_bell/attack_self(mob/user)
 	. = ..()
 	if(!istype(get_area(user.loc), /area/rogue/under/town/basement/thieves_guild/cove))
 		to_chat(user, span_warning("I need to be in the cove to use this."))
 		return
-	if(!COOLDOWN_FINISHED(src, smuggler_bell_ring))
-		to_chat(user, span_warning("The boat can't be called for another [COOLDOWN_TIMELEFT(src, smuggler_bell_ring)/10] seconds."))
+	if(!COOLDOWN_FINISHED(SSmerchant, smuggler_ring_bell))
+		to_chat(user, span_warning("The boat can't be called for another [ceil(COOLDOWN_TIMELEFT(SSmerchant, smuggler_ring_bell)/10)] seconds."))
 		return
 	playsound(src.loc, 'sound/misc/smugglerbell.ogg', 50, 1)
 
 	user.visible_message("<span class='notice'>[user] rings [src].</span>", span_notice("You ring [src]."))
-	for(var/mob/M in view(10, src.loc))
-		if(M != user && M.client)
-			to_chat(M, "<span class='notice'>You hear a bell ringing faintly.</span>")
-
+	for(var/mob/living/player in GLOB.player_list)
+		if(!isdead(player) && !isbrain(player) && get_dist(player, src.loc) < 20)
+			if(player != user && player.client)
+				to_chat(player, "<span class='notice'>You hear a bell ringing faintly.</span>")
+				playsound(get_turf(player), 'sound/misc/smugglerbell.ogg', 35)
 	if(SSmerchant.fence_boat)
 		if(!SSmerchant.fence_docked && SSmerchant.fence_boat.check_living())
 			SSmerchant.send_fence_ship_back()
 		else if(SSmerchant.fence_docked)
 			SSmerchant.prepare_fence_shipment()
-	COOLDOWN_START(src, smuggler_bell_ring, 10 SECONDS)
+	COOLDOWN_START(SSmerchant, smuggler_ring_bell, 120 SECONDS)

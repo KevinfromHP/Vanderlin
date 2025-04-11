@@ -8,24 +8,24 @@ SUBSYSTEM_DEF(merchant)
 	var/list/trade_packs = list()
 
 	var/list/supply_cats = list()
-	var/list/shoppinglist = list()
-	var/list/requestlist = list()
-	var/list/fencerequestlist = list()
 	var/list/orderhistory = list()
 
-
-	var/list/trade_requests = list()
-	var/list/sending_stuff = list()
-
 	var/datum/lift_master/tram/cargo_boat
+	var/list/requestlist = list()
+	var/list/sending_stuff = list()
 	var/cargo_docked = TRUE
+
+	var/datum/lift_master/tram/fence_boat
+	var/list/fencerequestlist = list()
+	var/fence_docked = TRUE
 
 	var/list/world_factions = list()
 
 	var/list/staticly_setup_types = list()
 
-	var/datum/lift_master/tram/fence_boat
-	var/fence_docked = TRUE
+	COOLDOWN_DECLARE(ring_bell)
+	COOLDOWN_DECLARE(outsider_ring_bell)
+	COOLDOWN_DECLARE(smuggler_ring_bell)
 
 /datum/controller/subsystem/merchant/Initialize(timeofday)
 	for(var/pack in subtypesof(/datum/supply_pack))
@@ -56,25 +56,17 @@ SUBSYSTEM_DEF(merchant)
 	draw_selling_changes()
 
 	cargo_boat.show_tram()
+	cargo_boat.try_process_order()
 	var/list/boat_spaces = list()
 	for(var/obj/structure/industrial_lift/lift in cargo_boat.lift_platforms)
 		boat_spaces |= lift.locs
-	for(var/request in requestlist)
-		var/atom/movable/new_item
-		new_item = new request
-		var/turf/boat_turf = boat_spaces[rand(1,boat_spaces.len)]
-		new_item.forceMove(boat_turf)
-		for(var/obj/structure/industrial_lift/lift in cargo_boat.lift_platforms)
-			lift.held_cargo |= new_item
-
 	for(var/atom/movable/item as anything in sending_stuff)
 		var/turf/boat_turf = pick(boat_spaces)
 		if(ispath(item))
 			new item(boat_turf)
 		else
 			item.forceMove(boat_turf)
-
-	requestlist = list()
+	sending_stuff = list()
 	cargo_docked = FALSE
 	SEND_GLOBAL_SIGNAL(COMSIG_DISPATCH_CARGO, cargo_boat)
 
@@ -103,18 +95,7 @@ SUBSYSTEM_DEF(merchant)
 		return
 
 	fence_boat.show_tram()
-	var/list/boat_spaces = list()
-	for(var/obj/structure/industrial_lift/lift in fence_boat.lift_platforms)
-		boat_spaces |= lift.locs
-	for(var/request in fencerequestlist)
-		var/atom/movable/new_item
-		new_item = new request
-		var/turf/boat_turf = boat_spaces[rand(1,boat_spaces.len)]
-		new_item.forceMove(boat_turf)
-		for(var/obj/structure/industrial_lift/lift in fence_boat.lift_platforms)
-			lift.held_cargo |= new_item
-
-	fencerequestlist = list()
+	fence_boat.try_process_order(TRUE)
 	fence_docked = FALSE
 	SEND_GLOBAL_SIGNAL(COMSIG_DISPATCH_FENCE, fence_boat)
 

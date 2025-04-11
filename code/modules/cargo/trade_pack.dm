@@ -16,19 +16,23 @@
 /datum/trade_pack/New()
 	..()
 	if(!reward)
-		for(var/atom/movable/A in contains)
+		for(var/A in contains)
+			var/atom/movable/temp = new A()
 			var/amt = contains[A]
-			reward += A?.sellprice * 1.6 * (isnum(amt) ? amt : 1)
-	if(reward)
-		if(reward == initial(reward) && !static_reward)
-			var/na = max(round(reward * randomprice_factor, 1), 1)
-			reward = max(rand(reward-na, reward+na), 1)
+			reward += temp.sellprice * 1.5 * (isnum(amt) ? amt : 1)
+			qdel(temp)
+	if(!reward)
+		reward = 30
+	if(!static_reward)
+		var/na = max(round(reward * random_reward_factor, 1), 1)
+		reward = max(rand(reward-na, reward+na), 1)
 
 
 /datum/trade_pack/cheese
 	name = "Fine Cheese"
 	contains = list(/obj/item/reagent_containers/food/snacks/cheddar/aged = 2)
 
+/*
 /datum/trade_pack/fruit
 	name = "Fruits"
 	reward = 90
@@ -41,13 +45,14 @@
 
 /datum/trade_pack/vegetables
 	name = "Vegetables"
+	reward = 90
 	contains = list(
 			/obj/item/reagent_containers/food/snacks/produce/cabbage = 6,
 			/obj/item/reagent_containers/food/snacks/produce/potato = 6,
 			/obj/item/reagent_containers/food/snacks/produce/onion = 6,
 			/obj/item/reagent_containers/food/snacks/produce/turnip = 6
 	)
-
+*/
 
 /datum/trade_pack/mining
 	name = "Mining Supplies"
@@ -56,10 +61,12 @@
 		/obj/item/clothing/head/helmet/leather/minershelm = 3,
 		/obj/item/rope = 3
 	)
+	trade_limit = 2
 
 
 /datum/trade_pack/blacksteel
 	name = "Set of Blacksteel Armor"
+	reward = 300
 	contains = list(
 		/obj/item/clothing/head/helmet/blacksteel/bucket = 1,
 		/obj/item/clothing/armor/plate/blkknight = 1,
@@ -67,6 +74,7 @@
 		/obj/item/clothing/pants/platelegs/blk = 1,
 		/obj/item/clothing/shoes/boots/armor/blkknight = 1
 	)
+	trade_limit = 1
 	triumphs = 2
 
 
@@ -74,22 +82,27 @@
 	name = "Royal Gown"
 	reward = 175
 	contains = list(/obj/item/clothing/shirt/dress/gown = 1)
+	trade_limit = 1
 
 /datum/trade_pack/royal_gown/summer
 	contains = list(/obj/item/clothing/shirt/dress/gown/summergown = 1)
+	trade_limit = 1
 
 /datum/trade_pack/royal_gown/fall
 	contains = list(/obj/item/clothing/shirt/dress/gown/fallgown = 1)
+	trade_limit = 1
 
 /datum/trade_pack/royal_gown/winter
 	contains = list(/obj/item/clothing/shirt/dress/gown/wintergown = 1)
+	trade_limit = 1
 
 /datum/trade_pack/wedding
 	name = "Wedding Supplies"
 	contains = list(
 		/obj/item/clothing/head/peaceflower = 2,
-		/obj/item/statue/silver = 2
+		/obj/item/clothing/ring/silver = 2
 	)
+	trade_limit = 1
 
 /datum/trade_pack/rings
 	name = "Rings"
@@ -107,9 +120,9 @@
 	)
 	triumphs = 0
 
-/*
 /datum/trade_pack/kobold
-	name = "A Kobold"
-	contains = list(/mob/living/carbon/human/species/kobold)
+	name = "Kobold"
+	contains = list(/mob/living/carbon/human/species/kobold = 1)
+	reward = 100
 	triumphs = 3
-*/
+	trade_limit = 1

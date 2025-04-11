@@ -30,8 +30,6 @@ GLOBAL_LIST_EMPTY(active_lifts_by_type)
 	///this is so cursed
 	var/ignore_pathing_obstacles = FALSE
 	var/list/objects_pre_alpha = list()
-	///these are container types that start on the tram and can still be used for selling.
-	var/list/initial_container_whitelist = list(/obj/structure/closet/crate/chest,)
 	///this is our held_cargo
 	var/list/held_cargo = list()
 
@@ -613,85 +611,34 @@ GLOBAL_LIST_EMPTY(active_lifts_by_type)
 			moving_platform.obj_flags |= BLOCK_Z_OUT_DOWN
 			moving_platform.alpha = 255
 
-// VANDERLIN: this entire system is archaic. Needs to be reworked in the future
 /datum/lift_master/tram/proc/try_process_order(fence = FALSE)
+	var/obj/structure/closet/crate/spawnOverride = null
 	if(fence)
-		return
-	var/total_coin_value = 0
-	var/list/requested_supplies = list()
-	var/list/request_fufillment = list()
-	for(var/obj/structure/industrial_lift/tram/platform in lift_platforms)
-		for(var/atom/movable/listed_atom in platform.lift_load)
-			if(!fence)
-				for(var/datum/trade_request/request in SSmerchant.trade_requests)
-					if(listed_atom.type == request.input_atom || (ispath(request.input_atom, /obj/item/reagent_containers/glass/bottle) && istype(listed_atom, /obj/item/reagent_containers/glass/bottle)))
-						if(istype(listed_atom, /obj/item/reagent_containers/glass/bottle))
-							var/obj/item/reagent_containers/glass/bottle/input_bottle = request.input_atom
-							if(initial(input_bottle.list_reagents))
-								var/passed = FALSE
-								var/list/input_reagents = initial(input_bottle.list_reagents)
-								for(var/datum/reagent/reagent as anything in initial(input_bottle.list_reagents))
-									var/obj/item/reagent_containers/glass/bottle/bottle = listed_atom
-									if(bottle.reagents.has_reagent(reagent, input_reagents[reagent] * 0.5))
-										passed = TRUE
-								if(!passed)
-									continue
-						if(!(request in request_fufillment))
-							request_fufillment |= request
-							request_fufillment[request] = list()
-						request_fufillment[request] |= listed_atom
-						if(length(request_fufillment[request]) >= request.input_amount)
-							for(var/atom/atom in request_fufillment[request])
-								request_fufillment[request] -= atom
-								qdel(atom)
-							for(var/i = 1 to request.output_amount)
-								SSmerchant.sending_stuff += request.output_atom
-							request.total_trade--
-							if(request.total_trade <= 0)
-								SSmerchant.trade_requests -= request
-								qdel(request)
+		findDinghy:
+			for(var/obj/structure/industrial_lift/tram/platform in lift_platforms)
+				for(var/atom/movable/listed_atom in platform.lift_load)
+					if(istype(listed_atom, /obj/structure/closet/crate/dinghy))
+						spawnOverride = listed_atom
+						break findDinghy
 
-	for(var/obj/structure/industrial_lift/tram/platform in lift_platforms)
-		for(var/atom/movable/listed_atom in platform.lift_load)
-			if(istype(listed_atom, /obj/item/paper/scroll/cargo))
-				var/obj/item/paper/scroll/cargo/cargo_manifest = listed_atom
-				requested_supplies += cargo_manifest.orders.Copy()
-				qdel(listed_atom)
-
-			if(istype(listed_atom, /obj/item/coin))
-				total_coin_value += listed_atom.get_real_price()
-				qdel(listed_atom)
-
-			for(var/atom/movable/inside in listed_atom.get_all_contents())
-				if(inside == listed_atom)
-					continue
-				if(istype(inside, /obj/item/paper/scroll/cargo))
-					var/obj/item/paper/scroll/cargo/cargo_manifest = inside
-					requested_supplies += cargo_manifest.orders.Copy()
-					qdel(inside)
-
-				if(istype(inside, /obj/item/coin))
-					total_coin_value += inside.get_real_price()
-					qdel(inside)
-
-		if(!length(requested_supplies))
-			spawn_coins(total_coin_value, platform)
-			add_abstract_elastic_data(ELASCAT_ECONOMY, ELASDATA_MAMMONS_GAINED, total_coin_value)
-			continue
-
-		for(var/datum/supply_pack/requested as anything in requested_supplies)
-			var/modifier = 1
-			if(fence)
-				if(!requested.contraband)
-					modifier = 1.5
-			if(total_coin_value >= FLOOR(requested.cost * modifier, 1))
-				total_coin_value -= FLOOR(requested.cost * modifier, 1)
-				SSmerchant.requestlist |= requested.contains
-				add_abstract_elastic_data(ELASCAT_ECONOMY, ELASDATA_MAMMONS_SPENT, FLOOR(requested.cost * modifier, 1))
-
-		spawn_coins(total_coin_value, platform)
-		add_abstract_elastic_data(ELASCAT_ECONOMY, ELASDATA_MAMMONS_GAINED, total_coin_value)
-
+	var/list/requestList = fence ? SSmerchant.fencerequestlist : SSmerchant.requestlist
+	var/list/plaform_spaces = list()
+	for(var/obj/structure/industrial_lift/platform in lift_platforms)
+		plaform_spaces |= platform.locs
+	for(var/request in requestList)
+		var/turf/platform_turf = spawnOverride ? spawnOverride : plaform_spaces[rand(1,plaform_spaces.len)]
+		var/atom/movable/new_item
+		if(istype(request, /datum/supply_pack))
+			var/datum/supply_pack/pack = request
+			new_item = pack.generate(platform_turf)
+		else
+			new_item = new request(platform_turf)
+		for(var/obj/structure/industrial_lift/lift in lift_platforms)
+			lift.held_cargo |= new_item
+	if(fence)
+		SSmerchant.fencerequestlist = list()
+	else
+		SSmerchant.requestlist = list()
 
 /datum/lift_master/tram/proc/spawn_coins(total_coin_value, obj/structure/industrial_lift/tram/platform)
 	if(!total_coin_value)
@@ -755,18 +702,20 @@ GLOBAL_LIST_EMPTY(active_lifts_by_type)
 			if(!(resolved_contents in platform.lift_load))
 				continue
 
-			original_contents += resolved_contents
+			original_contents |= resolved_contents
 
-
-		var/datum/shipping_sell_handler/sell_handler = new()
+		var/datum/shipping_handler/shipping_handler = new()
 		if(fence)
-			sell_handler.sell_modifer = 0.75
+			shipping_handler.sell_modifer = 0.75
 		for(var/atom/movable/listed_atom in platform.lift_load)
 			if(listed_atom in original_contents && !istype(listed_atom, /obj/structure/closet/crate/chest))
 				continue
-			sell_handler.sell_atom(listed_atom)
-
-		if(length(sell_handler.sold_items) && !fence)
-			sell_handler.generate_manifest(platform)
-		spawn_coins(sell_handler.total_coin_value, platform)
-		qdel(sell_handler)
+			if(!fence)
+				shipping_handler.find_trade_request(listed_atom)
+			shipping_handler.gather_sellable(listed_atom)
+		shipping_handler.sell_items()
+		if(length(shipping_handler.sold_items) && !fence)
+			shipping_handler.generate_manifest(platform)
+		spawn_coins(shipping_handler.total_coin_value, platform)
+		add_abstract_elastic_data(ELASCAT_ECONOMY, ELASDATA_MAMMONS_GAINED, shipping_handler.total_coin_value)
+		qdel(shipping_handler)

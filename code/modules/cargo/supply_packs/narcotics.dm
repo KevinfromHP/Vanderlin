@@ -3,6 +3,7 @@
 	crate_name = "merchant guild's crate"
 	crate_type = /obj/structure/closet/crate/chest/merchant
 	contraband = TRUE
+	small_item = TRUE
 
 /datum/supply_pack/narcotics/sigs
 	name = "Pipe Weed Zig"
@@ -39,12 +40,6 @@
 	cost = 30
 	purchase_flags = PURCHASE_SMUGGLER
 	contains = /obj/item/reagent_containers/powder/moondust
-
-/datum/supply_pack/narcotics/soap
-	name = "Herbal Soap"
-	cost = 20
-	purchase_flags = PURCHASE_ALCHEMIST
-	contains = /obj/item/bath/soap
 
 /datum/supply_pack/narcotics/perfume
 	name = "Perfume"

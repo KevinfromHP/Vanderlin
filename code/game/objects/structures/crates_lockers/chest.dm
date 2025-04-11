@@ -35,7 +35,7 @@
 	masterkey = TRUE
 
 /obj/structure/closet/crate/chest/thief
-	lockid = "thief"
+	lockid = "thievesguild"
 	locked = TRUE
 	masterkey = TRUE
 

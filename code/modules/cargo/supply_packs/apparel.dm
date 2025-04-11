@@ -2,6 +2,7 @@
 	group = "Apparel"
 	crate_name = "merchant guild's crate"
 	crate_type = /obj/structure/closet/crate/chest/merchant
+	small_item = TRUE
 
 /datum/supply_pack/apparel/hood
 	name = "Shoulder Hood"

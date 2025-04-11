@@ -98,15 +98,3 @@
 
 	open_sound = 'sound/foley/cartdump.ogg'
 	close_sound = 'sound/foley/cartadd.ogg'
-
-//second half of the dinghy. Not a storage container.
-/obj/structure/fake_dinghy
-	name = "dinghy"
-	desc = ""
-
-	density = TRUE
-	climbable = TRUE
-	max_integrity = 1200
-	anchored = TRUE
-
-	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF

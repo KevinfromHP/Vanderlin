@@ -79,12 +79,7 @@
 		else
 			say("Not enough coin, stranger!" )
 			return
-		if(ispath(picked_pack.contains))
-			var/obj/item/packitem = picked_pack.contains
-			SSmerchant.fencerequestlist += packitem
-		else
-			for(var/in_pack in picked_pack.contains)
-				SSmerchant.fencerequestlist += in_pack
+		SSmerchant.fencerequestlist += picked_pack
 		say("I'll add it to your next shipment, mate." )
 	if(href_list["change"])
 		if(budget > 0)

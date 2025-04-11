@@ -446,7 +446,7 @@
 	name = "Mercator's Guild Document"
 	icon_state = "contractsigned"
 	old_render = FALSE
-	var/doc_type "Mercator's Guild"
+	var/doc_type = "Mercator's Guild"
 	var/writers_name
 	var/faction
 
@@ -454,8 +454,10 @@
 	. = ..()
 	writers_name = pick( world.file2list("strings/rt/names/human/humnorm.txt") )
 	faction = faction_name
+	if(islist(faction))
+		faction = pick(faction)
 	if(!faction)
-		faction = pick("Heartfelt", "The Zybantine Empire", "Grenzelhoft", "Kingsfield", "Valorian Republias", "Rockhill")
+		faction = pick(TRADE_FACTION_ALL)
 	rebuild_info()
 
 /obj/item/paper/scroll/mercantile/proc/rebuild_info()
@@ -484,20 +486,29 @@
 	doc_type = "Trade Request"
 	var/list/requests
 	var/reward
+	var/triumphs
 
-/obj/item/paper/scroll/mercantile/trade_request/New(loc, faction_name, list/trade_request, coin)
-	requests = trade_request
-	reward = coin
+/obj/item/paper/scroll/mercantile/trade_request/New(loc, faction_name, list/requests, reward, triumphs)
+	src.requests = requests
+	src.reward = reward
+	src.triumphs = triumphs
 	. = ..()
 
 /obj/item/paper/scroll/mercantile/trade_request/get_document_info()
 	if(requests.len)
 		info += "<ul>"
-		for(var/datum/trade_request/request in requests)
-			info += "<li style='color:#06080F;font-size:11px;font-family:\"Segoe Script\"'>[requests[request]] x [request]</li><br/>"
-			info += "<br>"
-		info += "<li style='color:#06080F;font-size:11px;font-family:\"Segoe Script\"'>[reward] mammon paid upon successful delivery.</li><br/>"
-		info += "<br><li style='color:#06080F;font-size:11px;font-family:\"Segoe Script\"'>Deliver within a container containing this parchment as well as the requested items.</li><br/>"
+		for(var/item in requests)
+			if(ispath(item))
+				var/atom/fakeItem = new item()
+				var/itemName = fakeItem.name
+				if(ishuman(fakeItem))
+					var/mob/living/carbon/human/H = fakeItem
+					itemName = H.dna.species.name
+				qdel(fakeItem)
+				info += "<li style='color:#06080F;font-size:8px;font-family:\"Segoe Script\"'>[requests[item]] x [itemName]</li><br/>"
+				info += "<br>"
+		info += "<li style='color:#06080F;font-size:8px;font-family:\"Segoe Script\"'>[reward] mammon paid upon successful delivery.</li><br/>"
+		info += "<br><li style='color:#06080F;font-size:8px;font-family:\"Segoe Script\"'>Deliver within a container containing this parchment as well as the requested items.</li><br/>"
 		info += "</ul>"
 
 

@@ -2,6 +2,7 @@
 	group = "Weapons"
 	crate_name = "merchant guild's crate"
 	crate_type = /obj/structure/closet/crate/chest/merchant
+	small_item = TRUE
 
 /datum/supply_pack/weapons/shortsword
 	name = "Iron Short Sword"

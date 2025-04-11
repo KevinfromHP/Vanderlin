@@ -2,6 +2,7 @@
 	group = "Tools"
 	crate_name = "merchant guild's crate"
 	crate_type = /obj/structure/closet/crate/chest/merchant
+	small_item = TRUE
 
 /datum/supply_pack/tools/rope
 	name = "Rope"
@@ -30,6 +31,7 @@
 /datum/supply_pack/tools/needle
 	name = "Sewing Needle"
 	cost = 10
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_ALCHEMIST
 	contains = /obj/item/needle
 
 /datum/supply_pack/tools/sack
@@ -41,7 +43,6 @@
 /datum/supply_pack/tools/sleepingbag
 	name = "Sleeping Bag"
 	cost = 12
-	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/sleepingbag
 
 /datum/supply_pack/tools/scroll
@@ -76,7 +77,6 @@
 /datum/supply_pack/tools/lamptern
 	name = "Iron Lamptern"
 	cost = 20
-	purchase_flags = PURCHASE_MERCHANT | PURCHASE_SMUGGLER
 	contains = /obj/item/flashlight/flare/torch/lantern
 
 /datum/supply_pack/tools/pick
@@ -134,6 +134,7 @@
 	contains = list(/obj/item/reagent_containers/glass/alchemical,/obj/item/reagent_containers/glass/alchemical,/obj/item/reagent_containers/glass/alchemical,
 	/obj/item/reagent_containers/glass/alchemical,/obj/item/reagent_containers/glass/alchemical,/obj/item/reagent_containers/glass/alchemical,
 	/obj/item/reagent_containers/glass/alchemical,/obj/item/reagent_containers/glass/alchemical,/obj/item/reagent_containers/glass/alchemical)
+	small_item = FALSE
 
 /datum/supply_pack/tools/bucket
 	name = "Bucket"
@@ -158,6 +159,7 @@
 	/obj/item/reagent_containers/glass/cup,
 	/obj/item/kitchen/fork,
 	/obj/item/kitchen/spoon)
+	small_item = FALSE
 
 /datum/supply_pack/tools/wpipe
 	name = "Westman Pipe"
@@ -184,6 +186,18 @@
 	name = "Premium Fishing hook"
 	cost = 25
 	contains = /obj/item/fishing/hook/deluxe
+
+/datum/supply_pack/tools/soap
+	name = "Soap"
+	cost = 6
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_ALCHEMIST
+	contains = /obj/item/bath/soap
+
+/datum/supply_pack/tools/bath_soap
+	name = "Herbal Soap"
+	cost = 20
+	purchase_flags = PURCHASE_ALCHEMIST
+	contains = /obj/item/bath/soap
 
 /datum/supply_pack/tools/prarml
 	name = "Prosthetic Left Wooden Arm"
@@ -219,13 +233,16 @@
 	name = "Set of Glassware Cups"
 	cost = 28 // These glasses are really expensive
 	contains = list(/obj/item/reagent_containers/glass/cup/glassware, /obj/item/reagent_containers/glass/cup/glassware, /obj/item/reagent_containers/glass/cup/glassware)
+	small_item = FALSE
 
 /datum/supply_pack/tools/glassware_set
 	name = "Set of Glassware Wine Glasses"
 	cost = 34 // These glasses are really expensive
 	contains = list(/obj/item/reagent_containers/glass/cup/glassware/wineglass, /obj/item/reagent_containers/glass/cup/glassware/wineglass, /obj/item/reagent_containers/glass/cup/glassware/wineglass)
+	small_item = FALSE
 
 /datum/supply_pack/tools/glassware_set
 	name = "Set of Glassware Shot Glasses"
 	cost = 26 // These glasses are really expensive
 	contains = list(/obj/item/reagent_containers/glass/cup/glassware/shotglass, /obj/item/reagent_containers/glass/cup/glassware/shotglass, /obj/item/reagent_containers/glass/cup/glassware/shotglass,)
+	small_item = FALSE
