@@ -29,40 +29,47 @@
 		if(inside == A)
 			continue
 		find_trade_request(inside) //recursive call!
-		for(var/requestType in trade_request.requests)
-			request_collector[requestType] = list()
+		if(trade_request)
+			for(var/requestType in trade_request.requests)
+				request_collector[requestType] = list()
 
 /datum/shipping_handler/proc/gather_sellable(atom/movable/atom_to_sell)
-	if(!atom_to_sell.sellprice) //This will exclude most mobs and the possessions
-		return
+	if(ishuman(atom_to_sell))
+		var/mob/living/carbon/human/H = atom_to_sell
+		if(!(H.dna.species.name == "Kobold" || H.dna.species.name == "Goblin"))
+			return
 	for(var/atom/movable/inside in atom_to_sell.get_all_contents())
 		if(inside == atom_to_sell)
 			continue
 		gather_sellable(inside) //recursive call!
-	if(atom_to_sell.type in sell_blacklist)
-		return
+	for(var/blacklistedType in sell_blacklist)
+		if(istype(atom_to_sell, blacklistedType))
+			return
 
-	if(trade_request)
+	if(trade_request?.requests)
 		var/aType = atom_to_sell.type
 		var/list/subCollection = request_collector[aType]
 		//if the type is in the requests, it's not already in the list, and the list for this item isn't full yet
 		//on the off chance someone has tried to sell unrelated items in the same crate, this will default it to normal selling.
-		if(aType in request_collector && !(atom_to_sell in subCollection) && subCollection.len <  trade_request.requests[aType])
-			//if it's a bottle, check to see it's filled enough
-			if(istype(atom_to_sell, /obj/item/reagent_containers/glass/bottle))
-				var/obj/item/reagent_containers/glass/bottle/input_bottle = atom_to_sell
-				if(initial(input_bottle.list_reagents))
-					var/passed = FALSE
-					var/list/input_reagents = initial(input_bottle.list_reagents)
-					for(var/datum/reagent/reagent as anything in initial(input_bottle.list_reagents))
-						var/obj/item/reagent_containers/glass/bottle/bottle = atom_to_sell
-						if(bottle.reagents.has_reagent(reagent, input_reagents[reagent] * 0.5))
-							passed = TRUE
-					if(!passed)
-						return
-			subCollection |= atom_to_sell
-			return
-	items_to_sell |= atom_to_sell
+		if(aType in request_collector)
+			if(!(atom_to_sell in subCollection))
+				if(subCollection?.len < trade_request.requests[aType])
+					//if it's a bottle, check to see it's filled enough
+					if(istype(atom_to_sell, /obj/item/reagent_containers/glass/bottle))
+						var/obj/item/reagent_containers/glass/bottle/input_bottle = atom_to_sell
+						if(initial(input_bottle.list_reagents))
+							var/passed = FALSE
+							var/list/input_reagents = initial(input_bottle.list_reagents)
+							for(var/datum/reagent/reagent as anything in initial(input_bottle.list_reagents))
+								var/obj/item/reagent_containers/glass/bottle/bottle = atom_to_sell
+								if(bottle.reagents.has_reagent(reagent, input_reagents[reagent] * 0.5))
+									passed = TRUE
+							if(!passed)
+								return
+					subCollection |= atom_to_sell
+					return
+	if(atom_to_sell.sellprice)
+		items_to_sell |= atom_to_sell
 
 /**
  * atom_to_sell `</atom/movable/A>`: The item you want to sell. Includes contents. \

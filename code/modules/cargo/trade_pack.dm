@@ -104,25 +104,16 @@
 	)
 	trade_limit = 1
 
-/datum/trade_pack/rings
-	name = "Rings"
-	contains = list(
-		/obj/item/clothing/ring/gold = 3,
-		/obj/item/clothing/ring/silver = 3
-	)
-	triumphs = 0
-
 /datum/trade_pack/statue
-	name = "Statues"
+	name = "Statue"
 	contains = list(
-		/obj/item/statue/gold = 1,
-		/obj/item/statue/silver = 2
+		/obj/item/statue/gold = 1
 	)
 	triumphs = 0
 
 /datum/trade_pack/kobold
 	name = "Kobold"
 	contains = list(/mob/living/carbon/human/species/kobold = 1)
-	reward = 100
+	reward = 200
 	triumphs = 3
 	trade_limit = 1

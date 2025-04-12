@@ -495,7 +495,7 @@
 	. = ..()
 
 /obj/item/paper/scroll/mercantile/trade_request/get_document_info()
-	if(requests.len)
+	if(requests?.len)
 		info += "<ul>"
 		for(var/item in requests)
 			if(ispath(item))

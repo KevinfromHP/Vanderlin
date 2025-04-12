@@ -24,4 +24,4 @@
 		pack.trade_limit--
 	if(pack.trade_limit == 0)
 		SSmerchant.trade_packs.Remove(trade_pack)
-	SSmerchant.sending_stuff |= new /obj/item/paper/scroll/mercantile/trade_request(null, pack.faction, pack.contains, pack.reward, pack)
+	SSmerchant.sending_stuff |= new /obj/item/paper/scroll/mercantile/trade_request(null, pack.faction, pack.contains, pack.reward, pack.triumphs)

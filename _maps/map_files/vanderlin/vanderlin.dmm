@@ -548,7 +548,8 @@
 /obj/structure/industrial_lift/tram{
 	icon = null;
 	icon_state = null;
-	name = null
+	name = null;
+	horizontal_speed = 5
 	},
 /turf/open/water,
 /area/rogue/outdoors/river)
@@ -1902,6 +1903,13 @@
 	},
 /turf/open/transparent/openspace,
 /area/rogue/outdoors/town/roofs)
+"bcf" = (
+/obj/structure/industrial_lift/tram{
+	icon = null;
+	icon_state = null
+	},
+/turf/open/transparent/openspace,
+/area/rogue/outdoors/river)
 "bcs" = (
 /obj/machinery/light/fueled/hearth,
 /obj/item/reagent_containers/glass/bucket/pot,
@@ -2422,11 +2430,6 @@
 	dir = 8
 	},
 /area/rogue/under/town/caverogue)
-"btf" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/natural/glass/shard,
-/turf/open/floor/cobble,
-/area/rogue/under/town/sewer)
 "bty" = (
 /obj/structure/flora/grass/bush_meagre,
 /obj/structure/flora/grass,
@@ -4088,6 +4091,11 @@
 /obj/structure/fluff/wallclock,
 /turf/open/floor/concrete,
 /area/rogue/indoors/town/clocktower)
+"cur" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/wood/plain_alt,
+/turf/open/floor/cobble,
+/area/rogue/under/town/sewer)
 "cuB" = (
 /obj/structure/fluff/wallclock,
 /turf/open/floor/metal{
@@ -7223,6 +7231,10 @@
 /obj/machinery/light/fueled/wallfire/candle,
 /turf/open/floor/churchrough,
 /area/rogue/indoors/town/church/chapel)
+"ewB" = (
+/obj/effect/decal/cleanable/debris/glass,
+/turf/open/floor/dirt/road,
+/area/rogue/under/town/sewer)
 "ewM" = (
 /obj/structure/table/wood{
 	icon_state = "largetable";
@@ -16848,6 +16860,10 @@
 	},
 /turf/open/floor/carpet/green,
 /area/rogue/indoors/town)
+"kyR" = (
+/obj/effect/decal/cleanable/debris/glass,
+/turf/open/floor/cobble,
+/area/rogue/under/town/sewer)
 "kzc" = (
 /obj/machinery/light/fueled/wallfire/candle/l,
 /obj/machinery/light/fueled/wallfire/candle/l{
@@ -23485,10 +23501,6 @@
 	},
 /turf/open/floor/herringbone,
 /area/rogue/indoors/town/smithy)
-"oZP" = (
-/obj/structure/table/wood/plain_alt,
-/turf/open/floor/cobble,
-/area/rogue/under/town/sewer)
 "oZQ" = (
 /turf/open/water/river{
 	dir = 1
@@ -29447,7 +29459,8 @@
 /obj/structure/industrial_lift/tram{
 	icon = null;
 	icon_state = null;
-	name = null
+	name = null;
+	horizontal_speed = 5
 	},
 /obj/structure/closet/crate/dinghy,
 /turf/open/water,
@@ -30333,6 +30346,16 @@
 /obj/item/key/apothecary,
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/indoors/town)
+"tqK" = (
+/obj/structure/industrial_lift/tram{
+	icon = null;
+	icon_state = null
+	},
+/obj/effect/landmark/hammer/dev_text{
+	name = "Has to be here for tram calculation, do not remove."
+	},
+/turf/open/transparent/openspace,
+/area/rogue/outdoors/river)
 "tqX" = (
 /turf/open/floor/cobble,
 /area/rogue/indoors/town/magician)
@@ -37097,6 +37120,12 @@
 	icon_state = "greenstone"
 	},
 /area/rogue/under/town/basement)
+"xLn" = (
+/obj/item/natural/glass/shard,
+/turf/open/floor/tile{
+	icon_state = "greenstone"
+	},
+/area/rogue/under/town/sewer)
 "xLR" = (
 /obj/structure/bed/wool,
 /obj/item/bedsheet/pelt,
@@ -60429,7 +60458,7 @@ lfU
 wMD
 nMS
 pkl
-fyC
+ewB
 dWa
 avA
 ivs
@@ -60838,7 +60867,7 @@ rsU
 kDp
 jQz
 jQz
-fyC
+ewB
 mCL
 mnt
 lfU
@@ -61234,9 +61263,9 @@ cDP
 oGi
 dSp
 cDP
-oGi
+xLn
 ivs
-oZP
+ivs
 rsU
 kDp
 fyC
@@ -61437,10 +61466,10 @@ oGi
 lfU
 lqM
 oGi
-btf
 aTX
+cur
 lfU
-ivs
+kyR
 ivs
 ivs
 bUM
@@ -79917,7 +79946,7 @@ bVO
 xYa
 xYa
 xYa
-xYa
+tqK
 xYa
 xYa
 xYa
@@ -80119,7 +80148,7 @@ eIV
 sdC
 sdC
 bVO
-xYa
+bcf
 xYa
 xYa
 xYa

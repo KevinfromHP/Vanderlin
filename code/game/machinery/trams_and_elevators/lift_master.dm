@@ -642,9 +642,11 @@ GLOBAL_LIST_EMPTY(active_lifts_by_type)
 /datum/lift_master/tram/proc/spawn_coins(total_coin_value, obj/structure/industrial_lift/tram/platform)
 	if(!total_coin_value)
 		return
-
-	var/obj/structure/industrial_lift/tram/picked = pick(platform.moving_lifts)
-	var/turf/location = get_turf(picked)
+	var/turf/location
+	if(platform)
+		location = get_turf(platform)
+	else
+		location = get_turf(pick(platform.moving_lifts))
 
 	var/gold = floor(total_coin_value / 10)
 	total_coin_value %= 10
@@ -687,22 +689,18 @@ GLOBAL_LIST_EMPTY(active_lifts_by_type)
 	return TRUE
 
 /datum/lift_master/tram/proc/try_sell_items(fence = FALSE)
+	var/list/original_contents = list()
 	for(var/obj/structure/industrial_lift/tram/platform in lift_platforms)
-		var/list/atom/movable/original_contents = list()
 		for(var/datum/weakref/initial_contents_ref as anything in platform.initial_contents)
 			if(!initial_contents_ref)
 				continue
-
 			var/atom/movable/resolved_contents = initial_contents_ref.resolve()
-
 			if(!resolved_contents)
 				continue
+			if(!(resolved_contents in original_contents))
+				original_contents += resolved_contents
 
-			if(!(resolved_contents in platform.lift_load))
-				continue
-
-			original_contents += resolved_contents
-
+	for(var/obj/structure/industrial_lift/tram/platform in lift_platforms)
 		var/datum/shipping_handler/shipping_handler = new()
 		if(fence)
 			shipping_handler.sell_modifer = 0.75
@@ -712,9 +710,11 @@ GLOBAL_LIST_EMPTY(active_lifts_by_type)
 			if(!fence)
 				shipping_handler.find_trade_request(listed_atom)
 			shipping_handler.gather_sellable(listed_atom)
-		shipping_handler.sell_items()
-		if(length(shipping_handler.sold_items) && !fence)
+		if(shipping_handler.items_to_sell.len || shipping_handler.request_collector.len)
+			shipping_handler.sell_items()
+		if(shipping_handler.sold_items.len && !fence)
 			shipping_handler.generate_manifest(platform)
-		spawn_coins(shipping_handler.total_coin_value, platform)
-		add_abstract_elastic_data(ELASCAT_ECONOMY, ELASDATA_MAMMONS_GAINED, shipping_handler.total_coin_value)
+		if(shipping_handler.total_coin_value)
+			spawn_coins(shipping_handler.total_coin_value, platform)
+			add_abstract_elastic_data(ELASCAT_ECONOMY, ELASDATA_MAMMONS_GAINED, shipping_handler.total_coin_value)
 		qdel(shipping_handler)
