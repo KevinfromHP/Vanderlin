@@ -573,7 +573,6 @@ GLOBAL_LIST_EMPTY(active_lifts_by_type)
 	ignore_pathing_obstacles = TRUE
 	for(var/obj/structure/industrial_lift/tram/platform in lift_platforms)
 		platform.horizontal_speed = 0.1
-		base_horizontal_speed = horizontal_speed
 		horizontal_speed = 0.1
 		platform.obj_flags &= ~BLOCK_Z_OUT_DOWN
 		platform.alpha = 0
@@ -702,7 +701,7 @@ GLOBAL_LIST_EMPTY(active_lifts_by_type)
 			if(!(resolved_contents in platform.lift_load))
 				continue
 
-			original_contents |= resolved_contents
+			original_contents += resolved_contents
 
 		var/datum/shipping_handler/shipping_handler = new()
 		if(fence)

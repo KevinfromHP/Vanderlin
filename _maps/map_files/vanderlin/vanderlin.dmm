@@ -29244,7 +29244,8 @@
 	},
 /obj/structure/dock_bell{
 	pixel_y = 21;
-	pixel_x = -2
+	pixel_x = -2;
+	layer = 4.25
 	},
 /turf/open/floor/ruinedwood/spiral,
 /area/rogue/outdoors/river)
