@@ -191,13 +191,13 @@
 	name = "Soap"
 	cost = 6
 	purchase_flags = PURCHASE_MERCHANT | PURCHASE_ALCHEMIST
-	contains = /obj/item/bath/soap
+	contains = /obj/item/soap
 
-/datum/supply_pack/tools/bath_soap
+/datum/supply_pack/tools/soap/bath
 	name = "Herbal Soap"
 	cost = 20
-	purchase_flags = PURCHASE_ALCHEMIST
-	contains = /obj/item/bath/soap
+	purchase_flags = PURCHASE_MERCHANT | PURCHASE_ALCHEMIST
+	contains = /obj/item/soap/bath
 
 /datum/supply_pack/tools/prarml
 	name = "Prosthetic Left Wooden Arm"
