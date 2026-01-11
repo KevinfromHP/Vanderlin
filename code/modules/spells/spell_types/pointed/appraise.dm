@@ -17,10 +17,12 @@
 
 /datum/action/cooldown/spell/appraise/cast(mob/living/carbon/human/cast_on)
 	. = ..()
-	var/mammonsonperson = get_mammons_in_atom(cast_on)
-	var/mammonsinbank = SStreasury.bank_accounts[cast_on]
-	var/totalvalue = mammonsinbank + mammonsonperson
-	to_chat(owner, (span_notice("[cast_on] has [mammonsonperson] mammons on them, [mammonsinbank] in their meister, for a total of [totalvalue] mammons.")))
+	var/mammons_on_person = get_mammons_in_atom(cast_on)
+	var/mammons_in_bank = 0
+	if(cast_on.has_dna())
+		var/datum/bank_account = SStreasury.bank_accounts[cast_on.dna.unique_identity]
+		mammons_in_bank = bank_account?.account_balance || 0
+	to_chat(owner, (span_notice("[cast_on] has [mammons_on_person] mammons on them, [mammons_in_bank] in their meister, for a total of [mammons_on_person + mammons_in_bank] mammons.")))
 
 /datum/action/cooldown/spell/appraise/holy
 	name = "Appraise"

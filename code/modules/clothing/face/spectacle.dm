@@ -30,6 +30,13 @@
 		take_damage(11, BRUTE, "blunt", 1)
 	..()
 
+//TEMP ITEM I NEED TO REPLACE THIS
+/obj/item/clothing/face/spectacles/steward
+	name = "steward's testing monocle"
+	icon_state = "monocle"
+	max_integrity = 35
+	clothing_traits = TRAIT_BANKER
+
 /obj/item/clothing/face/spectacles/inqglasses
 	name = "crimson spectacles"
 	desc = "Spectacles evoking the stained glass of Grenzelhoftian cathedrals. See all evil."

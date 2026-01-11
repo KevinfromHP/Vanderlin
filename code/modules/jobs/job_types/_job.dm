@@ -70,8 +70,9 @@
 	//can be overridden by antag_rep.txt config
 	var/antag_rep = 10
 
-	var/paycheck = PAYCHECK_MINIMAL
-	var/paycheck_department = ACCOUNT_CIV
+	var/give_bank_account = FALSE
+	var/paycheck_department = ACCOUNT_OTHER
+	var/paycheck = 0
 
 	/// Traits added to the mind of the mob assigned this job
 	var/list/mind_traits
@@ -138,8 +139,6 @@
 
 	var/list/peopleiknow = list()
 	var/list/peopleknowme = list()
-
-	var/give_bank_account = FALSE
 
 	var/can_random = TRUE
 

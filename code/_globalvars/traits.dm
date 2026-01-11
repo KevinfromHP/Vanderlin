@@ -89,6 +89,7 @@ GLOBAL_LIST_INIT(traits_by_type, list(
 		"Blessing of Dendor" = TRAIT_KNEESTINGER_IMMUNITY,
 		"Blessing of Necra" = TRAIT_SOUL_EXAMINE,
 		"Golden Blood" = TRAIT_SEEPRICES,
+		"Banker" = TRAIT_BANKER,
 		"Of the Cabal" = TRAIT_CABAL,
 		"Unleechable" = TRAIT_LEECHIMMUNE,
 		"Webwalker" = TRAIT_WEBWALK,

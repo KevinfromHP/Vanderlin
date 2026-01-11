@@ -38,7 +38,6 @@ SUBSYSTEM_DEF(treasury)
 	var/queens_tax = 0.15
 	var/treasury_value = 0
 	var/list/bank_accounts = list()
-	var/list/untaxed_deposits = list()
 	var/list/noble_incomes = list()
 	var/list/stockpile_datums = list()
 	var/multiple_item_penalty = 0.7
@@ -47,11 +46,23 @@ SUBSYSTEM_DEF(treasury)
 	var/list/log_entries = list()
 	var/list/vault_accounting = list() //used for the vault count, cleared every fire()
 
+	var/list/department_accounts = list()
+
+	var/withdrawals_enabled = TRUE
+	var/list/deposit_taxes = list(
+		TAX_FOREIGN	= 0.3,
+		TAX_CITIZEN	= 0.15,
+		TAX_LORD = 0
+	)
+
 /datum/controller/subsystem/treasury/Initialize()
 	//Randomizes the roundstart amount of money and the queens tax.
 	treasury_value = rand(800,1200)
 	force_set_round_statistic(STATS_STARTING_TREASURY, treasury_value)
 	queens_tax = pick(0.09, 0.15, 0.21, 0.30)
+
+	for(var/department in DEPARTMENT_WAGES)
+		new /datum/bank_account/department(department, DEPARTMENT_WAGES[department])
 
 	//For the merchants import and export.
 	for(var/path in subtypesof(/datum/stock/bounty))
@@ -147,17 +158,16 @@ SUBSYSTEM_DEF(treasury)
 * These procs are all called directly from
 * things outside of the system.
 */
-/datum/controller/subsystem/treasury/proc/create_bank_account(name, initial_deposit)
+/datum/controller/subsystem/treasury/proc/create_bank_account(name, initial_deposit, account_category, paycheck)
 	if(!name)
 		return
+	var/datum/bank_account/account
 	if(name in bank_accounts)
-		return
-	bank_accounts += name
-	if(initial_deposit)
-		bank_accounts[name] = initial_deposit
+		account = bank_accounts[name] //if you somehow manage to call this on an existing job it's a bug, but it'll still add the deposit
 	else
-		bank_accounts[name] = 0
-	return TRUE
+		account = new(name, account_category)
+	account.account_balance += initial_deposit
+	return account
 
 //increments the treasury directly (tax collection)
 /datum/controller/subsystem/treasury/proc/give_money_treasury(amt, source, silent = FALSE)
@@ -217,69 +227,36 @@ SUBSYSTEM_DEF(treasury)
 
 ///Deposits money into a character's bank account. Taxes are deducted from the deposit and added to the treasury.
 ///@param amt: The amount of money to deposit.
-///@param character: The character making the deposit.
+///@param identity: The the unique DNA identity of the account's owner.
 ///@return a list(original deposit, taxed amount) if the money was successfully deposited, FALSE otherwise.
-/datum/controller/subsystem/treasury/proc/generate_money_account(amt, mob/living/carbon/human/character)
+/datum/controller/subsystem/treasury/proc/generate_money_account(amt, identity)
 	if(!amt)
 		return FALSE
-	if(!character)
+	if(!identity)
 		return FALSE
 
-	var/taxed_amount = 0
-	var/original_amt = amt
 	treasury_value += amt
-
-	if(character in bank_accounts)
-		if(HAS_TRAIT(character, TRAIT_NOBLE))
-			bank_accounts[character] += amt
-		else
-			if(!untaxed_deposits[character])
-				untaxed_deposits[character] = 0
-
-			var/previous_untaxed = untaxed_deposits[character]
-			untaxed_deposits[character] += amt
-
-			var/taxable_amount = untaxed_deposits[character]
-			var/potential_tax = round(taxable_amount * tax_value)
-
-			if(potential_tax >= 1)
-				taxed_amount = potential_tax
-				var/taxed_portion = round(taxed_amount / tax_value)
-				var/net_from_this_deposit = (taxable_amount - taxed_amount) - previous_untaxed
-				bank_accounts[character] += net_from_this_deposit
-				untaxed_deposits[character] = taxable_amount - taxed_portion
-			else
-				bank_accounts[character] += amt
-	else
+	var/datum/bank_account/account = bank_accounts[identity]
+	if(!account) //we still take the mammon
 		return FALSE
 
-	log_to_steward("+[original_amt] deposited by [character.real_name] of which taxed [taxed_amount]")
+	var/taxed_amount = account.deposit_money(amt)
+	log_to_steward("+[amt] deposited to [account.account_holder] of which taxed [taxed_amount]")
+	return list(amt, taxed_amount)
 
-	return list(original_amt, taxed_amount)
-
-/datum/controller/subsystem/treasury/proc/withdraw_money_account(amt, target)
+/datum/controller/subsystem/treasury/proc/withdraw_money_account(amt, identity)
 	if(!amt)
 		return
-	var/target_name = target
-	if(istype(target_name,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = target_name
-		target_name = H.real_name
-	var/found_account
-	for(var/X in bank_accounts)
-		if(X == target)
-			if(bank_accounts[X] < amt)  // Check if the withdrawal amount exceeds the player's account balance
-				send_ooc_note("<b>MEISTER:</b> Error: Insufficient funds in the account to complete the withdrawal.", name = target_name)
-				return  // Return without processing the transaction
-			if(treasury_value < amt)  // Check if the amount exceeds the treasury balance
-				send_ooc_note("<b>MEISTER:</b> Error: Insufficient funds in the treasury to complete the transaction.", name = target_name)
-				return  // Return early if the treasury balance is insufficient
-			bank_accounts[X] -= amt
-			treasury_value -= amt
-			found_account = TRUE
-			break
-	if(!found_account)
+	var/datum/bank_account/account = bank_accounts[identity]
+	if(!account)
 		return
-	log_to_steward("-[amt] withdrawn by [target_name]")
+	if(amt > account.account_balance)
+		return
+	if(amt > treasury_value)
+		return
+	account.account_balance -= amt
+	treasury_value -= amt
+	log_to_steward("-[amt] withdrawn from [account.account_holder]")
 	return TRUE
 
 /datum/controller/subsystem/treasury/proc/log_to_steward(log)

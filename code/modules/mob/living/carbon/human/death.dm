@@ -69,14 +69,6 @@
 
 	if(!MOBTIMER_EXISTS(src, MT_DEATHDIED))
 		MOBTIMER_SET(src, MT_DEATHDIED)
-		if(H in SStreasury.bank_accounts)
-			for(var/obj/structure/fake_machine/camera/C in view(7, src))
-				var/area_name = A.name
-				var/texty = "<CENTER><B>Death of a Living Being</B><br>---<br></CENTER>"
-				texty += "[real_name] perished in front of face #[C.number] ([area_name]) at [station_time_timestamp("hh:mm")]."
-				SSroguemachine.death_queue += texty
-				break
-
 		var/yeae = TRUE //! TRUE if we were killed on a cross and socially rejected
 		if(buckled)
 			if(istype(buckled, /obj/structure/fluff/psycross) || istype(buckled, /obj/machinery/light/fueled/campfire/pyre))

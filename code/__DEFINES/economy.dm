@@ -1,17 +1,31 @@
-#define STARTING_PAYCHECKS 5
 
-///these defines are the % of budget they get on payday
-#define PAYCHECK_ASSISTANT 1
-#define PAYCHECK_MINIMAL 1
-#define PAYCHECK_EASY 2
-#define PAYCHECK_MEDIUM 3
-#define PAYCHECK_HARD 4
-#define PAYCHECK_COMMAND 10
+#define ACCOUNT_STATUS_OPEN		"open"
+#define ACCOUNT_STATUS_FROZEN	"frozen"
+#define ACCOUNT_STATUS_CLOSED	"closed"
 
-#define MAX_GRANT_CIV 2500
-#define MAX_GRANT_ENG 3000
-#define MAX_GRANT_SCI 5000
-#define MAX_GRANT_SECMEDSRV 3000
+
+#define ACCOUNT_NOBLE		"Noble"
+#define ACCOUNT_VASSAL		"Vassal"
+#define ACCOUNT_GARRISON	"Garrison"
+#define ACCOUNT_TOWNSMAN	"Townsman"
+#define ACCOUNT_TRADESMAN	"Tradesman"
+#define ACCOUNT_PEASANT		"Peasant"
+#define ACCOUNT_SERF		"Serf"
+#define ACCOUNT_CHURCH		"Church"
+#define ACCOUNT_OTHER		"Other"
+
+#define TAX_FOREIGN	"Foreign"
+#define TAX_CITIZEN	"Citizen"
+#define TAX_LORD	"Lord"
+
+/// The starting values for each of these departments for how much the they are paid from the treasury.
+#define DEPARTMENT_WAGES list(, \
+	ACCOUNT_NOBLE = 40, \
+	ACCOUNT_GUARD = 10, \
+	ACCOUNT_SERVANT = 10, \
+	ACCOUNT_CHURCH = 10, \
+	ACCOUNT_PEASANT = 0, \
+)
 
 #define ACCOUNT_CIV "CIV"
 #define ACCOUNT_CIV_NAME "Civil Budget"
@@ -27,5 +41,3 @@
 #define ACCOUNT_CAR_NAME "Cargo Budget"
 #define ACCOUNT_SEC "SEC"
 #define ACCOUNT_SEC_NAME "Defense Budget"
-
-#define NO_FREEBIES "commies go home"

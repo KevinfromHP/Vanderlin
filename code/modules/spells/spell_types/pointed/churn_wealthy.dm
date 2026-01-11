@@ -26,9 +26,10 @@
 	if(owner.z != cast_on.z) //Stopping no-interaction snipes
 		to_chat(owner, "<font color='yellow'>The Free-God compels me to face [cast_on] on level ground before I transact.</font>")
 		return
-	var/mammonsonperson = get_mammons_in_atom(cast_on)
-	var/mammonsinbank = SStreasury.bank_accounts[cast_on]
-	var/totalvalue = mammonsinbank + mammonsonperson
+	var/totalvalue = get_mammons_in_atom(cast_on)
+	if(cast_on.has_dna())
+		var/datum/bank_account = SStreasury.bank_accounts[cast_on.dna.unique_identity]
+		totalvalue += bank_account?.account_balance || 0
 	if(HAS_TRAIT(cast_on, TRAIT_NOBLE))
 		totalvalue += 101 // We're ALWAYS going to do a medium level smite minimum to nobles.
 	if(totalvalue <=10)

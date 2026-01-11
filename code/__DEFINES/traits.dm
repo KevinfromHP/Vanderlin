@@ -408,6 +408,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_THIEVESGUILD				"Thieves' Guild Member"
 #define TRAIT_ENGINEERING_GOGGLES		"Engineering Goggles"
 #define TRAIT_SEEPRICES				    "Golden Blood" //See prices
+#define TRAIT_BANKER					"Banker"
 #define TRAIT_SEE_LEYLINES				"Magical Visions"
 #define TRAIT_POISONBITE				"Poison Bite"
 #define TRAIT_FORAGER					"Expert Forager"
