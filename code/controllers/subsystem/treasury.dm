@@ -34,10 +34,9 @@ SUBSYSTEM_DEF(treasury)
 	wait = 1
 	init_order = INIT_ORDER_TREASURY
 	priority = FIRE_PRIORITY_WATER_LEVEL
-	var/tax_value = 0.1
-	var/queens_tax = 0.15
+	var/tax_value = 0.1 // deprecating
+	var/queens_tax = 0.15 //deprecating
 	var/treasury_value = 0
-	var/list/bank_accounts = list()
 	var/list/noble_incomes = list()
 	var/list/stockpile_datums = list()
 	var/multiple_item_penalty = 0.7
@@ -46,10 +45,10 @@ SUBSYSTEM_DEF(treasury)
 	var/list/log_entries = list()
 	var/list/vault_accounting = list() //used for the vault count, cleared every fire()
 
+	var/list/bank_accounts = list()
 	var/list/department_accounts = list()
-
 	var/withdrawals_enabled = TRUE
-	var/list/deposit_taxes = list(
+	var/list/tax_groups = list(
 		TAX_FOREIGN	= 0.3,
 		TAX_CITIZEN	= 0.15,
 		TAX_LORD = 0
@@ -158,14 +157,13 @@ SUBSYSTEM_DEF(treasury)
 * These procs are all called directly from
 * things outside of the system.
 */
-/datum/controller/subsystem/treasury/proc/create_bank_account(name, initial_deposit, account_category, paycheck)
-	if(!name)
+/datum/controller/subsystem/treasury/proc/create_bank_account(identity, initial_deposit, account_holder, paycheck_department, paycheck, tax_group)
+	if(!identity)
 		return
-	var/datum/bank_account/account
-	if(name in bank_accounts)
-		account = bank_accounts[name] //if you somehow manage to call this on an existing job it's a bug, but it'll still add the deposit
-	else
-		account = new(name, account_category)
+	var/datum/bank_account/account = bank_accounts[identity] //if you somehow manage to call this on an existing job it's a bug, but it'll still add the deposit
+	if(!account)
+		bank_accounts[identity] = new /datum/bank_account(account_holder, paycheck_department, paycheck, tax_group)
+		account = bank_accounts[identity]
 	account.account_balance += initial_deposit
 	return account
 

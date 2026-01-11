@@ -16,11 +16,13 @@
 	///goes up if you underflow during deposits
 	var/unpaid_taxes = 0
 
-/datum/bank_account/New(newname, _paycheck)
-	if(add_to_accounts)
-		SSeconomy.bank_accounts += src
-	account_holder = newname
-	paycheck = _paycheck
+/datum/bank_account/New(account_holder, paycheck_department=ACCOUNT_OTHER, paycheck=0, tax_group=TAX_FOREIGN)
+	. = ..()
+	src.account_holder = account_holder
+	src.paycheck_department = paycheck_department
+	src.paycheck = paycheck
+	src.tax_group = tax_group
+	src.tax_exempt = (tax_group == TAX_LORD)
 
 /datum/bank_account/Destroy()
 	if(add_to_accounts)
@@ -35,7 +37,7 @@
 
 /// returns the taxed value of the deposit
 /datum/bank_account/proc/deposit_money(amt)
-	var/tax_percent = SStreasury.deposit_taxes[tax_group] || 0
+	var/tax_percent = SStreasury.tax_groups[tax_group] || 0
 	if(tax_exempt || tax_percent <= 0)
 		_adjust_money(amt)
 		return 0

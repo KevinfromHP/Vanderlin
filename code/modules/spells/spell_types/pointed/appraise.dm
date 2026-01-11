@@ -20,8 +20,8 @@
 	var/mammons_on_person = get_mammons_in_atom(cast_on)
 	var/mammons_in_bank = 0
 	if(cast_on.has_dna())
-		var/datum/bank_account = SStreasury.bank_accounts[cast_on.dna.unique_identity]
-		mammons_in_bank = bank_account?.account_balance || 0
+		var/datum/bank_account/account = SStreasury.bank_accounts[cast_on.dna.unique_identity]
+		mammons_in_bank = account?.account_balance || 0
 	to_chat(owner, (span_notice("[cast_on] has [mammons_on_person] mammons on them, [mammons_in_bank] in their meister, for a total of [mammons_on_person + mammons_in_bank] mammons.")))
 
 /datum/action/cooldown/spell/appraise/holy

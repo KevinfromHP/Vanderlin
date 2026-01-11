@@ -73,6 +73,7 @@
 	var/give_bank_account = FALSE
 	var/paycheck_department = ACCOUNT_OTHER
 	var/paycheck = 0
+	var/tax_group = TAX_FOREIGN
 
 	/// Traits added to the mind of the mob assigned this job
 	var/list/mind_traits
@@ -312,10 +313,8 @@
 		scom_announce("[spawned.real_name] the [used_title] arrives from [SSmapping.config.immigrant_origin].")
 
 	if(give_bank_account)
-		if(give_bank_account > 1)
-			SStreasury.create_bank_account(spawned, give_bank_account)
-		else
-			SStreasury.create_bank_account(spawned)
+		var/deposit = give_bank_account > 1 ? give_bank_account : 0
+		SStreasury.create_bank_account(spawned.dna.unique_identity, deposit, spawned.real_name, paycheck_department, paycheck)
 		if(noble_income)
 			SStreasury.noble_incomes[spawned] = noble_income
 
@@ -621,6 +620,7 @@
 	data["exp_type"] = exp_type
 	data["paycheck"] = paycheck
 	data["paycheck_department"] = paycheck_department
+	data["tax_group"] = tax_group
 	data["display_order"] = display_order
 	data["job_flags"] = job_flags
 	data["allowed_sexes"] = allowed_sexes
@@ -702,6 +702,7 @@
 	exp_type = data["exp_type"]
 	paycheck = data["paycheck"]
 	paycheck_department = data["paycheck_department"]
+	tax_group = data["tax_group"]
 	display_order = data["display_order"]
 	job_flags = data["job_flags"]
 	allowed_sexes = data["allowed_sexes"]

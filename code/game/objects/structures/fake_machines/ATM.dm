@@ -2,7 +2,8 @@
 	name = "MEISTER"
 	desc = "Stores and withdraws currency for accounts managed by the Kingdom."
 	icon = 'icons/roguetown/misc/machines.dmi'
-	icon_state = "atm"
+	icon_state = "meister"
+	base_icon_state = "meister"
 	density = FALSE
 	blade_dulling = DULLING_BASH
 	SET_BASE_PIXEL(0, 32)
@@ -15,11 +16,19 @@
 
 /obj/structure/fake_machine/atm/examine(mob/user)
 	. += ..()
-	. += span_info("The current tax rate on deposits is [SStreasury.tax_value * 100] percent. Kingdom nobles exempt.")
+	if(user.can_read(src))
+		. += span_info("The current tax rate on deposits:")
+		for(var/tax_group in SStreasury.tax_groups)
+			. += span_info("\t[tax_group]: [SStreasury.tax_groups[tax_group]]")
 
 /obj/structure/fake_machine/atm/update_icon_state()
 	. = ..()
-	icon_state = login_user ? "atm-b" : "atm"
+	var/suffix = ""
+	if(obj_broken)
+		suffix = "_broken"
+	else if(login_user)
+		suffix = "_bloody"
+	icon_state = "[base_icon_state][suffix]"
 
 /obj/structure/fake_machine/atm/attack_hand(mob/user)
 	if(!COOLDOWN_FINISHED(src, use_cooldown))

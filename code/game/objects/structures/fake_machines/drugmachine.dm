@@ -157,7 +157,7 @@
 			return
 		var/datum/supply_pack/PA = SSmerchant.supply_packs[path]
 		var/cost = PA.cost
-		var/tax_amt=round(SStreasury.tax_value * cost)
+		var/tax_amt=round(SStreasury.tax_groups[TAX_FOREIGN] * cost)
 		cost=cost+tax_amt
 		if(upgrade_flags & UPGRADE_NOTAX)
 			cost = PA.cost
@@ -249,7 +249,7 @@
 		for(var/datum/supply_pack/PA in sortList(pax))
 			var/costy = PA.cost
 			if(!(upgrade_flags & UPGRADE_NOTAX))
-				costy=round(costy+(SStreasury.tax_value * costy))
+				costy=round(costy+(SStreasury.tax_groups[TAX_FOREIGN] * costy))
 			contents += "[PA.name] - ([costy])<a href='byond://?src=[REF(src)];buy=[PA.type]'>BUY</a><BR>"
 
 	if(!canread)
