@@ -160,7 +160,7 @@
 			return
 		var/datum/supply_pack/picked_pack = SSmerchant.supply_packs[path]
 		base_price = picked_pack.cost
-		taxes = round(SStreasury.tax_groups[TAX_FOREIGN] * base_price)
+		taxes = round(SSeconomy.tax_groups[TAX_FOREIGN] * base_price)
 		final_price = round(base_price + taxes)
 		if(upgrade_flags & UPGRADE_NOTAX)
 			final_price = base_price
@@ -268,7 +268,7 @@
 		for(var/datum/supply_pack/picked_pack in sortList(pax))
 			var/costy = picked_pack.cost
 			if(!(upgrade_flags & UPGRADE_NOTAX))
-				costy=round(costy+(SStreasury.tax_groups[TAX_FOREIGN] * costy))
+				costy=round(costy+(SSeconomy.tax_groups[TAX_FOREIGN] * costy))
 			contents += "[picked_pack.name] - ([costy])<a href='byond://?src=[REF(src)];buy=[picked_pack.type]'>BUY</a><BR>"
 
 	if(!canread)

@@ -105,7 +105,7 @@
 						stock_announce("[B.amount] units of [R.name] has been stockpiled.")
 					if(sound == TRUE)
 						playsound(src, 'sound/misc/hiss.ogg', 100, FALSE, -1)
-					if(!SStreasury.give_money_account(amt, H, "+[amt] from [R.name] bounty") && message == TRUE)
+					if(!SSeconomy.give_money_account(amt, H, "+[amt] from [R.name] bounty") && message == TRUE)
 						say("No account found. Submit your fingers to a Meister for inspection.")
 					record_round_statistic(STATS_STOCKPILE_EXPANSES, amt)
 					return amt
@@ -138,7 +138,7 @@
 					playsound(src, 'sound/misc/hiss.ogg', 100, FALSE, -1)
 					playsound(src, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
 			if(amt)
-				if(!SStreasury.give_money_account(amt, H, "+[amt] from [R.name] bounty") && message == TRUE)
+				if(!SSeconomy.give_money_account(amt, H, "+[amt] from [R.name] bounty") && message == TRUE)
 					say("No account found. Submit your fingers to a Meister for inspection.")
 				record_round_statistic(STATS_STOCKPILE_EXPANSES, amt)
 			return amt
@@ -168,7 +168,7 @@
 			total_value += attemptsell(I, user, FALSE, FALSE)
 		playsound(src, 'sound/misc/hiss.ogg', 100, FALSE, -1)
 		playsound(src, 'sound/misc/disposalflush.ogg', 100, FALSE, -1)
-		if(user in SStreasury.bank_accounts)
+		if(user in SSeconomy.bank_accounts)
 			say("Bulk sold for [total_value] mammon...")
 		else
 			say("No account found. Submit your fingers to a Meister for inspection.")

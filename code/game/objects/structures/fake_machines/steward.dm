@@ -246,7 +246,7 @@
 		var/X = locate(href_list["givemoney"])
 		if(!X)
 			return
-		for(var/mob/living/A in SStreasury.bank_accounts)
+		for(var/mob/living/A in SSeconomy.bank_accounts)
 			if(A == X)
 				var/newtax = input(usr, "How much to give [X]", src) as null|num
 				if(!usr.can_perform_action(src, NEED_DEXTERITY|FORBID_TELEKINESIS_REACH) || locked())
@@ -258,13 +258,13 @@
 				if(newtax < 1)
 					return
 				record_round_statistic(STATS_DIRECT_TREASURY_TRANSFERS, newtax)
-				SStreasury.give_money_account(newtax, A)
+				SSeconomy.give_money_account(newtax, A)
 				break
 	if(href_list["fineaccount"])
 		var/X = locate(href_list["fineaccount"])
 		if(!X)
 			return
-		for(var/mob/living/A in SStreasury.bank_accounts)
+		for(var/mob/living/A in SSeconomy.bank_accounts)
 			if(A == X)
 				var/newtax = input(usr, "How much to fine [X]", src) as null|num
 				if(!usr.can_perform_action(src, NEED_DEXTERITY|FORBID_TELEKINESIS_REACH) || locked())
@@ -276,7 +276,7 @@
 				if(newtax < 1)
 					return
 				record_round_statistic(STATS_FINES_INCOME, newtax)
-				SStreasury.give_money_account(-newtax, A)
+				SSeconomy.give_money_account(-newtax, A)
 				break
 	if(href_list["payroll"])
 		var/list/L = list(GLOB.noble_positions) + list(GLOB.garrison_positions) + list(GLOB.church_positions) + list(GLOB.serf_positions) + list(GLOB.company_positions) + list(GLOB.peasant_positions) + list(GLOB.youngfolk_positions) + list(GLOB.apprentices_positions) + list(GLOB.inquisition_positions)
@@ -303,7 +303,7 @@
 			var/datum/job/job_pay = SSjob.GetJob(job_to_pay)
 			if(job_check && job_check.type == job_pay.type)
 				record_round_statistic(STATS_WAGES_PAID, amount_to_pay)
-				SStreasury.give_money_account(amount_to_pay, H)
+				SSeconomy.give_money_account(amount_to_pay, H)
 	if(href_list["compact"])
 		compact = !compact
 	return attack_hand(usr)
@@ -383,12 +383,12 @@
 			contents += "Treasury: [SStreasury.treasury_value]m</center><BR>"
 			contents += "<div style='margin-left:20px;'>"
 			contents += "<a href='byond://?src=\ref[src];payroll=1'>\[Pay by Class\]</a><BR><BR>"
-			for(var/mob/living/carbon/human/A in SStreasury.bank_accounts)
+			for(var/mob/living/carbon/human/A in SSeconomy.bank_accounts)
 				if(ishuman(A))
 					var/mob/living/carbon/human/tmp = A
-					contents += "[tmp.real_name] ([tmp.get_role_title()]) - [SStreasury.bank_accounts[A]]m<BR>"
+					contents += "[tmp.real_name] ([tmp.get_role_title()]) - [SSeconomy.bank_accounts[A]]m<BR>"
 				else
-					contents += "[A.real_name] - [SStreasury.bank_accounts[A]]m<BR>"
+					contents += "[A.real_name] - [SSeconomy.bank_accounts[A]]m<BR>"
 				contents += "<a href='byond://?src=\ref[src];givemoney=\ref[A]'>\[Give Money\]</a> <a href='byond://?src=\ref[src];fineaccount=\ref[A]'>\[Fine Account\]</a><BR><BR>"
 			contents += "</div>"
 		if(TAB_STOCK)

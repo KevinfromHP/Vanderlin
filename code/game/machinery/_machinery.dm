@@ -21,7 +21,7 @@
 	var/interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_SET_MACHINE
 	var/fair_market_price = 69
 	var/market_verb = "Customer"
-	var/payment_department = ACCOUNT_ENG
+	var/payment_department = ACCOUNT_OTHER
 
 	var/climb_time = 0
 	var/climb_stun = 0

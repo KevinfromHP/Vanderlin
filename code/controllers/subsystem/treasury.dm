@@ -1,4 +1,3 @@
-
 /*
 * I think this is placed here because its
 * used to tell people what their income is
@@ -37,31 +36,20 @@ SUBSYSTEM_DEF(treasury)
 	var/tax_value = 0.1 // deprecating
 	var/queens_tax = 0.15 //deprecating
 	var/treasury_value = 0
-	var/list/noble_incomes = list()
 	var/list/stockpile_datums = list()
 	var/multiple_item_penalty = 0.7
 	var/interest_rate = 0.15
-	var/next_treasury_check = 0
 	var/list/log_entries = list()
 	var/list/vault_accounting = list() //used for the vault count, cleared every fire()
+	var/list/noble_incomes = list()
 
-	var/list/bank_accounts = list()
-	var/list/department_accounts = list()
-	var/withdrawals_enabled = TRUE
-	var/list/tax_groups = list(
-		TAX_FOREIGN	= 0.3,
-		TAX_CITIZEN	= 0.15,
-		TAX_LORD = 0
-	)
+	COOLDOWN_DECLARE(next_treasury_check)
 
 /datum/controller/subsystem/treasury/Initialize()
 	//Randomizes the roundstart amount of money and the queens tax.
 	treasury_value = rand(800,1200)
 	force_set_round_statistic(STATS_STARTING_TREASURY, treasury_value)
 	queens_tax = pick(0.09, 0.15, 0.21, 0.30)
-
-	for(var/department in DEPARTMENT_WAGES)
-		new /datum/bank_account/department(department, DEPARTMENT_WAGES[department])
 
 	//For the merchants import and export.
 	for(var/path in subtypesof(/datum/stock/bounty))
@@ -157,16 +145,6 @@ SUBSYSTEM_DEF(treasury)
 * These procs are all called directly from
 * things outside of the system.
 */
-/datum/controller/subsystem/treasury/proc/create_bank_account(identity, initial_deposit, account_holder, paycheck_department, paycheck, tax_group)
-	if(!identity)
-		return
-	var/datum/bank_account/account = bank_accounts[identity] //if you somehow manage to call this on an existing job it's a bug, but it'll still add the deposit
-	if(!account)
-		bank_accounts[identity] = new /datum/bank_account(account_holder, paycheck_department, paycheck, tax_group)
-		account = bank_accounts[identity]
-	account.account_balance += initial_deposit
-	return account
-
 //increments the treasury directly (tax collection)
 /datum/controller/subsystem/treasury/proc/give_money_treasury(amt, source, silent = FALSE)
 	if(!amt)
@@ -179,84 +157,6 @@ SUBSYSTEM_DEF(treasury)
 	else
 		log_to_steward("+[amt] to treasury")
 
-//pays to account (if it exists) from treasury (payroll). Not taxed
-/datum/controller/subsystem/treasury/proc/give_money_account(amt, target, source)
-	if(!amt)
-		return
-	if(!target)
-		return
-	amt = floor(amt)
-	var/target_name = target
-	if(istype(target,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = target
-		target_name = H.real_name
-	var/found_account
-	for(var/X in bank_accounts)
-		if(X == target)
-			if(amt > 0)
-				bank_accounts[X] += amt  // Add funds into the player's account
-			else
-				// Check if the amount to be fined exceeds the player's account balance
-				amt = min(max(amt, -1 * bank_accounts[X]), 0)  // amt should be a negative number
-				bank_accounts[X] -= abs(amt)  // Deduct the fine amount from the player's account
-			found_account = TRUE
-			break
-	if(!found_account)
-		return FALSE
-
-	if (amt > 0)
-		// Player received money
-		if(source)
-			send_ooc_note("<b>MEISTER:</b> Your account has received [amt] mammon. ([source])", name = target_name)
-			log_to_steward("+[amt] from treasury to [target_name] ([source])")
-		else
-			send_ooc_note("<b>MEISTER:</b> Your account has received [amt] mammon.", name = target_name)
-			log_to_steward("+[amt] from treasury to [target_name]")
-	else if (amt < 0)
-		// Player was fined
-		if(source)
-			send_ooc_note("<b>MEISTER:</b> Your account was fined [abs(amt)] mammon. ([source])", name = target_name)
-			log_to_steward("[abs(amt)] was fined from [target_name] ([source])")
-		else
-			send_ooc_note("<b>MEISTER:</b> Your account was fined [abs(amt)] mammon.", name = target_name)
-			log_to_steward("[abs(amt)] was fined from [target_name]")
-
-	return TRUE
-
-///Deposits money into a character's bank account. Taxes are deducted from the deposit and added to the treasury.
-///@param amt: The amount of money to deposit.
-///@param identity: The the unique DNA identity of the account's owner.
-///@return a list(original deposit, taxed amount) if the money was successfully deposited, FALSE otherwise.
-/datum/controller/subsystem/treasury/proc/generate_money_account(amt, identity)
-	if(!amt)
-		return FALSE
-	if(!identity)
-		return FALSE
-
-	treasury_value += amt
-	var/datum/bank_account/account = bank_accounts[identity]
-	if(!account) //we still take the mammon
-		return FALSE
-
-	var/taxed_amount = account.deposit_money(amt)
-	log_to_steward("+[amt] deposited to [account.account_holder] of which taxed [taxed_amount]")
-	return list(amt, taxed_amount)
-
-/datum/controller/subsystem/treasury/proc/withdraw_money_account(amt, identity)
-	if(!amt)
-		return
-	var/datum/bank_account/account = bank_accounts[identity]
-	if(!account)
-		return
-	if(amt > account.account_balance)
-		return
-	if(amt > treasury_value)
-		return
-	account.account_balance -= amt
-	treasury_value -= amt
-	log_to_steward("-[amt] withdrawn from [account.account_holder]")
-	return TRUE
-
 /datum/controller/subsystem/treasury/proc/log_to_steward(log)
 	log_entries += log
 	return
@@ -266,4 +166,5 @@ SUBSYSTEM_DEF(treasury)
 		var/how_much = noble_incomes[welfare_dependant]
 		record_round_statistic(STATS_NOBLE_INCOME_TOTAL, how_much)
 		give_money_treasury(how_much, silent = TRUE)
-		give_money_account(how_much, welfare_dependant, "Vanderlin Noble Estate")
+		//todo
+		SSeconomy.give_money_account(how_much, welfare_dependant, "Vanderlin Noble Estate")

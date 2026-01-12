@@ -17,9 +17,9 @@
 /obj/structure/fake_machine/atm/examine(mob/user)
 	. += ..()
 	if(user.can_read(src))
-		. += span_info("The current tax rate on deposits:")
-		for(var/tax_group in SStreasury.tax_groups)
-			. += span_info("\t[tax_group]: [SStreasury.tax_groups[tax_group]]")
+		. += span_info("The current tax rates:")
+		for(var/tax_group in SSeconomy.tax_groups)
+			. += span_info("\t[tax_group]: [SSeconomy.tax_groups[tax_group]]")
 
 /obj/structure/fake_machine/atm/update_icon_state()
 	. = ..()
@@ -82,8 +82,8 @@
 		to_chat(H, span_warning("The idea repulses me!"))
 		H.cursed_freak_out()
 		return
-	var/datum/bank_account/account = SStreasury.bank_accounts[login_user]
-	if(!account || account.account_status != ACCOUNT_STATUS_OPEN)
+	var/datum/bank_account/account = SSeconomy.bank_accounts[login_user]
+	if(!account || account.frozen)
 		say("This account is unavailable.")
 		playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
 		return
@@ -109,10 +109,10 @@
 
 	//todo
 	var/citizen_enabled = TRUE
-	if(dna.real_name in SStreasury.bank_accounts)
-		var/datum/bank_account/account = SStreasury.bank_accounts[dna.real_name]
-		if(account.account_status != ACCOUNT_STATUS_OPEN)
-			return list("Your account has been [account.account_status].", 'sound/misc/machinequestion.ogg', -1)
+	if(dna.real_name in SSeconomy.bank_accounts)
+		var/datum/bank_account/account = SSeconomy.bank_accounts[dna.real_name]
+		if(account.frozen)
+			return list("Your account has been frozen.", 'sound/misc/machinequestion.ogg', -1)
 	else
 		var/datum/job/target_job = SSjob.GetJob(dna.holder.job)
 		target_job = target_job?.parent_job || target_job
@@ -128,7 +128,7 @@
 	var/val = P.get_real_price()
 	if(val < 1)
 		return
-	var/list/deposit_results = SStreasury.generate_money_account(P.get_real_price(), login_user)
+	var/list/deposit_results = SSeconomy.generate_money_account(P.get_real_price(), login_user)
 	playsound(src, 'sound/misc/coininsert.ogg', 100, FALSE, -1)
 	if(islist(deposit_results))
 		record_round_statistic(STATS_MAMMONS_DEPOSITED, deposit_results[1] - deposit_results[2])
@@ -141,12 +141,12 @@
 	qdel(P)
 
 /obj/structure/fake_machine/atm/proc/withdraw(mob/living/user, mob/living/carbon/dna_user)
-	var/datum/bank_account/account = SStreasury.bank_accounts[login_user]
-	if(!account || account.account_status != ACCOUNT_STATUS_OPEN)
+	var/datum/bank_account/account = SSeconomy.bank_accounts[login_user]
+	if(!account || account.frozen)
 		say("This account is unavailable.")
 		playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
 		return
-	if(!SStreasury.withdrawals_enabled)
+	if(!SSeconomy.withdrawals_enabled)
 		say("Withdrawals are not allowed at this time.")
 		playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
 		return
@@ -178,7 +178,7 @@
 	if(!account.has_money(coin_amt*mod))
 		playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
 		return
-	if(!SStreasury.withdraw_money_account(coin_amt*mod, login_user))
+	if(!SSeconomy.withdraw_money_account(coin_amt*mod, login_user))
 		playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
 		return
 	record_round_statistic(STATS_MAMMONS_WITHDRAWN, coin_amt * mod)

@@ -1,10 +1,8 @@
-
 /datum/bank_account
-	var/account_holder = "King Assripper"
+	var/account_holder = "No Owner"
 	var/account_balance = 0
-	var/account_status = ACCOUNT_STATUS_OPEN
-	/// will this add to SStreasury?
-	var/add_to_accounts = TRUE
+
+	var/frozen = FALSE
 
 	var/paycheck = 0
 	var/paycheck_department = ACCOUNT_OTHER
@@ -17,17 +15,11 @@
 	var/unpaid_taxes = 0
 
 /datum/bank_account/New(account_holder, paycheck_department=ACCOUNT_OTHER, paycheck=0, tax_group=TAX_FOREIGN)
-	. = ..()
 	src.account_holder = account_holder
 	src.paycheck_department = paycheck_department
 	src.paycheck = paycheck
 	src.tax_group = tax_group
 	src.tax_exempt = (tax_group == TAX_LORD)
-
-/datum/bank_account/Destroy()
-	if(add_to_accounts)
-		SSeconomy.bank_accounts -= src
-	return ..()
 
 /datum/bank_account/proc/_adjust_money(amt)
 	account_balance += amt
@@ -37,7 +29,7 @@
 
 /// returns the taxed value of the deposit
 /datum/bank_account/proc/deposit_money(amt)
-	var/tax_percent = SStreasury.tax_groups[tax_group] || 0
+	var/tax_percent = SSeconomy.tax_groups[tax_group] || 0
 	if(tax_exempt || tax_percent <= 0)
 		_adjust_money(amt)
 		return 0
@@ -49,38 +41,34 @@
 	return amount_to_tax
 
 /datum/bank_account/proc/adjust_money(amt)
-	if((amt < 0 && has_money(-amt)) || amt > 0)
+	if(amt != 0)
 		_adjust_money(amt)
 		return TRUE
 	return FALSE
 
 /datum/bank_account/proc/transfer_money(datum/bank_account/from, amount)
+	if(frozen || from.frozen)
+		return FALSE
 	if(from.has_money(amount))
 		adjust_money(amount)
 		from.adjust_money(-amount)
 		return TRUE
 	return FALSE
 
-/datum/bank_account/proc/payday(amt_of_paychecks, free = FALSE)
-	var/money_to_transfer = paycheck * amt_of_paychecks
-	if(free)
-		adjust_money(money_to_transfer)
-		return TRUE
-	var/datum/bank_account/D = SStreasury.department_accounts[paycheck_department]
-	if(!D)
+/datum/bank_account/proc/payday()
+	if(frozen)
 		return FALSE
-	return transfer_money(D, round(money_to_transfer*(D.account_balance*0.01),1))
+	var/datum/bank_account/department/D = SSeconomy.payroll_accounts[paycheck_department]
+	if(D && D.do_paydays)
+		return transfer_money(D, round(D.paycheck * paycheck))
+	return FALSE
 
 /datum/bank_account/department
-	account_holder = "Department"
-	add_to_accounts = FALSE
-	var/pay_sum = 0
+	var/business_name = "Business Account"
+	var/do_paydays = FALSE
 
-/datum/bank_account/department/New(dep_id, _pay_sum)
-	account_holder = dep_id
-	paycheck_department = dep_id
-	pay_sum = _pay_sum
-	SStreasury.department_accounts[dep_id] = src
+/datum/bank_account/department/New(business_name, paycheck=0)
+	src.business_name = business_name
+	src.paycheck = paycheck
+	src.paycheck_department = business_name
 
-/datum/bank_account/remote // Bank account not belonging to the local station
-	add_to_accounts = FALSE

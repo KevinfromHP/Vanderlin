@@ -386,13 +386,13 @@ GLOBAL_LIST_EMPTY(roundstart_court_agents)
 	if(!Adjacent(user))
 		reset_mode()
 		return
-	var/list/tax_g = list("CANCEL") + SStreasury.tax_groups - TAX_LORD
+	var/list/tax_g = list("CANCEL") + SSeconomy.tax_groups - TAX_LORD
 	var/tax_group = input(user, "Who shall have their taxes changed?", "[SSmapping.config.map_name]", null) as null|anything in tax_g
 	if(!tax_group || tax_group == "CANCEL" || QDELETED(src) || QDELETED(user))
 		reset_mode()
 		return
-	var/newtax = input(user, "Set a new tax percentage (1-99)", src, SStreasury.tax_groups[tax_group]*100) as null|num
-	if(!newtax || SStreasury.tax_value*100 == newtax || QDELETED(src) || QDELETED(user))
+	var/newtax = input(user, "Set a new tax percentage (1-99)", src, SSeconomy.tax_groups[tax_group]*100) as null|num
+	if(!newtax || SSeconomy.tax_groups[tax_group]*100 == newtax || QDELETED(src) || QDELETED(user))
 		reset_mode()
 		return
 	if(!Adjacent(user))
@@ -402,7 +402,7 @@ GLOBAL_LIST_EMPTY(roundstart_court_agents)
 		reset_mode()
 		return
 	newtax = CLAMP(newtax, 1, 99)
-	SStreasury.tax_groups[tax_group] = newtax / 100
+	SSeconomy.tax_groups[tax_group] = newtax / 100
 	priority_announce("The new [tax_group] tax in Vanderlin shall be [newtax] percent.", "[user.real_name], The Generous [user.get_role_title()] Decrees", 'sound/misc/alert.ogg', "Captain")
 	reset_mode()
 

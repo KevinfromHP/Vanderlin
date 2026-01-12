@@ -1765,9 +1765,14 @@ SUBSYSTEM_DEF(gamemode)
 	force_set_round_statistic(STATS_MAMMONS_HELD, total_wealth)
 
 	var/total_bank_wealth = 0
-	for(var/account_name in SStreasury.bank_accounts)
-		var/datum/bank_account/account = SStreasury.bank_accounts[account_name]
+	var/datum/bank_account/account
+	for(var/account_name in SSeconomy.bank_accounts)
+		account = SSeconomy.bank_accounts[account_name]
 		total_bank_wealth += account.account_balance
+	for(var/account_name in SSeconomy.business_accounts)
+		account = SSeconomy.bank_accounts[account_name]
+		total_bank_wealth += account.account_balance
+
 	force_set_round_statistic(STATS_MAMMONS_IN_BANK, total_bank_wealth)
 
 	var/list/potential_passers = current_valid_humans.Copy()
