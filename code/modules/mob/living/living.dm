@@ -2470,13 +2470,20 @@
 					found_ping(get_turf(M), client, "trap")
 			if(istype(O, /obj/structure/flora/grass/maneater/real))
 				found_ping(get_turf(O), client, "trap")
-			if(istype(O, /obj/structure/lever/hidden))
-				var/obj/structure/lever/hidden/lever = O
-				// they're trained at this
+			if(istype(O, /obj/structure/lever/hidden) || istype(O, /obj/structure/door/secret))
+				var/accessor_trait
+				var/hidden_dc
+				if(istype(O, /obj/structure/lever/hidden))
+					var/obj/structure/lever/hidden/lever = O
+					accessor_trait = lever.accessor_trait
+					hidden_dc = lever.hidden_dc
+				else
+					var/obj/structure/door/secret/door = O
+					accessor_trait = door.accessor_trait
+					hidden_dc = door.hidden_dc
 				var/bonuses = (HAS_TRAIT(src, TRAIT_THIEVESGUILD) || HAS_TRAIT(src, TRAIT_ASSASSIN)) ? 2 : 0
-				if(stat_roll(STATKEY_PER, 25, lever.hidden_dc - bonuses - 1) || istype(lever, /obj/structure/lever/hidden/keep && HAS_TRAIT(src, TRAIT_KNOWKEEPPLANS)))
+				if(STAPER + bonuses >= hidden_dc || (accessor_trait && HAS_MIND_TRAIT(src, accessor_trait)))
 					found_ping(get_turf(O), client, "hidden")
-
 		for(var/obj/effect/skill_tracker/potential_track in orange(7, src)) //Can't use view because they're invisible by default.
 			if(!can_see(src, potential_track, 10))
 				continue

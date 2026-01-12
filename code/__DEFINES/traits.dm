@@ -467,7 +467,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_PUNISHMENT_CURSE "PunishmentCurse"
 #define TRAIT_BANDITCAMP "banditcamp"
 #define TRAIT_KNOWBANDITS "knowbandits"
-#define TRAIT_KNOWKEEPPLANS "knowkeepplans"
 #define TRAIT_VAMPMANSION "vampiremansion"
 #define TRAIT_VAMP_DREAMS "vamp_dreams"
 #define TRAIT_INHUMENCAMP "inhumencamp"
@@ -487,6 +486,11 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_TORPOR					"Endless Slumber"
 #define TRAIT_SATE "SATE"
 #define TRAIT_NODE_EXTRACTED "Humors Extracted"
+
+// HIDDEN DOOR TRAITS
+#define TRAIT_KNOW_KEEP_DOORS "know_keep_doors"
+#define TRAIT_KNOW_INQUISITION_DOORS "know_inquisition_doors"
+#define TRAIT_KNOW_THIEF_DOORS "know_thief_doors"
 
 // JOB RELATED TRAITS
 

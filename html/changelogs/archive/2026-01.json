@@ -205,5 +205,20 @@
                 "rscadd": "Adjusted Gallowglass helmet, gave gallowglass and kerns, Mage blue kilts and sashes"
             }
         ]
+    },
+    "2026-01-12": {
+        "KevinfromHP": [
+            {
+                "rscdel": "Removed Inquisition roles from Voyager"
+            }
+        ],
+        "Rockslp": [
+            {
+                "rscdel": "Inquisition no longer allows aasimars within their formal ranks, only aasimar adepts."
+            },
+            {
+                "rscdel": "Dwarves no longer get promoted to Prefekts, they will forever stay in hopes of a promotion."
+            }
+        ]
     }
 }
