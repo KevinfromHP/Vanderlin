@@ -24,7 +24,7 @@
 		for(var/mob/living/L in .)
 			if(!L.can_see_cone(LI))
 				. -= L
-			if(HAS_TRAIT(L, TRAIT_BLIND))
+			if(L.is_blind())
 				. -= L
 
 /mob/living/carbon/human/death(gibbed)
@@ -90,7 +90,7 @@
 
 		if(!gibbed && yeae)
 			for(var/mob/living/carbon/human/HU in viewers(7, src))
-				if(HU != src && !HAS_TRAIT(HU, TRAIT_BLIND))
+				if(HU != src && !HU.is_blind())
 					if(!HAS_TRAIT(HU, TRAIT_VILLAIN)) //temporary measure for npc skeletons
 						if(HU.dna?.species && dna?.species)
 							if(HU.dna.species.id == dna.species.id)
@@ -105,9 +105,6 @@
 
 	. = ..()
 
-	dizziness = 0
-	jitteriness = 0
-
 	if(SSticker.HasRoundStarted())
 		SSblackbox.ReportDeath(src)
 		log_message("has died (BRUTE: [src.getBruteLoss()], BURN: [src.getFireLoss()], TOX: [src.getToxLoss()], OXY: [src.getOxyLoss()], CLONE: [src.getCloneLoss()])", LOG_ATTACK)
@@ -120,7 +117,7 @@
 		return zombie
 	if(mind.has_antag_datum(/datum/antagonist/vampire))
 		return
-	if(mind.has_antag_datum(/datum/antagonist/werewolf))
+	if(IS_WEREWOLF(src))
 		return
 	if(mind.has_antag_datum(/datum/antagonist/skeleton))
 		return
@@ -131,7 +128,7 @@
 /mob/living/carbon/human/gib(no_brain, no_organs, no_bodyparts, safe_gib = FALSE)
 	record_round_statistic(STATS_PEOPLE_GIBBED)
 	for(var/mob/living/carbon/human/CA in viewers(7, src))
-		if(CA != src && !HAS_TRAIT(CA, TRAIT_BLIND))
+		if(CA != src && !CA.is_blind())
 			if(HAS_TRAIT(CA, TRAIT_STEELHEARTED))
 				continue
 			var/mob/living/carbon/V = CA
@@ -142,7 +139,7 @@
 			V.add_stress(/datum/stress_event/viewgib)
 	. = ..()
 
-/mob/living/carbon/human/revive(full_heal, admin_revive)
+/mob/living/carbon/human/revive(full_heal_flags = NONE, excess_healing = 0, force_grab_ghost = FALSE)
 	. = ..()
 	if(!.)
 		return
