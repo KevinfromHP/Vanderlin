@@ -1,7 +1,7 @@
 
 /obj/effect/mapping_helpers/business_creator
 	var/default_name = "New Business"
-	var/list/business_areas
+	var/list/business_areas = list()
 	var/list/job_positions = list()
 	late = TRUE
 

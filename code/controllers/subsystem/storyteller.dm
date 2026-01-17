@@ -1765,8 +1765,8 @@ SUBSYSTEM_DEF(gamemode)
 	force_set_round_statistic(STATS_MAMMONS_HELD, total_wealth)
 
 	var/total_bank_wealth = 0
-	for(var/account_name in SSeconomy.bank_accounts)
-		total_bank_wealth += SSeconomy.bank_accounts[account_name].account_balance
+	for(var/bank_id in SSeconomy.bank_accounts)
+		total_bank_wealth += SSeconomy.bank_accounts[bank_id]?.account_balance || 0
 
 	force_set_round_statistic(STATS_MAMMONS_IN_BANK, total_bank_wealth)
 

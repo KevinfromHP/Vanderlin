@@ -20,9 +20,11 @@
 	var/mammons_on_person = get_mammons_in_atom(cast_on)
 	var/mammons_in_bank = 0
 	if(cast_on.has_dna())
-		var/datum/bank_account/account = SSeconomy.bank_accounts[cast_on.dna.unique_identity]
-		mammons_in_bank = account?.account_balance || 0
-	to_chat(owner, (span_notice("[cast_on] has [mammons_on_person] mammons on them, [mammons_in_bank] in their meister, for a total of [mammons_on_person + mammons_in_bank] mammons.")))
+		var/list/accounts = get_user_accounts(md5(cast_on.dna.unique_identity))
+		for(var/datum/bank_account/personal/account in accounts)
+			if(accounts[account] == ACCOUNT_PERMS_OWNER)
+				mammons_in_bank += account.account_balance
+	to_chat(owner, (span_notice("[cast_on] has [mammons_on_person] mammons on them, [mammons_in_bank] in the bank, for a total of [mammons_on_person + mammons_in_bank] mammons.")))
 
 /datum/action/cooldown/spell/appraise/holy
 	name = "Appraise"

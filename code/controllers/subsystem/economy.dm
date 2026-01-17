@@ -45,6 +45,20 @@ SUBSYSTEM_DEF(economy)
 	account.account_balance += initial_deposit
 	return account
 
+/// Returns a list of accessible datum accounts and their account permissions as an associative list.
+/datum/controller/subsystem/economy/proc/get_user_accounts(identity)
+	if(!identity)
+		return
+	var/list/accessible_accounts
+	for(var/bank_id in LAZYACCESS(access_permissions, identity))
+		if(access_permissions[identity][bank_id] < ACCOUNT_PERMS_TRUSTED)
+			continue
+		var/datum/bank_account/account = LAZYACCESS(bank_accounts, bank_id)
+		if(!account)
+			continue
+		LAZYADDASSOC(accessible_accounts, account, access_permissions[identity][bank_id])
+	return accessible_accounts
+
 ///Deposits money into a character's bank account. Taxes are deducted from the deposit and added to the treasury.
 ///@param amt: The amount of money to deposit.
 ///@param identity: The the unique DNA identity of the account's owner.
@@ -92,22 +106,6 @@ SUBSYSTEM_DEF(economy)
 			log_to_steward("[abs(amt)] was fined from [account.account_holder]")
 
 	return TRUE
-
-/datum/controller/subsystem/economy/proc/withdraw_money_account(amt, identity)
-	if(!amt)
-		return
-	var/datum/bank_account/account = bank_accounts[identity]
-	if(!account)
-		return
-	if(amt > account.account_balance)
-		return
-	if(amt > SStreasury.treasury_value)
-		return
-	account.adjust_money(-amt)
-	SStreasury.treasury_value -= amt
-	log_to_steward("[amt] withdrawn from [account.account_holder]")
-	return TRUE
-
 
 /datum/controller/subsystem/economy/proc/log_to_steward(log)
 	SStreasury.log_to_steward(log)

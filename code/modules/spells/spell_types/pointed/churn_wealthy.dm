@@ -28,8 +28,10 @@
 		return
 	var/totalvalue = get_mammons_in_atom(cast_on)
 	if(cast_on.has_dna())
-		var/datum/bank_account/account = SSeconomy.bank_accounts[cast_on.dna.unique_identity]
-		totalvalue += account?.account_balance || 0
+		var/list/accounts = get_user_accounts(md5(cast_on.dna.unique_identity))
+		for(var/datum/bank_account/personal/account in accounts)
+			if(accounts[account] == ACCOUNT_PERMS_OWNER)
+				totalvalue += account.account_balance
 	if(HAS_TRAIT(cast_on, TRAIT_NOBLE))
 		totalvalue += 101 // We're ALWAYS going to do a medium level smite minimum to nobles.
 	if(totalvalue <=10)

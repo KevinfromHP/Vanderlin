@@ -63,6 +63,19 @@
 		return TRUE
 	return FALSE
 
+/datum/bank_account/proc/withdraw_money(amount, forced=FALSE)
+	if(frozen)
+		return
+	if(!has_money(amount))
+		return
+	if(!forced && !SSeconomy.withdrawals_enabled)
+		return
+	if(amt > SStreasury.treasury_value)
+		return
+	account.adjust_money(-amt)
+	SStreasury.treasury_value -= amt
+	//log
+
 /datum/bank_account/personal
 	id_prefix = "usr"
 
