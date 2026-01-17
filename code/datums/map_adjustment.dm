@@ -26,11 +26,6 @@
 	/// /datum/migrant_wave = list(/datum/migrant_wave/crusade)
 	var/list/migrant_blacklist
 
-	/// Allows to override the names and starting wages of payrolls. This will override the entire payroll, so define it precisely.
-	/// To remove payrolls completely, assign an empty list.
-	/// list(PYRL_GUARD = list("Garrison", 15))
-	var/list/custom_payrolls
-
 /// called on map config is loaded.
 /// You need to change things manually here.
 /datum/map_adjustment/proc/on_mapping_init()

@@ -8,6 +8,11 @@
 #define TAX_CITIZEN	"Citizen"
 #define TAX_LORD	"Lord"
 
+/// The level of permissions for bank accounts
+#define ACCOUNT_PERMS_NONE		0
+#define ACCOUNT_PERMS_TRUSTED	1
+#define ACCOUNT_PERMS_OWNER		2
+
 #define ACCOUNT_NOBLE		"Noble"
 #define ACCOUNT_VASSAL		"Vassal"
 #define ACCOUNT_GARRISON	"Garrison"

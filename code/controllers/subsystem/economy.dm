@@ -8,9 +8,15 @@ SUBSYSTEM_DEF(economy)
 	init_order = INIT_ORDER_ECONOMY
 	runlevels = RUNLEVEL_GAME
 
-	var/list/bank_accounts = list()
-	var/list/payroll_accounts = list()
-	var/list/business_accounts = list()
+	var/accounts_created = 0
+	/// a list of all bank accounts.
+	var/list/datum/bank_account/bank_accounts = list()
+	/// All existing personal accounts.
+	var/list/datum/bank_account/personal/personal_accounts = list()
+	/// All existing business accounts.
+	var/list/datum/bank_account/business/business_accounts = list()
+	/// An associative list of identities (fingerprints) tied to bank account id's, and the perms of access
+	var/list/list/access_permissions = list()
 
 	var/withdrawals_enabled = TRUE
 	var/list/tax_groups = list(
@@ -18,30 +24,24 @@ SUBSYSTEM_DEF(economy)
 		TAX_CITIZEN	= 0.15,
 		TAX_LORD = 0
 	)
+	var/list/bank_logs = list()
+
 
 /datum/controller/subsystem/economy/Initialize(timeofday)
-	// if there is no map adjustment or it's null in there, use the default
-	var/list/payrolls = SSmapping.map_adjustment?.custom_payrolls || GLOB.payroll_default
-	for(var/pr_id in payrolls)
-		var/list/pr_args = payrolls[pr_id]
-		payroll_accounts[pr_id] = new /datum/bank_account/department(pr_args[1], pr_args[2])
 	return ..()
 
 /datum/controller/subsystem/economy/fire(resumed = 0)
 	return
 
-
 /*
 * These procs are all called directly from
 * things outside of the system.
 */
-/datum/controller/subsystem/economy/proc/create_bank_account(identity, initial_deposit, account_holder, paycheck_department, paycheck, tax_group)
+/datum/controller/subsystem/economy/proc/create_personal_account(identity, initial_deposit, account_holder, paycheck, tax_group)
 	if(!identity)
 		return
-	var/datum/bank_account/account = bank_accounts[identity] //if you somehow manage to call this on an existing job it's a bug, but it'll still add the deposit
-	if(!account)
-		bank_accounts[identity] = new /datum/bank_account(account_holder, paycheck_department, paycheck, tax_group)
-		account = bank_accounts[identity]
+	var/datum/bank_account/personal/account = new(account_holder, tax_group, paycheck)
+	LAZYORASSOCLIST(access_permissions, identity, list(account.identifier = ACCOUNT_PERMS_OWNER))
 	account.account_balance += initial_deposit
 	return account
 
@@ -68,12 +68,12 @@ SUBSYSTEM_DEF(economy)
 /datum/controller/subsystem/economy/proc/give_money_account(amt, target, source)
 	if(!amt || !target)
 		return
-	amt = floor(amt)
+	amt = round(amt)
 
-	var/datum/bank_account/account = bank_accounts[target] || payroll_accounts[target] || business_accounts[target]
+	var/datum/bank_account/account = bank_accounts[target]
 	if(!account?.adjust_money(amt))
 		return FALSE
-	//todo
+	//todo logs
 	if (amt > 0)
 		// Player received money
 		if(source)

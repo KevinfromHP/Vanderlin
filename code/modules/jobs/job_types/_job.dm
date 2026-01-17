@@ -314,7 +314,7 @@
 
 	if(give_bank_account)
 		var/deposit = give_bank_account > 1 ? give_bank_account : 0
-		SSeconomy.create_bank_account(spawned.dna.unique_identity, deposit, spawned.real_name, paycheck_department, paycheck)
+		SSeconomy.create_personal_account(md5(spawned.dna.unique_identity), deposit, spawned.real_name, paycheck_department, paycheck)
 		if(noble_income)
 			SStreasury.noble_incomes[spawned] = noble_income
 

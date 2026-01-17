@@ -8,7 +8,7 @@
 	blade_dulling = DULLING_BASH
 	SET_BASE_PIXEL(0, 32)
 
-	/// the real name of the person who is logged in
+	/// the fingerprint of the person who is logged in
 	var/login_user
 
 	COOLDOWN_DECLARE(use_cooldown)
@@ -44,7 +44,7 @@
 		withdraw()
 		return
 	COOLDOWN_START(src, use_cooldown, 1 SECONDS)
-	var/list/response_args = login(H.has_hand_for_held_index(H.active_hand_index))
+	var/list/response_args = login(H.has_hand_for_held_index(H.active_hand_index), user)
 	if(response_args)
 		addtimer(CALLBACK(src, PROC_REF(respond), response_args[1], response_args[2], response_args[3]), 0.3 SECONDS)
 	update_appearance(UPDATE_ICON_STATE)
@@ -57,7 +57,7 @@
 	COOLDOWN_START(src, use_cooldown, 1 SECONDS)
 	if(!login_user)
 		if(isbodypart(P))
-			var/list/response_args = login(P)
+			var/list/response_args = login(P, user)
 			if(response_args)
 				addtimer(CALLBACK(src, PROC_REF(respond), response_args[1], response_args[2], response_args[3]), 0.3 SECONDS)
 			update_appearance(UPDATE_ICON_STATE)
@@ -69,12 +69,11 @@
 		playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
 		return
 
-	if(!istype(P, /obj/item/coin))
-		say("Invalid deposit.")
-		playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
-		return
-	if(istype(P, /obj/item/coin/inqcoin))
-		say("Unrecognized currency.")
+	if(!is_type_in_list(P, list(/obj/item/coin/copper, /obj/item/coin/silver, /obj/item/coin/gold)))
+		if(!istype(P, /obj/item/coin))
+			say("Invalid deposit.")
+		else
+			say("Unrecognized currency.")
 		playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
 		return
 	var/mob/living/carbon/human/H = user
@@ -90,35 +89,38 @@
 	deposit(P, user)
 
 //returns the sound and response of the login attempt as well as handling the login itself
-/obj/structure/fake_machine/atm/proc/login(obj/item/bodypart/login_limb)
+/obj/structure/fake_machine/atm/proc/login(obj/item/bodypart/login_limb, mob/living/user)
 	if(!isbodypart(login_limb))
 		return null
-	var/datum/dna/dna
-	if(login_limb.status == BODYPART_ORGANIC && !login_limb.skeletonized)
-		dna = login_limb.original_owner.has_dna()
-	//there is an unfortunate issue with doing this from a DNA reference from the owner.
-	//if a limb is severed it doesn't have its own copy of the original DNA.
-	//it references the mob's dna, so if that limb's owner's dna chain changes (like an assassin or wabbajack),
-	//that arm's DNA mechanically also updates to that.
-	playsound(login_limb, 'sound/combat/hits/bladed/genstab (1).ogg', 100, FALSE, -1)
-	if(!dna || !(dna.species && (NOBLOOD in dna.species.species_traits)))
+	var/fingerprint = login_limb.fingerprint
+	if(!fingerprint || login_limb.skeletonized)
 		return list("No blood detected.", 'sound/misc/machinequestion.ogg', -1)
-	if(dna.real_name in GLOB.outlawed_players)
-		COOLDOWN_START(src, use_cooldown, 5 SECONDS)
-		return list("OUTLAW DETECTED! REFUSING SERVICE!", 'sound/misc/jumpscare (1).ogg', 2)
-
-	//todo
-	var/citizen_enabled = TRUE
-	if(dna.real_name in SSeconomy.bank_accounts)
-		var/datum/bank_account/account = SSeconomy.bank_accounts[dna.real_name]
-		if(account.frozen)
-			return list("Your account has been frozen.", 'sound/misc/machinequestion.ogg', -1)
-	else
-		var/datum/job/target_job = SSjob.GetJob(dna.holder.job)
-		target_job = target_job?.parent_job || target_job
-		if(!target_job || (!target_job.give_bank_account && citizen_enabled))
-			return list("You are not a citizen of [SSmapping.config.map_name].", 'sound/misc/machinequestion.ogg', -1)
-	login_user = dna.unique_identity
+	playsound(login_limb, 'sound/combat/hits/bladed/genstab (1).ogg', 100, FALSE, -1)
+	var/list/accounts = list()
+	var/selected_account
+	for(var/account_id in LAZYACCESS(SSeconomy.access_permissions, fingerprint))
+		if(SSeconomy.access_permissions[fingerprint][account_id] < ACCOUNT_PERMS_TRUSTED)
+			continue
+		var/datum/bank_account/personal/acct = LAZYACCESS(SSeconomy.personal_accounts, account_id)
+		if(!acct)
+			continue
+		if(SSeconomy.access_permissions[fingerprint][account_id] == ACCOUNT_PERMS_OWNER && (acct.account_holder in GLOB.outlawed_players))
+			COOLDOWN_START(src, use_cooldown, 5 SECONDS)
+			return list("OUTLAW DETECTED! REFUSING SERVICE!", 'sound/misc/jumpscare (1).ogg', 2)
+		accounts += (acct.account_holder = acct.identifier)
+		selected_account = acct.account_holder
+	if(!length(accounts))
+		return list("You have no bank accounts.", 'sound/misc/machinequestion.ogg', -1)
+	if(length(accounts) > 1)
+		selected_account = browser_input_list(user, "Which account will you log into?", src, accounts, selected_account, 15 SECONDS)
+	var/datum/bank_account/personal/account = LAZYACCESS(SSeconomy.personal_accounts, accounts[selected_account])
+	if(!QDELETED(account) || QDELETED(src) || QDELETED(user))
+		return
+	if(!CanReach(user))
+		return
+	if(account.frozen)
+		return list("Your account has been frozen.", 'sound/misc/machinequestion.ogg', -1)
+	login_user = account.identifier
 
 /obj/structure/fake_machine/atm/proc/respond(message, sound, extrarange)
 	say(message)
