@@ -177,10 +177,7 @@
 		return
 	if(!Adjacent(user))
 		return
-	if(!account.has_money(coin_amt*mod))
-		playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
-		return
-	if(!SSeconomy.withdraw_money_account(coin_amt*mod, login_user))
+	if(!account.withdraw_money(coin_amt*mod, FALSE))
 		playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
 		return
 	record_round_statistic(STATS_MAMMONS_WITHDRAWN, coin_amt * mod)

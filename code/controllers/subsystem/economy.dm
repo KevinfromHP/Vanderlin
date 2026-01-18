@@ -37,13 +37,25 @@ SUBSYSTEM_DEF(economy)
 * These procs are all called directly from
 * things outside of the system.
 */
-/datum/controller/subsystem/economy/proc/create_personal_account(identity, initial_deposit, account_holder, paycheck, tax_group)
+/// Creates a new personal account for the user.
+/datum/controller/subsystem/economy/proc/create_personal_account(identity, initial_deposit, account_holder, tax_group, mob/living/associated_mob)
 	if(!identity)
 		return
-	var/datum/bank_account/personal/account = new(account_holder, tax_group, paycheck)
-	LAZYORASSOCLIST(access_permissions, identity, list(account.identifier = ACCOUNT_PERMS_OWNER))
+	var/datum/bank_account/personal/account = new(account_holder, tax_group, associated_mob)
 	account.account_balance += initial_deposit
+	change_account_access(identity, account.identifier, ACCOUNT_PERMS_OWNER)
 	return account
+
+/// Changes the account access of a user.
+/datum/controller/subsystem/economy/proc/change_account_access(identity, account_id, new_permissions=ACCOUNT_PERMS_NONE)
+	if(!identity)
+		return
+	if(!bank_accounts[account_id])
+		return
+	if(new_permissions == ACCOUNT_PERMS_NONE)
+		LAZYREMOVEASSOC(access_permissions, identity, account_id)
+		return
+	LAZYORASSOCLIST(access_permissions, identity, list(account_id = new_permissions))
 
 /// Returns a list of accessible datum accounts and their account permissions as an associative list.
 /datum/controller/subsystem/economy/proc/get_user_accounts(identity)
@@ -58,6 +70,15 @@ SUBSYSTEM_DEF(economy)
 			continue
 		LAZYADDASSOC(accessible_accounts, account, access_permissions[identity][bank_id])
 	return accessible_accounts
+
+/// Returns the first personal account that a user has.
+/datum/controller/subsystem/economy/proc/get_owned_personal_account(identity)
+	var/list/their_accounts = get_user_accounts(identity)
+	var/datum/bank_account/personal/account
+	for(account in their_accounts)
+		if(their_accounts[account] == ACCOUNT_PERMS_OWNER)
+			return account
+
 
 ///Deposits money into a character's bank account. Taxes are deducted from the deposit and added to the treasury.
 ///@param amt: The amount of money to deposit.

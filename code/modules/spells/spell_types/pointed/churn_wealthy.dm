@@ -28,7 +28,7 @@
 		return
 	var/totalvalue = get_mammons_in_atom(cast_on)
 	if(cast_on.has_dna())
-		var/list/accounts = get_user_accounts(md5(cast_on.dna.unique_identity))
+		var/list/accounts = SSeconomy.get_user_accounts(md5(cast_on.dna.unique_identity))
 		for(var/datum/bank_account/personal/account in accounts)
 			if(accounts[account] == ACCOUNT_PERMS_OWNER)
 				totalvalue += account.account_balance

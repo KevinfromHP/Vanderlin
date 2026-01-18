@@ -20,7 +20,7 @@
 	var/mammons_on_person = get_mammons_in_atom(cast_on)
 	var/mammons_in_bank = 0
 	if(cast_on.has_dna())
-		var/list/accounts = get_user_accounts(md5(cast_on.dna.unique_identity))
+		var/list/accounts = SSeconomy.get_user_accounts(md5(cast_on.dna.unique_identity))
 		for(var/datum/bank_account/personal/account in accounts)
 			if(accounts[account] == ACCOUNT_PERMS_OWNER)
 				mammons_in_bank += account.account_balance

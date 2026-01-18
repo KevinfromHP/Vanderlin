@@ -66,30 +66,68 @@
 /datum/bank_account/proc/withdraw_money(amount, forced=FALSE)
 	if(frozen)
 		return
-	if(!has_money(amount))
-		return
 	if(!forced && !SSeconomy.withdrawals_enabled)
 		return
-	if(amt > SStreasury.treasury_value)
+	if(amount > SStreasury.treasury_value)
 		return
-	account.adjust_money(-amt)
-	SStreasury.treasury_value -= amt
+	if(!adjust_money(-amount))
+		return
+	SStreasury.treasury_value -= amount
+	return TRUE
 	//log
 
 /datum/bank_account/personal
 	id_prefix = "usr"
+	//Do not rely on or really use this. This is only for registering a consistent cryo deletion.
+	VAR_PROTECTED/mob/living/carbon/human/associated_mob
 
-/datum/bank_account/personal/New(account_holder, paycheck_department, paycheck, tax_group)
+
+/datum/bank_account/personal/New(account_holder, tax_group, mob/living/carbon/associated_mob)
 	. = ..()
 	LAZYADDASSOC(SSeconomy.personal_accounts, identifier, src)
+	associate_mob(associated_mob)
 
 /datum/bank_account/personal/Destroy(force, ...)
 	. = ..()
 	LAZYSET(SSeconomy.personal_accounts, identifier, null)
+	if(associated_mob)
+		UnregisterSignal(associated_mob, COMSIG_PARENT_QDELETING)
+		associated_mob = null
+	UnregisterSignal(SSdcs, COMSIG_GLOB_HUMAN_ENTER_CRYO)
+
+
+//personal accounts delete themselves when their owner leaves
+/datum/bank_account/personal/proc/on_owner_cryo(datum/source, mob/living/carbon/human/cryoer)
+	SIGNAL_HANDLER
+	if((cryoer && cryoer == associated_mob))
+		//log
+		qdel(src)
+
+/datum/bank_account/personal/proc/on_owner_delete(datum/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(source, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_HUMAN_ENTER_CRYO)
+	associated_mob = null
+
+/datum/bank_account/personal/proc/associate_mob(mob/living/carbon/human/association)
+	if(associated_mob)
+		UnregisterSignal(associated_mob, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(SSdcs, COMSIG_GLOB_HUMAN_ENTER_CRYO)
+	if(istype(association)) // we do a little abysmal dogshit sometimes
+		associated_mob = association
+		RegisterSignal(SSdcs, COMSIG_GLOB_HUMAN_ENTER_CRYO, PROC_REF(on_owner_cryo))
+		RegisterSignal(associated_mob, COMSIG_PARENT_QDELETING, PROC_REF(on_owner_delete))
+
 
 /datum/bank_account/business
 	id_prefix = "bus"
 	var/business_name = "Business Account"
+	/// The default job type that owns this business
+	var/default_owner
+	/// a list of job types that have priority ownership over this business. This is used for cryoing and latejoin stuff.
+	var/list/default_employees = list()
+
+
 	/// how much are we paying as a multiplier on payday
 	var/payday = 0
 	/// are we even doing paydays
@@ -97,16 +135,57 @@
 	//a list of account identifiers along with their paycheck value.
 	var/list/employee_database = list()
 
-/datum/bank_account/business/New(account_holder, paycheck, tax_group, business_name)
+/datum/bank_account/business/New(account_holder, tax_group, mob/living/carbon/associated_mob, business_name, payday, do_paydays, default_owner, list/default_employees)
 	. = ..()
 	LAZYADDASSOC(SSeconomy.business_accounts, identifier, src)
 	if(business_name)
 		src.business_name = business_name
+	src.payday = payday
+	suspended = !do_paydays
+	if(default_owner)
+		src.default_owner = default_owner
+	if(length(default_employees))
+		src.default_employees = default_employees
+	RegisterSignal(SSdcs, COMSIG_GLOB_JOB_AFTER_SPAWN, PROC_REF(on_job_spawn))
 
 /datum/bank_account/business/Destroy(force, ...)
 	. = ..()
-	//we keep the identifier so we at least knew it existed
 	LAZYSET(SSeconomy.business_accounts, identifier, null)
+	for(var/emp_id in employee_database)
+		if(SSeconomy.bank_accounts[emp_id])
+			UnregisterSignal(UnregisterSignal(SSeconomy.bank_accounts[emp_id], COMSIG_PARENT_QDELETING, PROC_REF(fire_employee)))
+
+/// Checks for jobs that should be added to this payroll
+/datum/bank_account/business/proc/on_job_spawn(datum/source, datum/job/job, mob/living/spawned, client/player_client)
+	SIGNAL_HANDLER
+	var/is_owner = istype(job, default_owner)
+	var/paycheck = default_employees[job]
+	if(!(is_owner || paycheck))
+		return
+	var/datum/dna/dna = spawned.has_dna()
+	if(!dna || !dna.unique_identity)
+		return
+	var/identity = md5(dna.unique_identity)
+	var/datum/bank_account/personal/account = SSeconomy.get_owned_personal_account(identity)
+	if(!account)
+		message_admins("[player_client.ckey] joined as [job.title]. They were supposed to be added to business [business_name], but had no bank account.")
+		return
+	if(is_owner)
+		SSeconomy.change_account_access(identity, identifier, new_permissions = ACCOUNT_PERMS_OWNER)
+	if(paycheck) // assigns payroll
+		hire_employee(account, paycheck)
+
+/datum/bank_account/business/proc/hire_employee(datum/bank_account/personal/employee, starting_pay=0)
+	if(!istype(employee))
+		return
+	if(employee_database[employee.identifier])
+		return
+	RegisterSignal(employee, COMSIG_PARENT_QDELETING, PROC_REF(fire_employee))
+	employee_database[employee.identifier] = starting_pay
+
+/datum/bank_account/business/proc/fire_employee(datum/bank_account/personal/employee)
+	UnregisterSignal(employee, COMSIG_PARENT_QDELETING, PROC_REF(fire_employee))
+	employee_database -= employee.identifier
 
 //todo logs
 /datum/bank_account/business/proc/payday()
