@@ -19,7 +19,7 @@
 	if(user.can_read(src))
 		. += span_info("The current tax rates:")
 		for(var/tax_group in SSeconomy.tax_groups)
-			. += span_info("\t[tax_group]: [SSeconomy.tax_groups[tax_group]]")
+			. += span_info("[tax_group]: [SSeconomy.tax_groups[tax_group] * 100] percent")
 
 /obj/structure/fake_machine/atm/update_icon_state()
 	. = ..()
@@ -30,10 +30,25 @@
 		suffix = "_bloody"
 	icon_state = "[base_icon_state][suffix]"
 
+/obj/structure/fake_machine/atm/wash(clean_types)
+	. = ..()
+	if(clean_types & CLEAN_TYPE_BLOOD)
+		login_user = null
+		update_appearance(UPDATE_ICON_STATE)
+
+/obj/structure/fake_machine/atm/attack_hand_secondary(mob/user, params)
+	if(user.cmode)
+		. = ..()
+	if(do_after(user, 1 SECONDS, src, display_over_user=TRUE))
+		wash(CLEAN_TYPE_BLOOD)
+		playsound(user, pick('sound/foley/cloth_wipe (1).ogg','sound/foley/cloth_wipe (2).ogg', 'sound/foley/cloth_wipe (3).ogg'), 25, FALSE)
+
 /obj/structure/fake_machine/atm/attack_hand(mob/user)
 	if(!COOLDOWN_FINISHED(src, use_cooldown))
 		return
 	if(!ishuman(user))
+		return
+	if(obj_broken)
 		return
 	var/mob/living/carbon/human/H = user
 	if(HAS_TRAIT(user, TRAIT_MATTHIOS_CURSE) && prob(33))
@@ -41,7 +56,7 @@
 		H.cursed_freak_out()
 		return
 	if(login_user)
-		withdraw()
+		withdraw(user)
 		return
 	COOLDOWN_START(src, use_cooldown, 1 SECONDS)
 	var/list/response_args = login(H.has_hand_for_held_index(H.active_hand_index), user)
@@ -50,8 +65,10 @@
 	update_appearance(UPDATE_ICON_STATE)
 
 /obj/structure/fake_machine/atm/attackby(obj/item/P, mob/user, params)
-	if(user.cmode || !ishuman(user))
+	if(user.cmode || !ishuman(user) || GetComponent(/datum/component/cleaner))
 		return ..()
+	if(obj_broken)
+		return
 	if(!COOLDOWN_FINISHED(src, use_cooldown))
 		return
 	COOLDOWN_START(src, use_cooldown, 1 SECONDS)
@@ -95,34 +112,38 @@
 	var/fingerprint = login_limb.fingerprint
 	if(!fingerprint || login_limb.skeletonized)
 		return list("No blood detected.", 'sound/misc/machinequestion.ogg', -1)
-	playsound(login_limb, 'sound/combat/hits/bladed/genstab (1).ogg', 100, FALSE, -1)
+	playsound(user, 'sound/combat/hits/bladed/genstab (1).ogg', 100, FALSE, -1)
 	var/list/accounts = list()
 	var/selected_account
-	for(var/account_id in LAZYACCESS(SSeconomy.access_permissions, fingerprint))
-		if(SSeconomy.access_permissions[fingerprint][account_id] < ACCOUNT_PERMS_TRUSTED)
+	for(var/account_id in SSeconomy.access_permissions[fingerprint])
+		var/access_permissions = SSeconomy.access_permissions[fingerprint][account_id]
+		if(access_permissions < ACCOUNT_PERMS_TRUSTED)
 			continue
 		var/datum/bank_account/personal/acct = LAZYACCESS(SSeconomy.personal_accounts, account_id)
 		if(!acct)
 			continue
-		if(SSeconomy.access_permissions[fingerprint][account_id] == ACCOUNT_PERMS_OWNER && (acct.account_holder in GLOB.outlawed_players))
+		if(access_permissions == ACCOUNT_PERMS_OWNER && (acct.account_holder in GLOB.outlawed_players))
 			COOLDOWN_START(src, use_cooldown, 5 SECONDS)
 			return list("OUTLAW DETECTED! REFUSING SERVICE!", 'sound/misc/jumpscare (1).ogg', 2)
-		accounts += (acct.account_holder = acct.identifier)
+		accounts[acct.account_holder] = acct.identifier
 		selected_account = acct.account_holder
 	if(!length(accounts))
 		return list("You have no bank accounts.", 'sound/misc/machinequestion.ogg', -1)
 	if(length(accounts) > 1)
 		selected_account = browser_input_list(user, "Which account will you log into?", src, accounts, selected_account, 15 SECONDS)
 	var/datum/bank_account/personal/account = LAZYACCESS(SSeconomy.personal_accounts, accounts[selected_account])
-	if(!QDELETED(account) || QDELETED(src) || QDELETED(user))
+	if(QDELETED(account) || QDELETED(src) || QDELETED(user))
 		return
 	if(!CanReach(user))
+		return
+	if(obj_broken)
 		return
 	if(account.frozen)
 		return list("Your account has been frozen.", 'sound/misc/machinequestion.ogg', -1)
 	login_user = account.identifier
+	return list("Your account is now accessible.", 'sound/misc/machinetalk.ogg', -1)
 
-/obj/structure/fake_machine/atm/proc/respond(message, sound, extrarange)
+/obj/structure/fake_machine/atm/proc/respond(message, sound, extrarange=-1)
 	say(message)
 	playsound(src, sound, 100, FALSE, extrarange)
 
@@ -142,7 +163,7 @@
 		say("Your donation was successful.")
 	qdel(P)
 
-/obj/structure/fake_machine/atm/proc/withdraw(mob/living/user, mob/living/carbon/dna_user)
+/obj/structure/fake_machine/atm/proc/withdraw(mob/living/user)
 	var/datum/bank_account/account = SSeconomy.bank_accounts[login_user]
 	if(!account || account.frozen)
 		say("This account is unavailable.")
@@ -165,7 +186,7 @@
 		if(account.has_money(10))
 			choices["GOLD"] = 10
 
-	var/selection = input(user, "Balance: [account.account_balance]", src) as null|anything in choices
+	var/selection = input(user, "Balance: [account.account_balance] mammon\nSelect a withdrawal type", src) as null|anything in choices
 	if(!selection || QDELETED(src) || QDELETED(user))
 		return
 	var/mod = choices[selection]

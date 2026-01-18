@@ -55,7 +55,8 @@ SUBSYSTEM_DEF(economy)
 	if(new_permissions == ACCOUNT_PERMS_NONE)
 		LAZYREMOVEASSOC(access_permissions, identity, account_id)
 		return
-	LAZYORASSOCLIST(access_permissions, identity, list(account_id = new_permissions))
+	// fuck dm
+	LAZYADDASSOC(access_permissions, identity, list("[account_id]" = new_permissions))
 
 /// Returns a list of accessible datum accounts and their account permissions as an associative list.
 /datum/controller/subsystem/economy/proc/get_user_accounts(identity)

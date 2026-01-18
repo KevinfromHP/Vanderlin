@@ -31,8 +31,6 @@
 	if(stat == DEAD)
 		return
 
-	var/area/A = get_area(src)
-
 	if(mind)
 		if(!gibbed)
 			var/datum/antagonist/vampire/VD = mind.has_antag_datum(/datum/antagonist/vampire)

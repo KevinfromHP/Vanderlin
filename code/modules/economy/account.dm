@@ -68,6 +68,8 @@
 		return
 	if(!forced && !SSeconomy.withdrawals_enabled)
 		return
+	if(amount > account_balance)
+		return
 	if(amount > SStreasury.treasury_value)
 		return
 	if(!adjust_money(-amount))
