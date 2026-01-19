@@ -27,6 +27,7 @@ GLOBAL_VAR_INIT(forecast, FALSE)
 GLOBAL_VAR_INIT(todoverride, FALSE)
 /// The current day of the week, range from 1-7 (Moon's Dae - Sun's Dae)
 GLOBAL_VAR_INIT(dayspassed, FALSE)
+GLOBAL_VAR_INIT(totaldayspassed, FALSE)
 
 /proc/settod()
 	var/time = station_time()
@@ -46,6 +47,7 @@ GLOBAL_VAR_INIT(dayspassed, FALSE)
 
 	if(GLOB.tod != oldtod)
 		if(GLOB.tod == "dawn")
+			GLOB.totaldayspassed++
 			GLOB.dayspassed++
 			if(GLOB.dayspassed == 8)
 				GLOB.dayspassed = 1

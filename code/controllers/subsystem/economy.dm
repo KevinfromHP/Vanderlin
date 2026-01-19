@@ -20,11 +20,15 @@ SUBSYSTEM_DEF(economy)
 
 	var/withdrawals_enabled = TRUE
 	var/list/tax_groups = list(
-		TAX_FOREIGN	= 0.3,
-		TAX_CITIZEN	= 0.15,
+		TAX_FOREIGN	= 0.4,
+		TAX_CITIZEN	= 0.2,
+		TAX_BUSINESS = 0.1,
 		TAX_LORD = 0
 	)
+	/// Every bank log. Bank accounts individually store the indices of the logs they are relevant to
 	var/list/bank_logs = list()
+	/// used for logs so they still have a name
+	var/list/dead_accounts = list()
 
 
 /datum/controller/subsystem/economy/Initialize(timeofday)
@@ -90,7 +94,6 @@ SUBSYSTEM_DEF(economy)
 		return FALSE
 	if(!identity)
 		return FALSE
-
 	var/datum/bank_account/account = bank_accounts[identity]
 	SStreasury.give_money_treasury(amt, account?.account_holder, account) //we still take the mammon, and only announce it if we didn't have an account
 	if(!account)
@@ -128,6 +131,15 @@ SUBSYSTEM_DEF(economy)
 			log_to_steward("[abs(amt)] was fined from [account.account_holder]")
 
 	return TRUE
+
+/datum/controller/subsystem/economy/proc/make_bank_log(to_log, list/involved_accounts)
+	if(SSticker.current_state < GAME_STATE_PLAYING)
+		return
+	var/timestamp = "[station_time_timestamp("hh:mm")] the [thtotext(GLOB.totaldayspassed)]"
+	bank_logs += "$TIME([timestamp])[to_log]"
+	for(var/datum/bank_account/account in involved_accounts)
+		account.log_mentions += length(bank_logs)
+
 
 /datum/controller/subsystem/economy/proc/log_to_steward(log)
 	SStreasury.log_to_steward(log)

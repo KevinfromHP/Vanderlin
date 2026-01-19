@@ -1,7 +1,7 @@
 /datum/bank_account
 	var/identifier
-	var/id_prefix = "ba"
 
+	var/name = "New Bank Account"
 	var/account_holder = "No Owner"
 	var/account_balance = 0
 
@@ -13,6 +13,8 @@
 	var/tax_exempt = FALSE
 	///goes up if you underflow during deposits
 	var/unpaid_taxes = 0
+	/// the indices of the logs we are mentioned in SSeconomy
+	var/list/log_mentions = list()
 
 
 /datum/bank_account/New(account_holder, tax_group=TAX_FOREIGN)
@@ -20,12 +22,13 @@
 		src.account_holder = account_holder
 	src.tax_group = tax_group
 	src.tax_exempt = (tax_group == TAX_LORD)
-	identifier = "[id_prefix][SSeconomy.accounts_created]"
+	identifier = REF(src)
 	SSeconomy.accounts_created++
 	LAZYADDASSOC(SSeconomy.bank_accounts, identifier, src)
 
 /datum/bank_account/Destroy(force, ...)
 	. = ..()
+	SSeconomy.dead_accounts[identifier] = name
 	//we keep the identifier so we at least knew it existed
 	LAZYSET(SSeconomy.bank_accounts, identifier, null)
 
@@ -38,14 +41,18 @@
 /// returns the taxed value of the deposit
 /datum/bank_account/proc/deposit_money(amt)
 	var/tax_percent = SSeconomy.tax_groups[tax_group] || 0
-	if(tax_exempt || tax_percent <= 0)
-		_adjust_money(amt)
-		return 0
-	var/amount_to_tax = (amt + unpaid_taxes) * tax_percent
-	//hold onto the decimal and remember they owe this for next time
-	unpaid_taxes = amount_to_tax % 1
-	amount_to_tax = floor(amount_to_tax)
-	_adjust_money(amt - amount_to_tax)
+	var/amount_to_tax = 0
+	if(!(tax_exempt || tax_percent <= 0))
+		amount_to_tax = (amt + unpaid_taxes) * tax_percent
+		//hold onto the decimal and remember they owe this for next time
+		unpaid_taxes = amount_to_tax % 1
+		amount_to_tax = round(amount_to_tax)
+	var/final_amount = amt - amount_to_tax
+	_adjust_money(final_amount)
+	SSeconomy.make_bank_log("+[amt][amount_to_tax ? " \[[final_amount]\]" : ""] \
+		mammon deposited to [format_log()][amount_to_tax ? ", paid [amount_to_tax] in tax" : ""]. \
+		New account balance is [account_balance].", \
+		list(src))
 	return amount_to_tax
 
 /datum/bank_account/proc/adjust_money(amt)
@@ -75,17 +82,23 @@
 	if(!adjust_money(-amount))
 		return
 	SStreasury.treasury_value -= amount
+	SSeconomy.make_bank_log("-[amount] withdrawn from [format_log()]. \
+		New account balance is [account_balance]. \
+		New treasury balance is [SStreasury.treasury_value]", \
+		list(src))
 	return TRUE
-	//log
+
+/datum/bank_account/proc/format_log()
+	return "$(ACCT_[identifier])"
 
 /datum/bank_account/personal
-	id_prefix = "usr"
 	//Do not rely on or really use this. This is only for registering a consistent cryo deletion.
 	VAR_PROTECTED/mob/living/carbon/human/associated_mob
 
-
 /datum/bank_account/personal/New(account_holder, tax_group, mob/living/carbon/associated_mob)
 	. = ..()
+	if(account_holder)
+		name = account_holder
 	LAZYADDASSOC(SSeconomy.personal_accounts, identifier, src)
 	associate_mob(associated_mob)
 
@@ -101,9 +114,12 @@
 //personal accounts delete themselves when their owner leaves
 /datum/bank_account/personal/proc/on_owner_cryo(datum/source, mob/living/carbon/human/cryoer)
 	SIGNAL_HANDLER
-	if((cryoer && cryoer == associated_mob))
-		//log
-		qdel(src)
+	if(!(cryoer && cryoer == associated_mob))
+		return
+	SSeconomy.make_bank_log("[format_log()]'s account holder [account_holder] has departed for [SSmapping.config.immigrant_origin]. \
+		[cryoer.p_their()] account has been closed.", \
+		list(src))
+	qdel(src)
 
 /datum/bank_account/personal/proc/on_owner_delete(datum/source)
 	SIGNAL_HANDLER
@@ -121,9 +137,9 @@
 		RegisterSignal(associated_mob, COMSIG_PARENT_QDELETING, PROC_REF(on_owner_delete))
 
 
+
 /datum/bank_account/business
-	id_prefix = "bus"
-	var/business_name = "Business Account"
+	name = "New Business"
 	/// The default job type that owns this business
 	var/default_owner
 	/// a list of job types that have priority ownership over this business. This is used for cryoing and latejoin stuff.
@@ -137,11 +153,11 @@
 	//a list of account identifiers along with their paycheck value.
 	var/list/employee_database = list()
 
-/datum/bank_account/business/New(account_holder, tax_group, mob/living/carbon/associated_mob, business_name, payday, do_paydays, default_owner, list/default_employees)
+/datum/bank_account/business/New(account_holder, tax_group, business_name, payday, do_paydays, default_owner, list/default_employees)
 	. = ..()
 	LAZYADDASSOC(SSeconomy.business_accounts, identifier, src)
 	if(business_name)
-		src.business_name = business_name
+		name = business_name
 	src.payday = payday
 	suspended = !do_paydays
 	if(default_owner)
@@ -170,10 +186,11 @@
 	var/identity = md5(dna.unique_identity)
 	var/datum/bank_account/personal/account = SSeconomy.get_owned_personal_account(identity)
 	if(!account)
-		message_admins("[player_client.ckey] joined as [job.title]. They were supposed to be added to business [business_name], but had no bank account.")
+		message_admins("[player_client.ckey] joined as [job.title]. They were supposed to be added to business [name], but had no bank account.")
 		return
 	if(is_owner)
 		SSeconomy.change_account_access(identity, identifier, new_permissions = ACCOUNT_PERMS_OWNER)
+		account_holder = spawned.real_name
 	if(paycheck) // assigns payroll
 		hire_employee(account, paycheck)
 

@@ -6,6 +6,7 @@
 
 #define TAX_FOREIGN	"Foreign"
 #define TAX_CITIZEN	"Citizen"
+#define TAX_BUSINESS "Business"
 #define TAX_LORD	"Lord"
 
 /// The level of permissions for bank accounts
@@ -22,17 +23,3 @@
 #define ACCOUNT_SERF		"Serf"
 #define ACCOUNT_CHURCH		"Church"
 #define ACCOUNT_OTHER		"Other"
-
-/// The starting payday values for each of these department paydays.
-#define DEPARTMENT_WAGES list(, \
-	ACCOUNT_NOBLE = 50, \
-	ACCOUNT_VASSAL = 30, \
-	ACCOUNT_GARRISON = 10, \
-	ACCOUNT_TOWNSMAN = 10, \
-	ACCOUNT_TRADESMAN = 10, \
-	ACCOUNT_PEASANT = 0, \
-	ACCOUNT_SERF = 10, \
-	ACCOUNT_CHURCH = 10, \
-	ACCOUNT_PEASANT = 0, \
-)
-

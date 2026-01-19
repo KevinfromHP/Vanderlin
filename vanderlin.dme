@@ -2533,6 +2533,7 @@
 #include "code\modules\discord\discord_link_record.dm"
 #include "code\modules\discord\manipulation.dm"
 #include "code\modules\economy\_economy.dm"
+#include "code\modules\economy\business_creator.dm"
 #include "code\modules\economy\account.dm"
 #include "code\modules\emoji\emoji_parse.dm"
 #include "code\modules\error_handler\error_handler.dm"
