@@ -78,6 +78,14 @@
 	craftdiff = 3
 	category = "Cloak"
 
+/datum/repeatable_crafting_recipe/sewing/weaving/pantheoncloak
+	name = "pantheon cloak"
+	output = /obj/item/clothing/cloak/pantheon
+	requirements = list(/obj/item/natural/cloth = 1,
+				/obj/item/natural/silk = 1)
+	craftdiff = 3
+	category = "Cloak"
+
 /datum/repeatable_crafting_recipe/sewing/weaving/feld_hood
 	name = "hood (feldsher)"
 	output = /obj/item/clothing/head/roguehood/feld
@@ -640,5 +648,53 @@
 	output = /obj/item/clothing/cloak/ordinatorcape
 	requirements = list(
 		/obj/item/natural/silk = 3
+	)
+	craftdiff = 3
+
+/datum/repeatable_crafting_recipe/sewing/weaving/sanguinetrousers
+	name = "sanguine trousers"
+	output = /obj/item/clothing/pants/trou/courtphysician
+	requirements = list(
+		/obj/item/natural/silk = 3
+	)
+	craftdiff = 3
+
+/datum/repeatable_crafting_recipe/sewing/weaving/sanguinevest
+	name = "sanguine vest"
+	output = /obj/item/clothing/shirt/undershirt/courtphysician
+	requirements = list(
+		/obj/item/natural/silk = 3
+	)
+	craftdiff = 3
+
+/datum/repeatable_crafting_recipe/sewing/weaving/sanguineblouse
+	name = "sanguine blouse"
+	output = /obj/item/clothing/shirt/undershirt/courtphysician/female
+	requirements = list(
+		/obj/item/natural/silk = 3
+	)
+	craftdiff = 3
+
+/datum/repeatable_crafting_recipe/sewing/weaving/sanguineskirt
+	name = "sanguine skirt"
+	output = /obj/item/clothing/pants/skirt/courtphysician
+	requirements = list(
+		/obj/item/natural/silk = 3
+	)
+	craftdiff = 3
+
+/datum/repeatable_crafting_recipe/sewing/weaving/sanguinehat
+	name = "sanguine hat"
+	output = /obj/item/clothing/head/courtphysician/male
+	requirements = list(
+		/obj/item/natural/silk = 2
+	)
+	craftdiff = 3
+
+/datum/repeatable_crafting_recipe/sewing/weaving/sanguinecap
+	name = "sanguine cap"
+	output = /obj/item/clothing/head/courtphysician/female
+	requirements = list(
+		/obj/item/natural/silk = 2
 	)
 	craftdiff = 3
