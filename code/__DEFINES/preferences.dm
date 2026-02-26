@@ -174,26 +174,6 @@
 #define VOICE_TYPES_MASCANDRO list(VOICE_TYPE_MASC, VOICE_TYPE_ANDRO)
 #define VOICE_TYPES_FEMANDRO list(VOICE_TYPE_FEM, VOICE_TYPE_ANDRO)
 
-//alignment
-#define ALIGNMENT_LG		"Lawful Good"
-#define ALIGNMENT_NG		"Neutral Good"
-#define ALIGNMENT_CG		"Chaotic Good"
-#define ALIGNMENT_LN		"Lawful Neutral"
-#define ALIGNMENT_TN		"True Neutral"
-#define ALIGNMENT_CN		"Chaotic Neutral"
-#define ALIGNMENT_LE		"Lawful Evil"
-#define ALIGNMENT_NE		"Neutral Evil"
-#define ALIGNMENT_CE		"Chaotic Evil"
-
-#define ALL_ALIGNMENTS_LIST list(ALIGNMENT_LG,\
-							ALIGNMENT_NG,\
-							ALIGNMENT_CG,\
-							ALIGNMENT_LN,\
-							ALIGNMENT_TN,\
-							ALIGNMENT_CN,\
-							ALIGNMENT_LE,\
-							ALIGNMENT_NE,\
-							ALIGNMENT_CE)
 
 #define UI_PREFERENCE_LIGHT_MODE "light mode"
 #define UI_PREFERENCE_DARK_MODE "dark mode"

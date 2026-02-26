@@ -41,9 +41,9 @@ SUBSYSTEM_DEF(crediticons)
 		return
 
 	var/thename = "[actor.real_name]"
-	var/used_title = job.get_informed_title(actor)
-	if(used_title)
-		thename = "[thename]\nthe [used_title]"
+	var/thetitle
+	if(!is_unassigned_job(job))
+		thetitle = job.get_informed_title(actor)
 
 	GLOB.credits_icons[thename] = list()
 	var/icon/rendered_icon = get_flat_human_icon(null, job, preferences, DUMMY_HUMAN_SLOT_MANIFEST, list(SOUTH))
@@ -53,26 +53,21 @@ SUBSYSTEM_DEF(crediticons)
 		rendered_icon.Scale(96,96)
 		GLOB.credits_icons[thename]["icon"] = rendered_icon
 		GLOB.credits_icons[thename]["vc"] = actor.voice_color
+		GLOB.credits_icons[thename]["title"] = thetitle
 
-/datum/controller/subsystem/crediticons/proc/get_credit_icon(mob/living/carbon/human/target, crop_to_upper_half = FALSE)
-	if(!target || !istype(target) || !target.mind || !target.client)
-		return null
+/// Obtains the credit icon of a mob from their real name. If a mob is used as the credit it, it will use its real name.
+/datum/controller/subsystem/crediticons/proc/get_credit_icon(credit_name, crop_to_upper_half = FALSE)
+	if(!credit_name)
+		return
+	if(ismob(credit_name))
+		var/mob/target = credit_name
+		credit_name = target.real_name
+	if(!istext(credit_name))
+		return
 
-	var/credit_name = "[target.real_name]"
-	if(target.original_name)
-		credit_name = "[target.original_name]"
-	if(target.mind.assigned_role)
-		var/datum/job/job = target.mind.assigned_role
-		var/used_title = job.get_informed_title(target)
-		if(job.parent_job)
-			used_title = job.parent_job.get_informed_title(target)
-		if(used_title)
-			credit_name = "[credit_name]\nthe [used_title]"
-
-	if(!GLOB.credits_icons[credit_name]?["icon"])
-		return null
-
-	var/icon/credit_icon = GLOB.credits_icons[credit_name]["icon"]
+	var/icon/credit_icon = LAZYACCESSASSOC(GLOB.credits_icons, credit_name, "icon")
+	if(!credit_icon)
+		return
 
 	if(crop_to_upper_half)
 		var/icon/cropped_icon = icon(credit_icon)

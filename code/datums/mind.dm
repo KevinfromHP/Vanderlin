@@ -244,7 +244,7 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 	known_people = list()
 
 /// show known people to the player
-/datum/mind/proc/display_known_people(mob/user)
+/datum/mind/proc/display_known_people_old(mob/user)
 	if(!user)
 		return
 	if(!known_people.len)
@@ -267,6 +267,120 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 	var/datum/browser/popup = new(user, "PEOPLEIKNOW", "", 260, 400)
 	popup.set_content(contents)
 	popup.open()
+
+/datum/mind/proc/display_known_people(mob/user)
+	if(!user)
+		return
+	if(!length(known_people))
+		return
+
+	var/dat = {"
+	<style>
+    	.known-container {
+    	    display: grid;
+    	    grid-template-columns: repeat(3, 1fr);
+    	    gap: 20px;
+    	    padding: 15px;
+    	}
+
+    	.known-poster {
+    	    width: 175px;
+    	    height: 228px;
+    	    padding: 8px;
+    	    font-family: 'Pterra', TrueType;
+    	    display: flex;
+    	    flex-direction: column;
+    	}
+
+    	.known-name {
+    	    color: #c2c2c2;
+    	    font-size: 24px;
+    	    font-weight: bold;
+    	    text-align: center;
+    	    margin-bottom: 5px;
+    	}
+
+    	.known-title {
+    	    color: #897472;
+    	    font-size: 16px;
+    	    text-align: center;
+    	    margin-bottom: 8px;
+    	    font-family: 'Pterra, TrueType';
+    	}
+
+    	.known-icon-container {
+    	    width: 120px;
+    	    height: 85px;
+    	    margin: 0 auto;
+    	    padding: 3px;
+    	}
+
+    	.known-icon {
+    	    width: 100%;
+    	    height: 90%;
+    	    object-fit: cover;
+    	    image-rendering: pixelated;
+    	}
+
+    	.known-info-container {
+    	    flex-grow: 1;
+    	    display: flex;
+    	    flex-direction: column;
+    	    justify-content: center;
+    	    min-height: 65px;
+    	    margin-top: 5px;
+    	}
+
+    	.known-info {
+    	    color: #9c9c9c;
+    	    font-size: 18px;
+    	    font-weight: bold;
+    	    text-align: center;
+    	    padding: 0 5px;
+    	    word-break: break-word;
+    	    overflow: hidden;
+    	    display: -webkit-box;
+    	    -webkit-line-clamp: 3;
+    	    -webkit-box-orient: vertical;
+    	}
+	</style>
+	<div class='known-container'>
+	"}
+
+	for(var/P in known_people)
+		if(!length(known_people[P]))
+			known_people -= P
+			continue
+		var/fcolor = known_people[P]["VCOLOR"]
+		if(!fcolor)
+			continue
+		var/fjob = known_people[P]["FJOB"]
+		var/fgender = capitalize(known_people[P]["FGENDER"])
+		var/fage = capitalize(known_people[P]["FAGE"])
+		var/fheadshot
+		var/ic = SScrediticons.get_credit_icon(P, TRUE)
+		if(ic)
+			fheadshot = "<img class='known-icon' src='data:image/png;base64,[icon2base64(ic)]'>"
+		else
+			fheadshot = "<div class='known-icon'></div>"
+
+		dat += {"
+		<div class='known-poster'>
+			<div class='known-name'><font color=[fcolor]><b>[P]</b></font></div>
+			<div class='known-title'><i>[fjob]</i></div>
+			<div class='known-icon-container'>
+				[fheadshot]
+			</div>
+			<div class='known-info-container'>
+				<div class='known-info'>[fage], [fgender]</div>
+			</div>
+		</div>
+		"}
+	dat += "</div>"
+	var/datum/browser/popup = new(user, "known_people", "<center>ACQUAINTANCES</center>", 688, 570)
+	popup.set_content(dat)
+	popup.open()
+
 
 /// returns the language holder of this mind
 /datum/mind/proc/get_language_holder()

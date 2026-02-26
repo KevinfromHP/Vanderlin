@@ -121,6 +121,9 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 	/// link to a page containing your headshot image
 	var/headshot_link
 
+	var/rumour
+	var/noble_gossip
+
 	/// link to a page containing your ooc extra image
 	var/ooc_extra_link
 	var/ooc_extra
@@ -196,7 +199,6 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 	var/action_buttons_screen_locs = list()
 
 	var/domhand = 2
-	var/alignment = ALIGNMENT_TN
 	var/list/quirks = list()
 	var/list/quirk_customizations = list() // Maps quirk_type -> customization_value
 
@@ -2003,10 +2005,6 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 						var/new_gender_choice  = browser_input_list(user, "SELECT YOUR HERO'S PREFERENCE", "TO LOVE AND TO CHERISH", gender_choice_option_list, gender_choice)
 						if(new_gender_choice)
 							gender_choice = new_gender_choice
-				if("alignment")
-					var/new_alignment = browser_input_list(user, "SELECT YOUR HERO'S MORALITY", "CUT FROM THE SAME CLOTH", ALL_ALIGNMENTS_LIST, alignment)
-					if(new_alignment)
-						alignment = new_alignment
 				if("hotkeys")
 					hotkeys = !hotkeys
 					if(hotkeys)
