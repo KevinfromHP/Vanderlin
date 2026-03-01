@@ -115,6 +115,7 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 	var/list/areas_entered = list()
 
 	var/list/known_people = list() //contains person, their job, and their voice color
+	var/datum/acquaintance_holder/acquaintances
 
 	var/list/notes = list() //RTD add notes button
 
@@ -244,31 +245,50 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 	known_people = list()
 
 /// show known people to the player
-/datum/mind/proc/display_known_people_old(mob/user)
+/datum/mind/proc/display_known_people(mob/user)
 	if(!user)
 		return
 	if(!known_people.len)
 		return
-	var/contents = "<center>People that [name] knows:</center><BR>"
+	if(!acquaintances)
+		acquaintances = new(src)
 	for(var/P in known_people)
-		if(!length(known_people[P]))
-			known_people -= P
-			continue
-		var/fcolor = known_people[P]["VCOLOR"]
-		if(!fcolor)
-			continue
-		var/fjob = known_people[P]["FJOB"]
-		var/fgender = known_people[P]["FGENDER"]
-		var/fage = known_people[P]["FAGE"]
-		if(fcolor && fjob)
-			contents += "<B><font color=#[fcolor];text-shadow:0 0 10px #8d5958, 0 0 20px #8d5958, 0 0 30px #8d5958, 0 0 40px #8d5958, 0 0 50px #e60073, 0 0 60px #8d5958, 0 0 70px #8d5958;>[P]</font></B><BR>[fjob], [capitalize(fgender)], [fage]"
-			contents += "<BR>"
+		var/we_exist = FALSE
+		for(var/datum/acquaintance/acq in acquaintances.relations)
+			if(P == acq.real_name)
+				we_exist = TRUE
+				break
+		if(!we_exist)
+			var/datum/acquaintance/new_acq = new()
+			new_acq.real_name = P
+			new_acq.title =  known_people[P]["FJOB"]
+			new_acq.age = known_people[P]["FAGE"]
+			new_acq.voice_color = known_people[P]["VCOLOR"]
+			new_acq.face = TRUE
+			acquaintances.relations += new_acq
+	acquaintances.ui_interact(user)
+	return
 
-	var/datum/browser/popup = new(user, "PEOPLEIKNOW", "", 260, 400)
-	popup.set_content(contents)
-	popup.open()
+	// var/contents = "<center>People that [name] knows:</center><BR>"
+	// for(var/P in known_people)
+	// 	if(!length(known_people[P]))
+	// 		known_people -= P
+	// 		continue
+	// 	var/fcolor = known_people[P]["VCOLOR"]
+	// 	if(!fcolor)
+	// 		continue
+	// 	var/fjob = known_people[P]["FJOB"]
+	// 	var/fgender = known_people[P]["FGENDER"]
+	// 	var/fage = known_people[P]["FAGE"]
+	// 	if(fcolor && fjob)
+	// 		contents += "<B><font color=#[fcolor];text-shadow:0 0 10px #8d5958, 0 0 20px #8d5958, 0 0 30px #8d5958, 0 0 40px #8d5958, 0 0 50px #e60073, 0 0 60px #8d5958, 0 0 70px #8d5958;>[P]</font></B><BR>[fjob], [capitalize(fgender)], [fage]"
+	// 		contents += "<BR>"
 
-/datum/mind/proc/display_known_people(mob/user)
+	// var/datum/browser/popup = new(user, "PEOPLEIKNOW", "", 260, 400)
+	// popup.set_content(contents)
+	// popup.open()
+
+/datum/mind/proc/display_known_people_shit(mob/user)
 	if(!user)
 		return
 	if(!length(known_people))
