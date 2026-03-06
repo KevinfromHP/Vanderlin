@@ -968,9 +968,11 @@
 		. = TRUE
 		if(mind)
 			mind.remove_antag_datum(/datum/antagonist/zombie)
+
 		if(ishuman(src))
 			var/mob/living/carbon/human/human = src
 			human.funeral = FALSE
+
 		if(excess_healing)
 			INVOKE_ASYNC(src, PROC_REF(emote), "breathgasp")
 			log_combat(src, src, "revived")
@@ -1660,7 +1662,7 @@
 /mob/living/proc/resist_fire()
 	return
 
-/mob/living/proc/resist_restraints()
+/mob/living/proc/resist_restraints(instant = FALSE)
 	return
 
 /mob/living/proc/get_visible_name()
@@ -2139,6 +2141,9 @@
 			return
 		if(incapacitated())
 			return
+		//if(!step(src,get_dir(src,over)))
+		//	to_chat(src, span_warning("You can't climb into [over] whilst it's there."))
+		//	return
 		for(var/obj/item/grabbing/G in grabbedby)
 			if(G.grab_state == GRAB_AGGRESSIVE)
 				return

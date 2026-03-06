@@ -344,7 +344,8 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			height: 100vh;
+			height: 100%;
+			width: 100%;
 			margin: 0;
 			image-rendering: pixelated;
 		}
@@ -355,7 +356,6 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 			background-image: url('Charsheet_BG.1.png');
 			background-size: cover;
 			transform: scale(3);
-			zoom: [100 / user.client?.window_scaling]%;
 		}
 		.sprite { position: absolute; background-repeat: no-repeat; cursor: pointer; }
 
@@ -735,7 +735,7 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 	winshow(user, "stonekeep_prefwin", TRUE)
 	winshow(user, "stonekeep_prefwin.character_preview_map", TRUE)
 	// This should really be a browser datum
-	user << browse(dat.Join(), "window=preferences_browser;size=816x945")
+	user << browse(dat.Join(), "window=preferences_browser;size=816x950")
 	update_preview_icon()
 	// onclose(user, "stonekeep_prefwin", src)
 
@@ -1706,18 +1706,34 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 				if("loadout_item")
 					var/list/loadouts_available = list("None" = null)
 					for(var/datum/loadout_item/item as anything in GLOB.loadout_items)
-						loadouts_available[item.name] += item
-
+						var/datum/loadout_item/singleton = GLOB.loadout_items[item]
+						if(singleton.is_unlocked_for(user.client))
+							loadouts_available[item.name] = item
+						else
+							// Show it but greyed out with a hint, so players know it exists
+							var/datum/award/A = SSachievements.awards[item.required_award]
+							var/locked_name = "\[Locked\] [item.name]"
+							if(A?.name)
+								locked_name += " (Requires: [A.name]"
+								// Show progress for progress-type awards
+								if(istype(A, /datum/award/achievement/progress))
+									locked_name += " - [user.client.player_details.achievements.get_progress_string(item.required_award)]"
+								locked_name += ")"
+							loadouts_available[locked_name] = null // Maps to null so set_loadout gets nothing if somehow selected
 					var/loadout_input = browser_input_list(
 						user,
 						"Choose your character's loadout item. RMB a tree, statue or clock to collect.",
 						"Loadout",
 						loadouts_available,
-						)
-
+					)
 					var/loadout_number = href_list["loadout_number"]
-
-					set_loadout(user, loadout_number, loadouts_available[loadout_input])
+					// Re-validate on submission in case of href manipulation
+					var/datum/loadout_item/chosen = loadouts_available[loadout_input]
+					var/datum/loadout_item/chosen_singleton = GLOB.loadout_items[loadout_input]
+					if(chosen && !chosen_singleton.is_unlocked_for(user.client))
+						to_chat(user, span_warning("You haven't unlocked that loadout item yet."))
+						return
+					set_loadout(user, loadout_number, chosen)
 
 				if("species")
 					selected_accent = ACCENT_DEFAULT
@@ -2123,7 +2139,8 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 
 				if("widescreenpref")
 					widescreenpref = !widescreenpref
-					user.client.view_size.setDefault(getScreenSize(widescreenpref))
+					var/datum/view_data/view = user.client.view_size
+					view.setDefault(view.getScreenSize(widescreenpref))
 
 				if("pixel_size")
 					switch(pixel_size)
