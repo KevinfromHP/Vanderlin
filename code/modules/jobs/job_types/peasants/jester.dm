@@ -71,7 +71,7 @@
 		spawned.cmode_music = 'sound/music/cmode/nobility/CombatJesterSTR.ogg'
 	else
 		spawned.cmode_music = pick('sound/music/cmode/nobility/CombatJester1.ogg', 'sound/music/cmode/nobility/CombatJester2.ogg')
-
+	spawned.add_spell(/datum/action/cooldown/spell/enhanced_mimicry, TRUE)
 	add_verb(spawned, /mob/living/carbon/human/proc/ventriloquate)
 	add_verb(spawned, /mob/living/carbon/human/proc/ear_trick)
 
@@ -85,6 +85,8 @@
 	beltl = /obj/item/storage/belt/pouch
 	head = /obj/item/clothing/head/jester
 	neck = /obj/item/clothing/neck/coif
+	r_hand = /obj/effect/spawner/map_spawner/loot/weapon
+	l_hand = /obj/effect/spawner/map_spawner/loot/weapon
 
 //Ventriloquism! Make things speak!
 
