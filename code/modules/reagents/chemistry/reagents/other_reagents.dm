@@ -4,7 +4,7 @@
 	name = "Blood"
 	color = COLOR_BLOOD
 	metabolization_rate = 20 //SUPER fast
-	taste_description = "iron"
+	taste_description = "Abyssor"
 	taste_mult = 1.3
 	glass_icon_state = "glass_red"
 	glass_name = "glass of tomato juice"
@@ -113,7 +113,7 @@
 	..()
 
 /datum/reagent/water/gross
-	taste_description = "lead"
+	taste_description = "microplastics"
 	color = "#98934bc6"
 
 /datum/reagent/water/gross/on_aeration(volume, turf/turf)
