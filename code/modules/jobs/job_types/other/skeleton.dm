@@ -15,8 +15,8 @@
 	department_flag = UNDEAD
 	job_flags = (JOB_EQUIP_RANK)
 	faction = FACTION_UNDEAD
-	total_positions = 0
-	spawn_positions = 0
+	total_positions = 2
+	spawn_positions = 2
 	antag_job = TRUE
 	allowed_races = RACES_PLAYER_ALL
 	cmode_music = 'sound/music/cmode/antag/combatskeleton.ogg'
