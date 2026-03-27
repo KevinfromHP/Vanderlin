@@ -54,18 +54,6 @@
 
 	var/list/statdiffs = list(strdiff, perdiff, spddiff, fordiff, intdiff)
 
-	//Skill check, very simple. If you're more skilled with your weapon than the opponent is with theirs -> +10% to disarm or vice-versa.
-	var/skilldiff
-	if(our_item.associated_skill)
-		skilldiff = GET_MOB_SKILL_VALUE_OLD(src, our_item.associated_skill)
-	else
-		instantloss = TRUE	//We are Guarding with a book or something -- no chance for us.
-
-	if(their_item.associated_skill)
-		skilldiff = skilldiff - GET_MOB_SKILL_VALUE_OLD(user, their_item.associated_skill)
-	else
-		instantwin = TRUE	//THEY are Guarding with a book or something -- no chance for them.
-
 	//Weapon checks.
 	var/lengthdiff = our_item.wlength - their_item.wlength //The longer the weapon the better.
 	var/wieldeddiff = our_item.is_wielded() - their_item.is_wielded() //If ours is wielded but theirs is not.
